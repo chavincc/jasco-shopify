@@ -1,0 +1,12 @@
+ajax-loader.gif
+gift-card.*
+ico-select.*
+lazysizes.js
+password.js
+vendor.js
+theme.*
+
+*.yml
+
+/locales/*
+!en.default.json
