@@ -1,7 +1,4 @@
 # JASCO
-
-belongs to KOS Design Co.,Ltd
-
 ---
 #### STACK
 * [Shopify](https://www.shopify.com/)
