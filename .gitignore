@@ -8,8 +8,22 @@ password.js
 vendor.js
 theme.js
 theme.scss.liquid
+
 # themekit config
 config.yml
+
 # unnecessary language file
 /locales/*
 !en.default.json
+
+# workspace settings
+.vscode/*
+
+# OS X
+.DS_Store*
+Icon?
+._*
+
+# compiled deployment file
+/assets/index.css
+/assets/index.css.map

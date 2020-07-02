@@ -1,0 +1,63 @@
+$container-margin: 115px;
+$container-margin-small: 65px;
+$container-margin-very-small: 30px;
+$container-margin-extra-large: 10vw;
+$break-medium: 768px;
+$break-large: 960px;
+$break-extra-large: 1200px;
+$break-small: 576px;
+
+@mixin responsive-x-padding() {
+  padding-left: $container-margin-extra-large;
+  padding-right: $container-margin-extra-large;
+  @media only screen and (max-width: $break-extra-large) {
+    padding-left: $container-margin;
+    padding-right: $container-margin;
+  }
+  @media only screen and (max-width: $break-large) {
+    padding-left: $container-margin-small;
+    padding-right: $container-margin-small;
+  }
+  @media only screen and (max-width: $break-small) {
+    padding-left: $container-margin-very-small;
+    padding-right: $container-margin-very-small;
+  }
+}
+
+@mixin responsive-x-filler() {
+  min-width: $container-margin-extra-large;
+  @media only screen and (max-width: $break-extra-large) {
+    min-width: $container-margin;
+  }
+  @media only screen and (max-width: $break-large) {
+    min-width: $container-margin-small;
+  }
+  @media only screen and (max-width: $break-small) {
+    min-width: $container-margin-very-small;
+  }
+}
+@mixin responsive-padding-right() {
+  padding-right: $container-margin-extra-large;
+  @media only screen and (max-width: $break-extra-large) {
+    padding-right: $container-margin;
+  }
+  @media only screen and (max-width: $break-large) {
+    padding-right: $container-margin-small;
+  }
+  @media only screen and (max-width: $break-small) {
+    padding-right: $container-margin-very-small;
+  }
+}
+@mixin responsive-margin-left() {
+  margin-left: $container-margin-extra-large;
+  @media only screen and (max-width: $break-extra-large) {
+    margin-left: $container-margin;
+  }
+  @media only screen and (max-width: $break-large) {
+    margin-left: $container-margin-small;
+  }
+  @media only screen and (max-width: $break-small) {
+    margin-left: $container-margin-very-small;
+  }
+}
+
