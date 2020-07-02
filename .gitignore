@@ -17,4 +17,13 @@ config.yml
 !en.default.json
 
 # workspace settings
-.vscode
+.vscode/*
+
+# OS X
+.DS_Store*
+Icon?
+._*
+
+# compiled deployment file
+assets/index.css
+assets/index.css.map
