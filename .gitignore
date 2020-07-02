@@ -1,12 +1,20 @@
+# library
 ajax-loader.gif
-gift-card.*
-ico-select.*
+gift-card.js
+gift-card.scss.liquid
+ico-select.svg.liquid
 lazysizes.js
 password.js
 vendor.js
-theme.*
+theme.js
+theme.scss.liquid
 
-*.yml
+# themekit config
+config.yml
 
+# unnecessary language file
 /locales/*
 !en.default.json
+
+# workspace settings
+.vscode

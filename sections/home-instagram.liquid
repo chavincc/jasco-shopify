@@ -1,0 +1,31 @@
+<section id="instagram">
+    <div class="row align-items-center mb-5 flex-column flex-sm-row" id="instagram-meta">
+        <div class="d-flex justify-content-md-around justify-content-start col-sm-8 col-12 flex-column flex-md-row align-items-start mb-sm-0 mb-3">
+            <div class="d-flex justify-content-center">
+                <span id="instagram-logo">
+                    <img src={{ "home-instagram-img-black-logo.svg" | asset_url }} />
+                    Instagram</span>
+            </div>
+            <div class="d-flex justify-content-center">
+                <span id="instagram-id">@jpjascoth</span>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 d-flex justify-content-start justify-content-sm-end align-items-start">
+            <button type="button" id="instagram-follow-us-btn">
+                Follow us
+            </button>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-0" id="instagram-recent-media">
+        {% assign last = 8 %}
+        {% for i in (0..last) %}
+            {% assign id = i %}
+            {% assign snippetClassSuffix = "" %}
+            {% if i == 8 %}
+                {% assign snippetClassSuffix = "d-md-block d-lg-none d-sm-none" %}
+            {% endif %}
+            {% include "home-instagram-img" %}
+        {% endfor %}
+    </div>
+</section>
+{% comment %} {{ "home-instagram-service.js" | asset_url | script_tag }} {% endcomment %}

@@ -1,0 +1,12 @@
+{% assign snippetImgSrc = id | prepend: 'home-instagram-fallback-' | append: '.png' %}
+
+<div class="recent-media-wrapper col-12 col-sm-6 col-md-4 col-lg-3 mb-1 {{ snippetClassSuffix }}">
+    <img
+        class="recent-media-child"
+        id="instagram-media-{{ id }}"
+        src={{ snippetImgSrc | asset_url }}
+    />
+    <div class="dark-overlay">
+        <img src={{ "home-instagram-img-overlay-logo.svg" | asset_url }}>
+    </div>
+</div>

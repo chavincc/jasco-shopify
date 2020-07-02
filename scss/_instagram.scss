@@ -1,0 +1,80 @@
+$footer-primary-color: #004b83;
+$footer-text-color: #fff;
+
+@import "spacing";
+
+#instagram {
+  padding: 90px 0 125px 0;
+  @media only screen and (max-width: $break-medium) {
+    padding: 50px 0;
+  }
+
+  & > .row {
+    @include responsive-x-padding();
+    margin: 0;
+
+    .recent-media-wrapper:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .recent-media-child {
+      object-fit: cover;
+      height: 95%;
+      width: 95%;
+      position: absolute;
+      background-color: white;
+      z-index: 1;
+    }
+
+    .dark-overlay {
+      @extend .recent-media-child;
+      z-index: 2;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      opacity: 0;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .recent-media-child:hover ~ .dark-overlay,
+    .dark-overlay:hover {
+      opacity: 1;
+    }
+  }
+
+  &-logo,
+  &-id {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+
+  &-logo:hover,
+  &-id:hover {
+    color: $footer-primary-color;
+  }
+
+  &-follow-us-btn {
+    background-color: #64bcfe;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.72px;
+    border-radius: 7px;
+    border: none;
+    width: 100px;
+    height: 35px;
+    color: white;
+  }
+  &-follow-us-btn:hover {
+    background-color: #5ba9e6;
+  }
+}
