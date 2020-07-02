@@ -1,20 +1,22 @@
-STACK
+# JASCO
 
-- shopify (using themekit)
+belongs to KOS Design Co.,Ltd
 
-SCSS
+---
+#### STACK
+* [Shopify](https://www.shopify.com/)
+* [Themekit](https://shopify.github.io/themekit/)
+* [Sass](https://sass-lang.com/)
 
-`sass --watch scss:assets --style compressed`
+#### DEVELOPMENT
+```sh
+ $ sass --watch scss:assets --style compressed
+ $ theme watch
+```
 
-DEVELOPMENT
+#### CONFIGURATION MANAGEMENT / MANUAL
+* https://docs.google.com/document/d/1HNq1Zc6mPVWpS7E2mNxfcyaI4GSOI8q4On10-_HJJGY/edit
 
-`theme watch`
-
-CONFIGURATION MANAGEMENT / MANUAL
-
-https://docs.google.com/document/d/1HNq1Zc6mPVWpS7E2mNxfcyaI4GSOI8q4On10-_HJJGY/edit
-
-WORKING CONVENTION
-
-not strictly forced to use https://www.conventionalcommits.org/en/v1.0.0/ but recommended when able to do so
-https://docs.google.com/document/d/1P_DI2YZEcvvGJXCru014JI371H2aPSRryhjdqgZMjWk/edit
+#### WORKING CONVENTION
+* not strictly forced to use https://www.conventionalcommits.org/en/v1.0.0/ but recommended when able to do so
+* https://docs.google.com/document/d/1P_DI2YZEcvvGJXCru014JI371H2aPSRryhjdqgZMjWk/edit
