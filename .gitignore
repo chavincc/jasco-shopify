@@ -25,5 +25,5 @@ Icon?
 ._*
 
 # compiled deployment file
-assets/index.css
-assets/index.css.map
+/assets/index.css
+/assets/index.css.map
