@@ -1,31 +1,119 @@
+{% assign instagramLink = section.settings.instagram_username | prepend: 'https://www.instagram.com/' %}
 <section id="instagram">
     <div class="row align-items-center mb-5 flex-column flex-sm-row" id="instagram-meta">
         <div class="d-flex justify-content-md-around justify-content-start col-sm-8 col-12 flex-column flex-md-row align-items-start mb-sm-0 mb-3">
             <div class="d-flex justify-content-center">
-                <span id="instagram-logo">
+                <a id="instagram-logo" href={{ instagramLink }}>
                     <img src={{ "home-instagram-img-black-logo.svg" | asset_url }} />
-                    Instagram</span>
+                    Instagram</a>
             </div>
             <div class="d-flex justify-content-center">
-                <span id="instagram-id">@jpjascoth</span>
+                <a id="instagram-id" href={{ instagramLink }}>@{{ section.settings.instagram_username }}</a>
             </div>
         </div>
         <div class="col-12 col-sm-4 d-flex justify-content-start justify-content-sm-end align-items-start">
-            <button type="button" id="instagram-follow-us-btn">
-                Follow us
-            </button>
+            <a href={{ instagramLink }}>
+                <button type="button" id="instagram-follow-us-btn">
+                    Follow us
+                </button>
+            </a>
         </div>
     </div>
     <div class="row d-flex justify-content-center mb-0" id="instagram-recent-media">
         {% assign last = 8 %}
         {% for i in (0..last) %}
             {% assign id = i %}
+
+            {% assign imgName = i | prepend: 'default_image_' %}
+            {% assign imgURL = section.settings[imgName] | img_url: 'medium' %}
+
             {% assign snippetClassSuffix = "" %}
             {% if i == 8 %}
                 {% assign snippetClassSuffix = "d-md-block d-lg-none d-sm-none" %}
             {% endif %}
+
             {% include "home-instagram-img" %}
         {% endfor %}
     </div>
 </section>
-{% comment %} {{ "home-instagram-service.js" | asset_url | script_tag }} {% endcomment %}
+
+{% schema %}
+  {
+    "name": "Home Instagram",
+    "settings": [
+        {
+            "type": "text",
+            "id": "instagram_username",
+            "label": "instagram username"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_0",
+            "label": "default image 0"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_1",
+            "label": "default image 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_2",
+            "label": "default image 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_3",
+            "label": "default image 3"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_4",
+            "label": "default image 4"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_5",
+            "label": "default image 5"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_6",
+            "label": "default image 6"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_7",
+            "label": "default image 7"
+        },
+        {
+            "type": "image_picker",
+            "id": "default_image_8",
+            "label": "default image 8"
+        }
+    ]
+  }
+{% endschema %}
+
+{% comment %} <script>
+    const getRecentThumbnailUrl = async (
+        name = '{{ section.settings.instagram_username }}',
+        top = 9,
+        quality = 3
+    ) => {
+        const response = await fetch(`https://www.instagram.com/${name}/?__a=1`);
+        const JSONresponse = await response.json();
+        return JSONresponse.graphql.user.edge_owner_to_timeline_media.edges
+            .slice(0, top)
+            .map((item) => item.node.thumbnail_resources[quality].src);
+    }
+
+    // RENDER INSTAGRAM IMAGE
+    let instagramArr;
+    (async () => {
+        instagramArr = await getRecentThumbnailUrl();
+        for (let i = 0; i < 9; i++) {
+            document.getElementById(`instagram-media-${i}`).src = instagramArr[i];
+        }
+    })();
+</script> {% endcomment %}
