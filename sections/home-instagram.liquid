@@ -14,7 +14,7 @@
         <div class="col-12 col-sm-4 d-flex justify-content-start justify-content-sm-end align-items-start">
             <a href={{ instagramLink }}>
                 <button type="button" id="instagram-follow-us-btn">
-                    Follow us
+                    {{ section.settings.button_text }}
                 </button>
             </a>
         </div>
@@ -45,6 +45,11 @@
             "type": "text",
             "id": "instagram_username",
             "label": "instagram username"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "button text"
         },
         {
             "type": "image_picker",
