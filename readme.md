@@ -1,5 +1,5 @@
 # JASCO
----
+
 #### STACK
 * [Shopify](https://www.shopify.com/)
 * [Themekit](https://shopify.github.io/themekit/)
