@@ -1,5 +1,9 @@
 @import "spacing";
 
+header {
+  font-family: "Poppins", sans-serif;
+}
+
 .header-first-row {
   padding: 0 0 0px;
   @include responsive-x-padding();
@@ -41,7 +45,7 @@
 }
 
 .header-second-row {
-  margin-top: -50px;
+  margin-top: -40px;
   margin-bottom: 38px;
   @include responsive-x-padding();
 }
@@ -49,6 +53,7 @@
 .head-search {
   display: flex;
   input {
+    font-size: 13px;
     padding-left: 10px;
     border: none;
     border-left: 1px solid #e6e6e6;
@@ -77,9 +82,16 @@
       display: inline-block;
       margin-right: 2px;
     }
-    #icon {
+    #icon,
+    #xs-icon {
       padding-right: 8px;
     }
+
+    #xs-icon {
+      margin-top: -10px;
+      width: 23px;
+    }
+
     li {
       display: flex;
       position: relative;
@@ -217,7 +229,6 @@
   justify-content: center;
   align-items: center;
   border: 1px solid #4a4a4a;
-  font-family: "Poppins", sans-serif;
   margin-top: -2px;
   p {
     display: flex;
