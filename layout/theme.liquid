@@ -40,7 +40,10 @@
   {% include 'social-meta-tags' %}
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'bootstrap.css' | asset_url | stylesheet_tag }}
 
+  {{ 'index.css' | asset_url | stylesheet_tag }}
+  
   <script>
     var theme = {
       breakpoints: {
@@ -107,6 +110,9 @@
   <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
+  <script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'bootstrap.js' | asset_url }}" defer="defer"></script>
+  
   {{ content_for_header }}
 </head>
 
