@@ -52,6 +52,7 @@
 
     {{ "jquery-3.5.1.slim.min.js" | asset_url | script_tag }}
 
+    <script src="{{ 'navbar.js' | asset_url }}" defer="defer"></script>
     <script>
       var theme = {
         breakpoints: {
@@ -106,6 +107,7 @@
           predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
         }
       }
+
 
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
