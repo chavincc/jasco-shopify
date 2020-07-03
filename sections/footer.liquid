@@ -156,7 +156,7 @@
               <div class="site-footer__newsletter
                         {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
                 {%- assign formId = 'ContactFooter' -%}
-                {% form 'customer', id: formId, class: 'error', novalidate: 'novalidate' %}
+                {% form 'customer', id: formId, novalidate: 'novalidate' %}
                   {%- if form.posted_successfully? -%}
                     <p class="form-message form-message--success" tabindex="-1" data-form-status>
                       {{ 'general.newsletter_form.confirmation' | t }}
@@ -168,7 +168,7 @@
                       <input type="email"
                         name="contact[email]"
                         id="{{ formId }}-email"
-                        class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %} error"
+                        class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
                         value="{{ form.email }}"
                         placeholder="Your email"
                         aria-label="Your email"
@@ -176,11 +176,7 @@
                         required
                         autocorrect="off"
                         autocapitalize="off"
-                        {% if form.errors %}
-                          aria-invalid="true"
-                          aria-describedby="{{ formId }}-email-error"
-                          data-form-status
-                        {% endif %}>
+                        />
                       <div class="input-error-noti">!</div>
                     </div>
                     <div class="input-noti-wrapper">
@@ -203,7 +199,7 @@
                       </button>
                     </span>
                   </div>
-                  <div class="form-error-description">
+                  <div class="form-error-description" id="form-error-description-footer">
                     <span class="notice-star">*</span> please enter your name
                   </div>
 

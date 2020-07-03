@@ -206,15 +206,15 @@ footer {
   }
 
   .form-error-description {
-    color: white;
+    color: red;
     border-radius: 3px;
     padding: 0.25rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.72px;
 
     display: none;
-  }
-  .notice-star {
-    color: red;
   }
 
   &.error > .form-error-description {
