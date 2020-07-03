@@ -4,7 +4,7 @@
     <div class="header-first-row" id="navbar-header-hide" role="navigation">
       <div class="row">
         <div class="col-lg-4 first-left d-flex justify-content-start">
-          <div class="head-logo" style="padding-top: 40px;">
+          <div class="head-logo">
             {% include 'jasco-slogan' %}
           </div>
         </div>
@@ -61,7 +61,7 @@
          
           <img src={{'navbar-img-download.png' | asset_url }}>
           </button>
-          <div class="head-search d-flex justify-content-end" style="padding-left: 20px;">
+          <div class="head-search d-flex justify-content-end">
               <form action="/search-result" method="get">
                 <input name="query" placeholder=" Search keyword..." type="text"/>
                   <button><img src={{'navbar-img-search.svg' | asset_url}}></button>
@@ -74,12 +74,12 @@
       <div class="container">
         <div class="collection-menu text-uppercase">
                 <nav>
-                    <ul class="list-inline d-flex justify-content-end align-items-center page-header" id="page-header" style="margin:0px;">
+                    <ul class="list-inline d-flex justify-content-end align-items-center" id="page-header" >
                       {% assign number_menu = 0 %}
                       {% for link in linklists[section.settings.main_linklist].links %}
                          {% assign number_menu = number_menu | plus: 1 %} 
                       {%endfor%}
-                      {% assign width_str =   100 | divided_by: number_menu  | append: '%' %}
+                      {% assign width_str = 100 | divided_by: number_menu  | append: '%' %}
                       {% for link in linklists[section.settings.main_linklist].links %}
                         <li style= "width:{{width_str}}">
                           <a href="{{ link.url }}">{{ link.title }}</a>
@@ -94,7 +94,7 @@
   </div>
 
   <div class="xs-head-row d-lg-none">
-    <div class="xs-navbar" id="xs-navbar-filler" style="margin-top: 20px;">
+    <div class="xs-navbar" id="xs-navbar-filler">
         <div class="xs-head-logo">
           {% include 'jasco-slogan' %}
         </div>
@@ -108,7 +108,7 @@
         <img id="menu" src={{'navbar-img-hamburger-menu.png' | asset_url }}/>
     </button>
     <div id="overlay-rec" onclick="hideMenuToggle()"></div>
-    <div  class="xs-menu-toggle" id="xs-menu-toggle" style="transform :translateX(100%); transition: 0.2s">
+    <div  class="xs-menu-toggle" id="xs-menu-toggle">
       <div class="xs-icon-links text-uppercase">
         <div class="d-flex justify-content-start" id="menu-title">
           <h5>Menu</h5>
@@ -141,9 +141,9 @@
               {% endfor %}
             </ul>
             </div>
-            <div class="head-search" style="padding: 0px 0px; margin:30px 30px; min-height: 30px;">
+            <div class="xs-head-search">
                 <form action="/search-result" method="get">
-                    <input name="query" placeholder="Search keyword... " style="min-height: 30px;" type="text">
+                    <input name="query" placeholder="Search keyword... " type="text">
                     <button>
                         <img src={{"navbar-img-search.svg" | asset_url }}>
                     </button>
@@ -153,8 +153,8 @@
                 <h5>Pages</h5>
             </div>
             <div id="line-square"></div>
-            <div class="head-third-row text-uppercase" style="padding-left: 40px">
-                <ul style="text-align:left;list-style-type: none;">
+            <div class="head-third-row text-uppercase">
+                <ul>
                     {% for link in linklists.main-menu.links %}
                         <li>
                             <a href="{{ link.url }}">{{ link.title }}</a>
@@ -204,3 +204,5 @@
     ]   
   }
 {% endschema %}
+
+<script src="{{ 'navbar.js' | asset_url }}" defer="defer"></script>
