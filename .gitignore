@@ -8,6 +8,7 @@ password.js
 vendor.js
 theme.js
 theme.scss.liquid
+assets/bootstrap.css
 
 # themekit config
 config.yml
