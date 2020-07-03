@@ -145,7 +145,9 @@
         <div class="site-footer__item
                     {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
                     {{ footer_item }}
-                    {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}"
+                    {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}
+                    {% if block.type == 'link_list' %} d-flex justify-content-center{% endif %}
+                    "
              {{ block.shopify_attributes }}>
           <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
 
@@ -208,6 +210,16 @@
 
               {%- when 'link_list' -%}
                 {%- assign footer_linklist = block.settings.menu -%}
+                {% for link in linklists[footer_linklist].links %}
+                  <a
+                    class="footer-submenu-item text-uppercase no-underline no-bold {% if link.current %}current{% endif %}"
+                    href="{{ link.url }}"
+                    {% if link.current %} aria-current="page"{% endif %}
+                    >{{ link.title | escape }}</a
+                  >
+                {% endfor %}
+                  
+                {% comment %} {%- assign footer_linklist = block.settings.menu -%}
                   <ul class="site-footer__linklist
                             {% if inline_list %}list--inline{% endif %}">
                     {%- for link in linklists[footer_linklist].links -%}
@@ -219,8 +231,22 @@
                         </a>
                       </li>
                     {%- endfor -%}
-                  </ul>
+                  </ul> {% endcomment %}
 
+              {%- when 'visit_us' -%}
+                <img class="mb-4" src={{
+                  "footer-img-logo-jasco.svg" | asset_url
+                }}/>
+                <div class="footer-text mb-3">
+                  {{ block.settings.contact }}
+                </div>
+                <a href="www.google.com">
+                  <button id="footer-visit-us-button">
+                    <img src={{ "footer-img-icon-paper-plane.svg" | asset_url }} />
+                    <span class="text-uppercase" id="footer-visit-us-button-text">visit us</span>
+                  </button>
+                </a>
+              
             {%- endcase -%}
 
           </div>
@@ -923,6 +949,31 @@
             "th": "จดหมายข่าว",
             "zh-CN": "新闻通讯",
             "zh-TW": "電子報"
+          }
+        }
+      ]
+    },
+    {
+      "type": "visit_us",
+      "name": {
+        "en": "visit us"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": {
+            "en": "Button Text"
+          },
+          "default": {
+            "en": "VISIT US"
+          }
+        },
+        {
+          "type": "richtext",
+          "id": "contact",
+          "label": {
+            "en": "Contact and Address"
           }
         }
       ]
