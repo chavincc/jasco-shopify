@@ -67,6 +67,16 @@ footer {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.72px;
+
+    a,
+    a:hover {
+      font-weight: bold;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 0.66px;
+      text-decoration: underline;
+      color: $footer-text-color;
+    }
   }
 
   &-submenu {
