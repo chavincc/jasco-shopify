@@ -25,15 +25,17 @@ footer {
   & > .row,
   & > .page-width {
     @include responsive-x-padding();
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 
 #lower-footer {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  @media only screen and (max-width: $break-large) {
-    padding-bottom: 25px;
-  }
+  // padding-top: 50px;
+  // padding-bottom: 50px;
+  // @media only screen and (max-width: $break-large) {
+  //   padding-bottom: 25px;
+  // }
 
   .col-3,
   .col-6,
