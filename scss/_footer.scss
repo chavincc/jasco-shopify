@@ -22,16 +22,25 @@ $footer-text-color: #fff;
 }
 
 footer {
-  & > .row {
+  & > .row,
+  & > .page-width {
     @include responsive-x-padding();
   }
 }
 
 #lower-footer {
-  padding-top: 40px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   @media only screen and (max-width: $break-large) {
-    padding-bottom: 50px;
+    padding-bottom: 25px;
+  }
+
+  .col-3,
+  .col-6,
+  .col-9,
+  .col-12 {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
@@ -153,6 +162,10 @@ footer {
 
   &-input-group {
     width: 100%;
+  }
+
+  &-social-icons {
+    color: white;
   }
 }
 

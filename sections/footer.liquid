@@ -143,7 +143,7 @@
                     {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
                     {{ footer_item }}
                     {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}
-                    {% if block.type == 'link_list' %} d-flex justify-content-center{% endif %}
+                    {% if block.type == 'link_list' %} d-flex justify-content-md-center justify-content-left{% endif %}
                     "
              {{ block.shopify_attributes }}>
           <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
@@ -239,34 +239,30 @@
 
   <div class="footer-line mb-5"></div>
 
-  {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
-
-  <div class="page-width">
-    <div class="grid__item {% if show_selectors or show_payment_icons %}one-half{% endif %} small--one-whole site-footer-item-tall">
+  <div
+    class="row d-flex justify-content-center justify-content-md-between align-items-center flex-column flex-md-row mx-0"
+    id="lower-footer"
+  >
+    <div class="col-9">
+      <div class="footer-signature text-center text-md-left d-flex justify-content-start">
+        Copyright 2020 Jasco, All Rights Reserved, Designed by KOS DESIGN
+      </div>
+    </div>
+    <div
+      class="footer-logo-wrapper col-3 d-flex justify-content-around mt-4 mt-md-0"
+    >
+      {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
       {%- if social_icons -%}
-        <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
-          {%- for social in socials -%}
-            {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
-            {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
-            {%- if settings[social_link] != blank -%}
-              <li class="social-icons__item">
-                <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
-                  {%- include icon_link -%}
-                  <span class="icon__fallback-text">{{ social }}</span>
-                </a>
-              </li>
-            {%- endif -%}
-          {%- endfor -%}
-
-          {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
-            <li>
-              <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
-                {% include 'icon-rss' %}
-                <span class="icon__fallback-text">RSS</span>
+        {%- for social in socials -%}
+          {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+          {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+          {%- if settings[social_link] != blank -%}
+              <a class="footer-social-icons" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                {%- include icon_link -%}
+                <span class="icon__fallback-text">{{ social }}</span>
               </a>
-            </li>
           {%- endif -%}
-        </ul>
+        {%- endfor -%}
       {%- else -%}
         <div class="small--hide site-footer-item-align-right {% if show_selectors or show_payment_icons %}site-footer-item-center-vertically{% endif %}">
           <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
