@@ -156,7 +156,7 @@
               <div class="site-footer__newsletter
                         {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
                 {%- assign formId = 'ContactFooter' -%}
-                {% form 'customer', id: formId, novalidate: 'novalidate' %}
+                {% form 'customer', id: formId, class: 'error', novalidate: 'novalidate' %}
                   {%- if form.posted_successfully? -%}
                     <p class="form-message form-message--success" tabindex="-1" data-form-status>
                       {{ 'general.newsletter_form.confirmation' | t }}
@@ -164,35 +164,57 @@
                   {%- endif -%}
                   <input type="hidden" name="contact[tags]" value="newsletter">
                   <div class="input-group {% if form.errors %} input-group--error{% endif %}">
-                    <input type="email"
-                      name="contact[email]"
-                      id="{{ formId }}-email"
+                    <div class="input-noti-wrapper">
+                      <input type="email"
+                        name="contact[email]"
+                        id="{{ formId }}-email"
+                        class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %} error"
+                        value="{{ form.email }}"
+                        placeholder="Your email"
+                        aria-label="Your email"
+                        aria-required="true"
+                        required
+                        autocorrect="off"
+                        autocapitalize="off"
+                        {% if form.errors %}
+                          aria-invalid="true"
+                          aria-describedby="{{ formId }}-email-error"
+                          data-form-status
+                        {% endif %}>
+                      <div class="input-error-noti">!</div>
+                    </div>
+                    <div class="input-noti-wrapper">
+                      <input type="text"
+                      name="contact[first_name]"
+                      id="{{ formId }}-first-name"
                       class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
-                      value="{{ form.email }}"
-                      placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                      aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                      placeholder="Your name"
+                      aria-label="Your name"
                       aria-required="true"
-                      required
                       autocorrect="off"
                       autocapitalize="off"
-                      {% if form.errors %}
-                        aria-invalid="true"
-                        aria-describedby="{{ formId }}-email-error"
-                        data-form-status
-                      {% endif %}>
+                      required
+                      >
+                      <div class="input-error-noti">!</div>
+                    </div>
                     <span class="input-group__btn">
                       <button type="submit" class="btn newsletter__submit" name="commit" >
                         <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
                       </button>
                     </span>
                   </div>
-                  {% if form.errors contains 'email' %}
-                    <span id="{{ formId }}-email-error" class="input-error-message">
-                      <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                      {% include 'icon-error' %}
-                      <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                    </span>
-                  {% endif %}
+                  <div class="form-error-description">
+                    <span class="notice-star">*</span> please enter your name
+                  </div>
+
+                  <div class="footer-law d-flex justify-content-between flex-column flex-lg-row mt-4">
+                    <a class="footer-law-text mb-2 mb-lg-0" href="/">
+                      Terms and condition
+                    </a>
+                    <a class="footer-law-text" href="/">
+                      Privacy policy
+                    </a>
+                  </div>
                 {% endform %}
               </div>
 
@@ -238,7 +260,7 @@
   <div class="footer-line mb-5 mt-md-0 mt-5"></div>
 
   <div
-    class="row d-flex justify-content-center justify-content-md-between align-items-center flex-column flex-md-row mx-0"
+    class="row py-3 d-flex justify-content-center justify-content-md-between align-items-center flex-column flex-md-row mx-0"
     id="lower-footer"
   >
     <div class="col-md-9 col-12 mb-md-0 mb-3">
@@ -270,8 +292,6 @@
     </div>
   </div>
 </footer>
-
-
 
 {% schema %}
 {
@@ -793,3 +813,5 @@
   ]
 }
 {% endschema %}
+
+{{ 'footer.js' | asset_url | script_tag }}
