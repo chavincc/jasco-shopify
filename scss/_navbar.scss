@@ -33,15 +33,26 @@ header {
   font-size: 12px;
   font-weight: bold;
   background-color: #004b83;
-  color: white;
+
   width: 204px;
   height: 41px;
   border-radius: 20.5px;
   text-transform: uppercase;
+  a {
+    color: white;
+    margin-right: 10px;
+  }
+  a:hover {
+    color: white;
+    text-decoration: transparent;
+  }
 }
 
 .catalogueBtn:focus {
   outline-style: none;
+  a {
+    text-decoration: none;
+  }
 }
 
 .header-second-row {
@@ -292,6 +303,9 @@ header {
 
 .xs-icon-links {
   padding-top: 100px;
+  .head-actions {
+    padding-left: 40px;
+  }
   span {
     vertical-align: middle;
     display: inline-flex;

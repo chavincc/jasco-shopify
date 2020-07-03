@@ -1,0 +1,6 @@
+<a href="/"><img src={{'navbar-img-jasco-logo.svg' | asset_url }} alt="{{shop.name}}"></a>
+{% if section.settings.logo_slogan == ""%}
+<p>Your source for food service public</p>
+{% else %}
+<p>{{section.settings.logo_slogan }}</p>
+{% endif %}

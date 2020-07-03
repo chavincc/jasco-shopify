@@ -5,36 +5,32 @@
       <div class="row">
         <div class="col-lg-4 first-left d-flex justify-content-start">
           <div class="head-logo" style="padding-top: 40px;">
-            <a href="/"><img src={{'navbar-img-jasco-logo.svg' | asset_url }} alt="{{shop.name}}"></a>
-            {% if section.settings.logo_slogan == ""%}
-              <p>Your source for food service public</p>
-            {% else %}
-              <p>{{section.settings.logo_slogan }}</p>
-            {% endif %}
+            {% include 'jasco-slogan' %}
           </div>
         </div>
         <div class="col-lg-8 col-md-block first-right d-flex justify-content-end align-items-center">
           <div class="head-actions">
             <ul class="list-inline d-flex justify-content-end align-items-center">
-              {% for link in linklists.top-menu.links %}
-                {% assign iconTitle = link.title | prepend: "navbar-img-" | append: ".svg" %} 
+              {% assign top_menus = "STORE,CART,WISHLIST,LOGIN" | split: ','%}
+              {% for head_menu in top_menus %}
+                {% assign iconTitle = head_menu | prepend: "navbar-img-" | append: ".svg" %} 
                 <li>   
                   <img id= "icon" src= {{ iconTitle | asset_url }}/> 
-                  {% if link.title == 'LOGIN' %}
+                  {% if head_menu == 'LOGIN' %}
                     {% if shop.customer_accounts_enabled %}
                       {% if customer %}
-                        <a href="{{ routes.account_url }}">{{ link.title }} </a>
+                        <a href="{{ routes.account_url }}">{{ head_menu }} </a>
                       {% else %}
-                        <a href="{{ routes.account_login_url }}">{{ link.title }}</a>
+                        <a href="{{ routes.account_login_url }}">{{ head_menu }}</a>
                       {% endif %}
                     {% endif %}
-                  {% elsif link.title == 'CART'%}
-                    <a href="{{routes.cart_url }}" >{{ link.title }}</a>
+                  {% elsif head_menu == 'CART'%}
+                    <a href="{{routes.cart_url }}" >{{ head_menu }}</a>
                     {% if cart.item_count != 0 %}
                       <div class="circle"><p>{{ cart.item_count }}</p></div>
                     {% endif %} 
                   {% else %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
+                    <a href="/">{{ head_menu }}</a>
                   {% endif %}
                 </li>
               {% endfor %}
@@ -48,11 +44,22 @@
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3"></div>
         <div class="col-xl-8 col-lg-8 col-md-4 col-sm-3 head-catalogue d-flex justify-content-end align-items-center">
           <button class="catalogueBtn">
-              {%if section.settings.button_text == "" %} JASCO CATALOGUE &nbsp
-              {%else%}
-                {{section.settings.button_text}}&nbsp
-              {%endif%}
-              <img src={{'navbar-img-download.png' | asset_url }}>
+          {% assign default_link = "https://cdn.shopify.com/s/files/1/0420/9711/5292/files/test_file_pdf.pdf?v=1593749203" %}
+          {%if section.settings.button_catalogue_text == "" %} 
+            {% if section.settings.catalogue_link == none %}
+            <a href= "{{default_link}}" target="_blank">JASCO CATALOGUE </a>
+            {% else %}
+            <a href= "{{section.settings.catalogue_link}}" target="_blank" >JASCO CATALOGUE</a>
+            {% endif %}
+          {%else%}
+            {% if section.settings.catalogue_link.url == none %}
+            <a href= "{{default_link}}" target="_blank" >{{section.settings.button_catalogue_text}} </a>
+            {% else %}
+            <a href= "{{section.settings.catalogue_link}}" target="_blank" >{{section.settings.button_catalogue_text}}</a>
+            {% endif %}
+          {%endif%} 
+         
+          <img src={{'navbar-img-download.png' | asset_url }}>
           </button>
           <div class="head-search d-flex justify-content-end" style="padding-left: 20px;">
               <form action="/search-result" method="get">
@@ -68,11 +75,16 @@
         <div class="collection-menu text-uppercase">
                 <nav>
                     <ul class="list-inline d-flex justify-content-end align-items-center page-header" id="page-header" style="margin:0px;">
-                        {% for link in linklists.main-menu.links %}
-                            <li>
-                                <a href="{{ link.url }}">{{ link.title }}</a>
-                            </li>
-                        {% endfor %}
+                      {% assign number_menu = 0 %}
+                      {% for link in linklists[section.settings.main_linklist].links %}
+                         {% assign number_menu = number_menu | plus: 1 %} 
+                      {%endfor%}
+                      {% assign width_str =   100 | divided_by: number_menu  | append: '%' %}
+                      {% for link in linklists[section.settings.main_linklist].links %}
+                        <li style= "width:{{width_str}}">
+                          <a href="{{ link.url }}">{{ link.title }}</a>
+                        </li>
+                      {% endfor %}
                     </ul>
                 </nav>
             </div>
@@ -84,22 +96,12 @@
   <div class="xs-head-row d-lg-none">
     <div class="xs-navbar" id="xs-navbar-filler" style="margin-top: 20px;">
         <div class="xs-head-logo">
-            <a href="/"><img src={{'navbar-img-jasco-logo.svg' | asset_url }} alt="{{shop.name}}"></a>
-            {% if section.settings.logo_slogan == ""%}
-              <p>Your source for food service public</p>
-            {% else %}
-              <p>{{section.settings.logo_slogan }}</p>
-            {% endif %}
+          {% include 'jasco-slogan' %}
         </div>
     </div>
     <div class="sticky xs-navbar">
         <div class="xs-head-logo">
-            <a href="/"><img src={{'navbar-img-jasco-logo.svg' | asset_url }} alt="{{shop.name}}"></a>
-            {% if section.settings.logo_slogan == ""%}
-              <p>Your source for food service public</p>
-            {% else %}
-              <p>{{section.settings.logo_slogan }}</p>
-            {% endif %}
+           {% include 'jasco-slogan' %}
         </div>
     </div>
     <button class="xs-head-bars" id="xs-head-bars" onclick="showHamburgerMenu()">
@@ -111,61 +113,33 @@
         <div class="d-flex justify-content-start" id="menu-title">
           <h5>Menu</h5>
         </div>
-        <div class="d-flex justify-content-end" id="line-square"></div>
-            <div class="head-actions" style="padding-left:40px">
+        <div id="line-square"></div>
+            <div class="head-actions">
             <ul class="list-inline d-flex justify-content-start">
-              {% for link in linklists.top-menu.links %}
-                {% assign iconTitle = link.title | prepend: "navbar-img-" | append: ".svg" %} 
+              {% assign top_menus = "STORE,CART,WISHLIST,LOGIN" | split: ','%}
+              {% for head_menu in top_menus %}
+                {% assign iconTitle = head_menu | prepend: "navbar-img-" | append: ".svg" %} 
                 <li>   
                   <img id= "xs-icon" src= {{ iconTitle | asset_url }}/> 
-                  {% if link.title == 'LOGIN' %}
+                  {% if head_menu == 'LOGIN' %}
                     {% if shop.customer_accounts_enabled %}
                       {% if customer %}
-                        <a href="{{ routes.account_url }}">{{ link.title }} </a>
+                        <a href="{{ routes.account_url }}">{{ head_menu }} </a>
                       {% else %}
-                        <a href="{{ routes.account_login_url }}">{{ link.title }}</a>
+                        <a href="{{ routes.account_login_url }}">{{ head_menu }}</a>
                       {% endif %}
                     {% endif %}
-                  {% elsif link.title == 'CART'%}
-                    <a href="{{routes.cart_url }}" >{{ link.title }}</a>
+                  {% elsif head_menu == 'CART'%}
+                    <a href="{{routes.cart_url }}" >{{ head_menu }}</a>
                     {% if cart.item_count != 0 %}
                       <div class="circle"><p>{{ cart.item_count }}</p></div>
                     {% endif %} 
                   {% else %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
+                    <a href="/">{{ head_menu }}</a>
                   {% endif %}
                 </li>
               {% endfor %}
             </ul>
-                {% comment %} <div class="row">
-                    <div class=" col-md-6 d-flex justify-content-start align-items-center">
-                        <a class="d-flex justify-content-start align-items-center" href="/" style="width: 100%" target="_blank">
-                            <!-- <i class="icon_pin"></i> -->
-                            <img src={{'navbar-img-STORE.svg' | asset_url }}>
-                            <div style="padding-bottom:0px;padding-left: 5px;">STORE</div>
-                        </a>
-                    </div>
-                    <div class=" col-md-6 d-flex justify-content-start align-items-center">
-                        <a class="d-flex justify-content-start align-items-center" href="/" style="width: 100%" target="_blank">
-                            <img src={{'navbar-img-CART.svg' | asset_url }}>
-                            <div style=" padding-left: 4px;">CART</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class=" col-md-6 d-flex justify-content-start align-items-center">
-                        <a class="d-flex justify-content-start align-items-center" href="/" style="width: 100%" target="_blank">
-                            <img src={{'navbar-img-WISHLIST.svg' | asset_url }}>
-                            <div style=" padding-left: 4px;">WISHLIST</div>
-                        </a>
-                    </div>
-                    <div class=" col-md-6 d-flex justify-content-start align-items-center">
-                        <a class="d-flex justify-content-start align-items-center" href="/" style="width: 100%" target="_blank">
-                            <img src={{'navbar-img-LOGIN.svg' | asset_url }}>
-                            <div style="padding-left: 4px;">LOGIN</div>
-                        </a>
-                    </div>
-                </div> {% endcomment %}
             </div>
             <div class="head-search" style="padding: 0px 0px; margin:30px 30px; min-height: 30px;">
                 <form action="/search-result" method="get">
@@ -178,8 +152,7 @@
             <div class="d-flex justify-content-start text-uppercase" id="menu-title">
                 <h5>Pages</h5>
             </div>
-            <div class="d-flex justify-content-end" id="line-square"></div>
-
+            <div id="line-square"></div>
             <div class="head-third-row text-uppercase" style="padding-left: 40px">
                 <ul style="text-align:left;list-style-type: none;">
                     {% for link in linklists.main-menu.links %}
@@ -220,14 +193,14 @@
       },
       {
         "type": "text",
-        "id": "button_text",
-        "label":{
-          "en": "Changing button text",
-          "th": "เปลี่ยนชื่อปุ่ม"
-        }
-      }
-    ] 
+        "id": "button_catalogue_text",
+        "label": "Button catalogue text"
+      } ,
+       {
+        "type": "url",
+        "id": "catalogue_link",
+        "label": "Button catalogue text"
+      } 
+    ]   
   }
-  {% endschema %}
-
-<script src="{{ 'navbar.js' | asset_url }}" defer="defer"></script>
+{% endschema %}
