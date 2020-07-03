@@ -3,7 +3,7 @@ let head_bar = document.getElementById("xs-head-bars");
 let icon_menu = document.getElementById("menu");
 let overlay_rec = document.getElementById("overlay-rec");
 
-function showHamburgerMenu() {
+showHamburgerMenu = () => {
   if (menu_toggle.style.transform === "translateX(100%)") {
     menu_toggle.style.transform = "translateX(0)";
     overlay_rec.style.display = "block";
@@ -13,14 +13,13 @@ function showHamburgerMenu() {
     head_bar.style.position = "fixed";
     overlay_rec.style.display = "none";
   }
-}
+};
 
-function hideMenuToggle() {
+hideMenuToggle = () => {
   menu_toggle.style.transform = "translateX(100%)";
   head_bar.style.position = "fixed";
   overlay_rec.style.display = "none";
-  icon_menu.src = "images/menu1.png";
-}
+};
 
 const ALL_PAGES = $("#page-header li");
 const PAGE = $("#page-header li a");
@@ -33,11 +32,11 @@ const COLLECTION_HEIGHT = COLLECTIONS_BAR[0].offsetHeight;
 let home_menu = $(".header-third-row");
 let home_menu_top = home_menu.offset().top;
 
-$(document).scroll(function () {
+$(document).scroll(() => {
   stickyMenu();
 });
 
-function stickyMenu() {
+stickyMenu = () => {
   if (window.pageYOffset >= home_menu_top) {
     home_menu.addClass("sticky-menu");
     PRODUCT_DROP.addClass("sticky-product-drop");
@@ -45,49 +44,40 @@ function stickyMenu() {
     home_menu.removeClass("sticky-menu");
     PRODUCT_DROP.removeClass("sticky-product-drop");
   }
-}
+};
 
-function setTabNavbar(current_page) {
-  console.log("inin");
+setTabNavbar = (current_page) => {
   for (i = 0; i < ALL_PAGES.length; i++) {
     if (current_page === i || current_page + 6 === i) {
       PAGE[i].style.fontWeight = "bold";
       PAGE[i].style.textDecoration = "none";
     }
   }
-}
-function removeTabNavbar(current_page) {
+};
+
+removeTabNavbar = (current_page) => {
   for (i = 0; i < ALL_PAGES.length; i++) {
     if (current_page === i || current_page + 6 === i) {
       PAGE[i].style.fontWeight = "normal";
       PAGE[i].style.textDecoration = "none";
     }
   }
-}
+};
 
-function hover_product_navbar() {
+hover_product_navbar = () => {
   for (let j = 0; j < ALL_PAGES.length; j++) {
     if (PAGE[j].text === "PRODUCTS") {
-      // if (PAGE[j].id === "products") {
       PAGE[j].onmouseover = function () {
         hover_true();
       };
       PAGE[j].onmouseout = function () {
         hover_product();
       };
-      // } else {
-      //   PAGE[j].onmouseover = function () {
-      //     setTabNavbar(2);
-      //   };
-      //   PAGE[j].onmouseout = function () {
-      //     removeTabNavbar(2);
-      //   };
-      // }
     }
   }
-}
+};
 
-function hover_product_mobile() {
+hover_product_mobile = () => {
   $("#products").attr("href", "#");
   $("#page-header li").on("touchstart", function (e) {
     if ($(e.target)[0].text === "PRODUCTS") {
@@ -98,16 +88,16 @@ function hover_product_mobile() {
       }
     }
   });
-}
+};
 
-function is_touch_device() {
+is_touch_device = () => {
   try {
     document.createEvent("TouchEvent");
     return true;
   } catch (e) {
     return false;
   }
-}
+};
 
 if (!is_touch_device()) {
   hover_product_navbar();
@@ -115,7 +105,7 @@ if (!is_touch_device()) {
   hover_product_mobile();
 }
 
-function hover_product() {
+hover_product = () => {
   $(".products-hover").mouseover(function () {
     $(this).css("display", "flex");
     setTabNavbar(2);
@@ -134,18 +124,18 @@ function hover_product() {
       hover_true();
     }
   });
-}
+};
 
-function hover_true() {
+hover_true = () => {
   PRODUCT_DROP.css({
     display: "flex",
   });
   setTabNavbar(2);
-}
+};
 
-function hover_false() {
+hover_false = () => {
   PRODUCT_DROP.css({
     display: "none",
   });
   removeTabNavbar(2);
-}
+};
