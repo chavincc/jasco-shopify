@@ -342,6 +342,16 @@ header {
   margin-left: 40px;
 }
 
+#products-hover-row {
+  margin: 0px;
+  #col-bootstrap {
+    padding: 0px;
+  }
+}
+#heading-products-hover {
+  margin-left: -35px;
+}
+
 .products-hover {
   @include responsive-x-padding();
   width: 100%;
