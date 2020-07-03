@@ -1,0 +1,169 @@
+{% comment %} data-slider-home-auto="{{ section.settings.slider_home_auto }}" data-slider-home-rate="{{ section.settings.slider_home_rate }}" {% endcomment %}
+<div class="row" id= "landing-row" >
+  <ul class="slides">
+    <div class="d-none d-md-block col-12 col-md-12" id="landing-col" >
+      <div class="images-slider">
+        {% for block in section.blocks %}
+          <div class="slider fade">
+            <img src= "{{ block.settings.slide | img_url: 'master' }}"  />
+            <div id="caption-in-image">
+              <p>Jasco</p>
+              <h1>Unique, stylish, functional</h1>
+              <p>
+                Bringing style to table with our quintessent dinnerware
+                collections
+              </p>
+              <button>EXPLORE</button>
+            </div>
+          </div>
+        {% endfor %}
+        
+         
+
+        <div class="d-none d-md-block">
+          <a class="prev" onclick="plusSlides(-1)"
+            ><i class="icon-prev"> </i>
+            <div class="prev-text">Prev &nbsp&nbsp</div>
+            <div class="circle-prev"></div>
+          </a>
+          <a class="next" onclick="plusSlides(1)">
+            <i class="icon-next"> </i>
+            <div class="next-text">&nbsp&nbsp Next</div>
+            <div class="circle-next"></div>
+          </a>
+        </div>
+        <div class="d-none d-md-block" id="multi-dot">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="xs-slider-pic col-md-12 d-md-none"
+      style="padding: 0px; display: flex;"
+    >
+      <div class="images-slider" >
+        <div class="xs-slider fade">
+          <img src="images/image1.png" style="width: 100%; height: 100%;" />
+          <div id="caption-in-image">
+            <p>Jasco</p>
+            <h1>Unique, stylish, functional</h1>
+            <p>
+              Bringing style to table with our quintessent dinnerware
+              collections
+            </p>
+            <button>EXPLORE</button>
+          </div>
+        </div>
+        <div class="xs-slider fade">
+          <img src="images/image2.png" style="width: 100%; height: 100%;" />
+          <div id="caption-in-image">
+            <p>Jasco</p>
+            <h1>Unique, stylish, functional</h1>
+            <p>
+              Bringing style to table with our quintessent dinnerware
+              collections
+            </p>
+            <button>EXPLORE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="{{ 'landing.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": {
+
+    "en": "Slideshow",
+    "th": "สไลด์โชว์"
+  },
+  "class": "slider-section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "slider_home_auto",
+      "label": {
+        "en": "Auto-rotate slides",
+        "th": "หมุนสไลด์อัตโนมัติ"
+      }
+    },
+    {
+      "type": "select",
+      "id": "slider_home_rate",
+      "label": {
+        "en": "Transition time",
+        "th": "เวลาเปลี่ยน"
+      },
+      "options": [
+        {
+          "value": "5000",
+          "label": {
+            "en": "5 seconds",
+            "th": "5 วินาที"
+          }
+        },
+        {
+          "value": "7000",
+          "label": {
+            "en": "7 seconds",
+            "th": "7 วินาที"
+          }
+        },
+        {
+          "value": "10000",
+          "label": {
+            "en": "10 seconds",
+            "th": "10 วินาที"
+          }
+        },
+        {
+          "value": "15000",
+          "label": {
+            "en": "15 seconds",
+            "th": "15 วินาที"
+          }
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": {
+        "en": "Image",
+        "th": "รูปภาพ"
+      },
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide",
+          "label": {
+            "en": "Image",
+            "th": "รูปภาพ"
+          }
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label":"Brand's name"
+        },
+        {
+          "type": "text",
+          "id": "main_description",
+          "label":"Image caption"
+        },
+        {
+          "type": "text",
+          "id": "sub_description",
+          "label":"Image detail"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

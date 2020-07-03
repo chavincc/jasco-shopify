@@ -1,0 +1,294 @@
+@import "spacing";
+
+#landing-row {
+  margin: 0px;
+}
+#landing-col {
+  padding: 0px;
+}
+
+.icon-delivery,
+.icon-faq {
+  padding-right: 10px;
+}
+
+.icon-returns {
+  padding-right: 26px;
+}
+
+.icon-best-online {
+  padding-right: 21px;
+}
+
+.icon-delivery::before {
+  content: url("../images/truck.svg");
+}
+
+.icon-returns::before {
+  content: url("../images/box.svg");
+}
+.icon-faq::before {
+  content: url("../images/faq.svg");
+}
+.icon-best-online::before {
+  content: url("../images/online-shopping.svg");
+}
+.icon-line {
+  content: url("../images/line.svg");
+  display: inline;
+}
+
+.icon-prev {
+  content: url("../images/prev-btn.svg");
+}
+.icon-next {
+  content: url("../images/next-btn.svg");
+}
+
+.delivery,
+.returns,
+.faq,
+.best-online {
+  p {
+    display: inline-flex;
+    vertical-align: middle;
+    font-size: 14px;
+  }
+}
+
+.image-slider {
+  img {
+    max-width: 1263px;
+  }
+  position: relative;
+  text-align: center;
+}
+
+.xs-slider {
+  #caption-in-image {
+    top: 15%;
+    p {
+      font-size: 14px;
+      margin-bottom: 0.5rem;
+      @include responsive-x-padding();
+    }
+    h1 {
+      font-size: 35px;
+      margin-bottom: 15px;
+      @include responsive-x-padding();
+    }
+    button {
+      font-size: 12px;
+      padding: 1.2% 7%;
+      margin-top: 5%;
+      @include responsive-margin-left();
+    }
+  }
+  #line {
+    padding: 0px 0px 0px 0;
+  }
+}
+
+#caption-in-image {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  p {
+    color: white;
+    font-size: 1.5vw;
+
+    @include responsive-x-padding();
+  }
+  h1 {
+    font-size: 4vw;
+    color: white;
+
+    @include responsive-x-padding();
+  }
+  button {
+    background-color: transparent;
+    border: 1px solid white;
+    text-align: center;
+    font-size: 1.2vw;
+    color: white;
+    margin-top: 8%;
+    padding: 1.8% 10%;
+    @include responsive-margin-left();
+  }
+}
+
+.prev,
+.next {
+  z-index: 2;
+  cursor: pointer;
+  position: absolute;
+  top: 38%;
+}
+
+.circle-prev {
+  z-index: -1;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  top: -13px;
+  left: -12px;
+  transition: 0.5s ease;
+  color: white;
+}
+.circle-next {
+  z-index: -1;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  top: -13px;
+  right: -12px;
+  transition: 0.5s ease;
+}
+
+.prev-text,
+.next-text {
+  font-size: 12px;
+
+  position: absolute;
+  color: transparent;
+  top: 0%;
+}
+.next-text {
+  right: -48px;
+}
+.prev-text {
+  left: -48px;
+}
+
+.prev {
+  left: 9%;
+}
+.next {
+  right: 9%;
+}
+
+.prev:hover {
+  .circle-prev {
+    overflow: visible;
+    background-color: rgba($color: white, $alpha: 0.5);
+  }
+  .prev-text {
+    color: #ffffff;
+  }
+}
+.next:hover {
+  .circle-next {
+    overflow: visible;
+    background-color: rgba($color: white, $alpha: 0.5);
+  }
+  .next-text {
+    color: #ffffff;
+  }
+}
+
+#multi-dot {
+  position: absolute;
+  left: 17%;
+  top: 80%;
+  .dot {
+    cursor: pointer;
+    display: inline-block;
+    left: 30%;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #9b9b9b;
+    border-radius: 60%;
+    transition: background-color 0.6s ease;
+  }
+  .active,
+  .dot:hover {
+    background-color: #ffffff;
+  }
+}
+
+.fade:not(.show) {
+  opacity: 1;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.2s;
+  animation-name: fade;
+  animation-duration: 1.2s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.shipping-bar {
+  display: flex;
+}
+
+.md-shipping-bar {
+  @include responsive-x-padding();
+}
+
+.landing-icon {
+  & > .row {
+    @include responsive-x-padding();
+  }
+
+  &-text {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.84px;
+    text-align: left;
+  }
+
+  img {
+    margin-right: 10px;
+  }
+
+  .separator {
+    width: 1px;
+    height: 36px;
+    border-right: 1px solid #878a9d;
+  }
+}
+
+.images-slider {
+  padding-bottom: 50px;
+  img {
+    width: 100%;
+    min-height: 400px;
+    position: relative;
+    justify-content: center;
+    background-size: cover;
+    object-fit: cover;
+  }
+}
+
+.xs-shipping-bar {
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

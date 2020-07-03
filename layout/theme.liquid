@@ -136,7 +136,9 @@
     {%- if settings.enable_ajax -%} {% include 'cart-popup' %} {%- endif -%} {%
     section 'header' %}
 
-    <div class="page-container drawer-page-content" id="PageContainer">
+     {{ content_for_layout }}
+
+    {% comment %} <div class="page-container drawer-page-content" id="PageContainer">
       <main
         class="main-content js-focus-hidden"
         id="MainContent"
@@ -151,7 +153,8 @@
       <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
         {{- 'sections.slideshow.navigation_instructions' | t -}}
       </div>
-    </div>
+    </div> {% endcomment %}
+
 
     <ul hidden>
       <li id="a11y-refresh-page-message">
