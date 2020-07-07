@@ -70,8 +70,8 @@ $footer-text-color: #fff;
     letter-spacing: 0.72px;
     border-radius: 7px;
     border: none;
-    width: 100px;
-    height: 35px;
+    min-width: 100px;
+    min-height: 35px;
     color: white;
     outline: none;
   }
