@@ -2,36 +2,36 @@
 <div class="d-none d-lg-block shipping-bar-detail">
   <div class="row" id="row-shipping-bar" >
       <div class="col-xl-2 col-lg-2 col-md-2 d-flex justify-content-center">
-        <div class="delivery">
+        <div class="text-uppercase delivery">
           <img src= "{{ "landing-img-truck.svg" | asset_url }}" >
-          <p>DELIVERY</p>
+          <p>{{section.settings.text_delivery}}</p>
         </div>
       </div>
       <div class="d-none d-sm-block">
         <img src={{ "landing-img-line.svg" | asset_url }}/>
       </div>
       <div class="col-xl-3 col-lg-3 col-md-2 d-flex justify-content-center">
-        <div class="returns">
+        <div class="text-uppercase returns">
           <img src="{{ "landing-img-box.svg" | asset_url }}"/>
-          <p >RETURNS-CLAIMS</p>
+          <p >{{section.settings.text_returns}}</p>
         </div>
       </div>
       <div class="d-none d-sm-block">
         <img src={{ "landing-img-line.svg" | asset_url }}/>
       </div>
       <div class="col-xl-2 col-lg-2 col-md-1 d-flex justify-content-center">
-        <div class="faq">
+        <div class="text-uppercase faq">
           <img src="{{ "landing-img-faq.svg" | asset_url }}"/>
-          <p>FAQ</p>
+          <p>{{section.settings.text_faq}}</p>
         </div>
       </div>
       <div class="d-none d-sm-block">
         <img src={{ "landing-img-line.svg" | asset_url }}/>
       </div>
       <div class="col-xl-3 col-lg-4 col-md-3 d-flex justify-content-center">
-        <div class="best-online">
+        <div class="text-uppercase best-online">
           <img src="{{ "landing-img-online-shopping.svg" | asset_url }}"/>
-          <p >BEST ONLINE SUPPORT</p>
+          <p >{{section.settings.text_online}}</p>
         </div>
       </div>
   </div>
@@ -42,36 +42,36 @@
   <div class="row d-flex justify-content-center" id="row-md-shipping">
     <div class="col-md-2"></div>
     <div class="col-lg-3 col-md-3">
-      <div class="delivery">
+      <div class="text-uppercase delivery">
         <img src="{{ "landing-img-truck.svg" | asset_url }}"/>
-        <p>DELIVERY</p>
+        <p>{{section.settings.text_delivery}}</p>
       </div>
     </div>
     <div class="col-lg-1 col-md-1 d-none d-md-block">
       <img src={{ "landing-img-line.svg" | asset_url }}/>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-3">
-      <div class="returns">
-        <img src="{{ "landing-img-box.svg" | asset_url }}"/>
-        <p style="padding-left: 3px; padding-bottom: 14px;">RETURNS-CLAIMS</p>
+      <div class="text-uppercase returns">
+        <img src="{{ "landing-img-box.svg" | asset_url }}"/> 
+        <p id="returns">{{section.settings.text_returns}}</p>
       </div>
     </div>
   </div>
   <div class="row d-flex justify-content-center" id="row-md-shipping">
     <div class="col-md-2"></div>
     <div class="col-lg-3 col-md-3 col-sm-3">
-      <div class="faq">
+      <div class="text-uppercase faq">
         <img src="{{ "landing-img-faq.svg" | asset_url }}"/>
-        <p style="padding-left: 10px; padding-bottom: 8px;">FAQ</p>
+        <p id=faq>{{section.settings.text_faq}}</p>
       </div>
     </div>
     <div class="col-lg-1 col-md-1 d-none d-sm-block">
       <img src={{ "landing-img-line.svg" | asset_url }}/>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-3">
-      <div class="best-online">
+      <div class="text-uppercase best-online">
         <img src="{{ "landing-img-online-shopping.svg" | asset_url }}">
-        <p>BEST ONLINE SUPPORT</p>
+        <p>{{section.settings.text_online}}</p>
       </div>
     </div>
   </div>
@@ -80,29 +80,29 @@
 <div class="d-md-none xs-shipping-bar">
     <div class="row d-flex justify-content-center" id="row-xs-shipping">
       <div class="col-xs-6">
-        <div class="xs-delivery">
+        <div class="text-uppercase xs-delivery">
           <img src="{{ "landing-img-truck.svg" | asset_url }}"/>
-          <p style="padding-top: 6px;">DELIVERY</p>
+          <p id="delivery">{{section.settings.text_delivery}}</p>
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="xs-returns">
+        <div class="text-uppercase xs-returns">
          <img src="{{ "landing-img-box.svg" | asset_url }}" />
-          <p>RETURNS-CLAIMS</p>
+          <p>{{section.settings.text_returns}}</p>
         </div>
       </div>
     </div>
     <div class="row d-flex justify-content-center" id= "second-rows-shipping">
       <div class="col-xs-6">
-        <div class="xs-faq">
+        <div class="text-uppercase xs-faq">
           <img src="{{ "landing-img-faq.svg" | asset_url }}" />
-          <p style="margin-left: -2px;">FAQ</p>
+          <p id="faq">{{section.settings.text_faq}}</p>
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="xs-best-online" >
+        <div class="text-uppercase xs-best-online" >
         <img src="{{ "landing-img-online-shopping.svg" | asset_url }}"/>
-          <p style="padding-top: 3px;">BEST ONLINE SUPPORT</p>
+          <p >{{section.settings.text_online}}</p>
         </div>
       </div>
     </div>
