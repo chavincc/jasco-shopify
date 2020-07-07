@@ -24,6 +24,13 @@ footer {
   & > .row {
     @include responsive-x-padding();
   }
+
+  .icon {
+    fill: white !important;
+  }
+  .icon:hover {
+    opacity: 0.75;
+  }
 }
 
 #lower-footer {
@@ -140,10 +147,6 @@ footer {
   svg:hover {
     fill: white !important;
   }
-}
-
-.icon {
-  fill: white !important;
 }
 
 .no-underline {
