@@ -1,3 +1,6 @@
+{% assign primary_collection = collections[section.settings.primary_collection] %}
+{% assign secondary_collection = collections[section.settings.secondary_collection] %}
+
 <section id="best-sellers">
   <div
     class="row d-flex flex-column flex-md-row justify-content-between align-items-center pt-5 pb-4"
@@ -5,9 +8,18 @@
   >
     <div
       class="col-12 col-md-6 d-flex flex-column justify-content-start mb-5 mb-md-0"
+      id="best-sellers-collection-meta-primary"
     >
-      <div id="best-sellers-header">Best sellers</div>
-      <div id="best-sellers-subheader">A selection of our top picks.</div>
+      <div id="best-sellers-header">{{ primary_collection.title }}</div>
+      <div id="best-sellers-subheader">{{ primary_collection.description }}</div>
+    </div>
+    <div
+      class="col-12 col-md-6 d-flex flex-column justify-content-start mb-5 mb-md-0"
+      id="best-sellers-collection-meta-secondary"
+      style="display: none !important;"
+    >
+      <div id="best-sellers-header">{{ secondary_collection.title }}</div>
+      <div id="best-sellers-subheader">{{ secondary_collection.description }}</div>
     </div>
     <div
       class="col-12 col-md-6 d-flex flex-column flex-md-row justify-content-start justify-content-md-end align-items-start"
@@ -18,21 +30,21 @@
         type="button"
         id="home-new-arrival-tab-btn"
       >
-        New arrival
+        {{ secondary_collection.title }}
       </button>
       <button
         class="btn btn-outline-light text-uppercase current"
         type="button"
         id="home-best-sellers-tab-btn"
       >
-        BEST SELLERS
+        {{ primary_collection.title }}
       </button>
     </div>
   </div>
   <div class="row full-width no-scroll-bar pb-4" id="best-sellers-carousel">
     <div class="carousel" id="best-sellers-product-showcase">
       <div class="product-filler"></div>
-      {% for item in collections['best-sellers'].products %} {% assign
+      {% for item in primary_collection.products %} {% assign
       current_variant = item.selected_or_first_available_variant %}
       <div class="product p-2 pt-5">
         <div class="product-img mb-3">
@@ -78,10 +90,10 @@
     <div
       class="carousel"
       id="new-arrival-product-showcase"
-      style="display: none;"
+      style="display: none !important;"
     >
       <div class="product-filler"></div>
-      {% for item in collections['new-arrival'].products %} {% assign
+      {% for item in secondary_collection.products %} {% assign
       current_variant = item.selected_or_first_available_variant %}
       <div class="product p-2 pt-5">
         <div class="product-img mb-3">
@@ -145,7 +157,7 @@
   <div
     class="row py-5"
     id="secondary-product-switch-wrapper"
-    style="display: none;"
+    style="display: none !important;"
   >
     <div
       class="product-switch col-12 d-flex justify-content-end align-items-center"
@@ -162,7 +174,25 @@
   <div
     class="row py-3"
     id="secondary-product-switch-wrapper"
-    style="display: none;"
+    style="display: none !important;"
   ></div>
   {% endif %}
 </section>
+
+{% schema %}
+  {
+    "name": "Home Best Sellers",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "primary_collection",
+        "label": "primary collection"
+      },
+      {
+        "type": "collection",
+        "id": "secondary_collection",
+        "label": "secondary collection"
+      }
+    ]
+  }
+{% endschema %}
