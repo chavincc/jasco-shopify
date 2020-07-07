@@ -1,0 +1,202 @@
+{% assign primary_collection = collections[section.settings.primary_collection] %}
+{% assign secondary_collection = collections[section.settings.secondary_collection] %}
+
+<section id="best-sellers">
+  <div
+    class="row d-flex flex-column flex-md-row justify-content-between align-items-center pt-5 pb-4"
+    id="best-sellers-meta"
+  >
+    <div
+      class="col-12 col-md-6 d-flex flex-column justify-content-start mb-5 mb-md-0"
+    >
+      <div id="best-sellers-header">{{ primary_collection.title }}</div>
+      <div id="best-sellers-subheader">{{ primary_collection.description }}</div>
+    </div>
+    <div
+      class="col-12 col-md-6 d-flex flex-column flex-md-row justify-content-start justify-content-md-end align-items-start"
+      id="best-sellers-button-wrapper"
+    >
+      <button
+        class="btn btn-outline-light mr-0 mr-md-3 mb-3 mb-md-0"
+        type="button"
+        id="home-secondary-collection-tab-btn"
+      >
+        {{ secondary_collection.title }}
+      </button>
+      <button
+        class="btn btn-outline-light text-uppercase current"
+        type="button"
+        id="home-primary-collection-tab-btn"
+      >
+        {{ primary_collection.title }}
+      </button>
+    </div>
+  </div>
+  <div class="row full-width no-scroll-bar pb-4" id="best-sellers-carousel">
+    <div class="carousel" id="best-sellers-product-showcase">
+      <div class="product-filler"></div>
+      {% for item in primary_collection.products %} {% assign
+      current_variant = item.selected_or_first_available_variant %}
+      <div class="product p-2 pt-5">
+        <div class="product-img mb-3">
+          {% if item.variants.size > 1 %} <img src={{
+            current_variant | img_url: "master"
+          }}/> {% else %} <img src={{ item | img_url: "master" }}/> {% endif %}
+          <div class="product-add-to-cart-popup">
+            <a href="{{ item.url }}">
+              <div class="product-add-to-cart-popup-text text-uppercase">
+                quick look
+              </div>
+            </a>
+            <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ current_variant.id }}" />
+              <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+              <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+            </form>
+          </div>
+        </div>
+        <div class="product-text-wrapper mx-1">
+          <div class="row pb-3 product-name-wrapper">
+            <div class="col-12 product-name text-capitalize">
+              {{ item.title }}
+            </div>
+          </div>
+          <div class="row product-meta mb-4 d-flex align-items-center">
+            <div class="product-id col-4">
+              {{ current_variant.sku }}
+            </div>
+            <div class="product-price col-5 text-right">
+              {{ item.price | money_without_currency }}
+            </div>
+            <div class="wishlist-container col-3 d-flex justify-content-end">
+              <img src={{
+                "home-best-sellers-img-icon-heart.svg" | asset_url
+              }}/>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div
+      class="carousel"
+      id="new-arrival-product-showcase"
+      style="display: none !important;"
+    >
+      <div class="product-filler"></div>
+      {% for item in secondary_collection.products %} {% assign
+      current_variant = item.selected_or_first_available_variant %}
+      <div class="product p-2 pt-5">
+        <div class="product-img mb-3">
+          {% if item.variants.size > 1 %} <img src={{
+            current_variant | img_url: "master"
+          }}/> {% else %} <img src={{ item | img_url: "master" }}/> {% endif %}
+          <div class="product-add-to-cart-popup">
+            <a href="{{ item.url }}"/>
+              <div class="product-add-to-cart-popup-text text-uppercase">
+                quick look
+              </div>
+            </a>
+            <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ current_variant.id }}" />
+              <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+              <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+            </form>
+          </div>
+        </div>
+        <div class="product-text-wrapper mx-1">
+          <div class="row pb-3 product-name-wrapper">
+            <div class="col-12 product-name text-capitalize">
+              {{ item.title }}
+            </div>
+          </div>
+          <div class="row product-meta mb-4 d-flex align-items-center">
+            <div class="product-id col-4">
+              {{ current_variant.sku }}
+            </div>
+            <div class="product-price col-5 text-right">
+              {{ item.price | money_without_currency }}
+            </div>
+            <div class="wishlist-container col-3 d-flex justify-content-end">
+              <img src={{
+                "home-best-sellers-img-icon-heart.svg" | asset_url
+              }}/>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if collections['best-sellers'].products_count > 3 %}
+  <div class="row py-5" id="product-switch-wrapper">
+    <div
+      class="product-switch col-12 d-flex justify-content-end align-items-center"
+    >
+      <img id="product-switch-prev" src={{
+        "home-img-icon-left-arrow.svg" | asset_url
+      }}/>
+      <div class="product-switch-line mx-4"></div>
+      <img id="product-switch-next" src={{
+        "home-img-icon-right-arrow.svg" | asset_url
+      }}/>
+    </div>
+  </div>
+  {% else %}
+  <div class="row py-3" id="product-switch-wrapper"></div>
+  {% endif %} {% if collections['new-arrival'].products_count > 3 %}
+  <div
+    class="row py-5"
+    id="secondary-product-switch-wrapper"
+    style="display: none !important;"
+  >
+    <div
+      class="product-switch col-12 d-flex justify-content-end align-items-center"
+    >
+      <img id="secondary-product-switch-prev" class="product-switch left" src={{
+        "home-img-icon-left-arrow.svg" | asset_url
+      }}/>
+      <div class="product-switch-line mx-4"></div>
+      <img id="secondary-product-switch-next" class="product-switch right"
+      src={{ "home-img-icon-right-arrow.svg" | asset_url }}/>
+    </div>
+  </div>
+  {% else %}
+  <div
+    class="row py-3"
+    id="secondary-product-switch-wrapper"
+    style="display: none !important;"
+  ></div>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Home Best Sellers",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "primary_collection",
+        "label": "primary collection"
+      },
+      {
+        "type": "collection",
+        "id": "secondary_collection",
+        "label": "secondary collection"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  var BEST_SELLERS_LIQUID_VARIABLE = {
+    primaryCollection: {
+      title: "{{ primary_collection.title }}",
+      description: "{{ primary_collection.description }}"
+    },
+    secondaryCollection: {
+      title: "{{ secondary_collection.title }}",
+      description: "{{ secondary_collection.description }}"
+    }
+  }
+</script>

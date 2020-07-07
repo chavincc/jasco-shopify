@@ -1,0 +1,242 @@
+$footer-primary-color: #004b83;
+$footer-text-color: #fff;
+
+@import "spacing";
+
+#footer-visit-us-button {
+  transition: 0.2s;
+  width: 100%;
+  max-width: 200px;
+  height: 60px;
+  background: #000000;
+  border: none;
+  outline: 0;
+  &-text {
+    color: white;
+    margin-left: 10px;
+  }
+}
+#footer-visit-us-button:hover {
+  background: #333333;
+}
+
+footer {
+  & > .row {
+    @include responsive-x-padding();
+  }
+
+  .icon {
+    fill: white !important;
+  }
+  .icon:hover {
+    opacity: 0.75;
+  }
+}
+
+#lower-footer {
+  .col-3,
+  .col-6,
+  .col-9,
+  .col-12 {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.footer-line {
+  height: 0px;
+  border-bottom: 1px solid #0265af;
+}
+
+.footer {
+  &-input-group {
+    & input {
+      outline: none;
+      padding-left: 5px;
+    }
+    & ::-webkit-input-placeholder {
+      text-align: center;
+    }
+    & :-moz-placeholder {
+      /* Firefox 18- */
+      text-align: center;
+    }
+    & ::-moz-placeholder {
+      /* Firefox 19+ */
+      text-align: center;
+    }
+    & :-ms-input-placeholder {
+      text-align: center;
+    }
+  }
+
+  &-text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.72px;
+
+    a,
+    a:hover {
+      font-weight: bold;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 0.66px;
+      text-decoration: underline;
+      color: $footer-text-color;
+    }
+  }
+
+  &-submenu {
+    &-header {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 0.84px;
+    }
+
+    &-item {
+      display: block !important;
+      font-weight: 500 !important;
+      font-size: 12px !important;
+      line-height: 30px !important;
+      letter-spacing: 0.72px !important;
+      color: white !important;
+    }
+    &-item:hover,
+    &-item.current {
+      color: white !important;
+      text-decoration: underline !important;
+    }
+  }
+
+  &-link,
+  &-link:hover {
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.66px;
+    text-decoration: underline;
+    color: $footer-text-color;
+  }
+
+  &-signature {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.84px;
+  }
+
+  &-logo-wrapper img {
+    margin-left: 30px;
+    color: red;
+  }
+
+  &-law-text,
+  &-law-text:hover {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.66px;
+    color: $footer-text-color !important;
+  }
+
+  &-social-icons {
+    color: white;
+  }
+
+  svg:hover {
+    fill: white !important;
+  }
+}
+
+.no-underline {
+  text-decoration-line: none !important;
+}
+
+// FORM
+#ContactFooter {
+  max-width: 300px;
+
+  .input-noti-wrapper {
+    width: 100%;
+    position: relative;
+
+    .input-error-noti {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      transform: translate(100%, -50%);
+
+      display: none;
+    }
+
+    input {
+      width: 100%;
+      height: 45px;
+      background: #e6e6ea;
+      border: 1px solid #004b83;
+      margin-top: 0 !important;
+      outline: none;
+      border-radius: 3px;
+      text-align: center;
+    }
+    input.error {
+      border: 1px solid red;
+    }
+    input.error ~ .input-error-noti {
+      display: flex;
+    }
+    ::-webkit-input-placeholder {
+      text-align: center;
+    }
+    :-moz-placeholder {
+      text-align: center;
+    }
+  }
+
+  button {
+    width: 100%;
+    height: 45px;
+    background: #878a9d;
+    color: $footer-text-color;
+    border: none;
+    transition: 0.2s;
+    margin-top: 1px;
+    border-radius: 3px;
+    outline: none;
+  }
+  button:hover {
+    background: #717383;
+  }
+  button:focus {
+    outline: 0 !important;
+  }
+
+  .form-error-description {
+    color: red;
+    border-radius: 3px;
+    padding: 0.25rem;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.72px;
+
+    display: none;
+  }
+
+  &.error > .form-error-description {
+    display: block;
+  }
+}
+
+.form-message--success {
+  color: black !important;
+}

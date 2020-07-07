@@ -1,0 +1,25 @@
+@import "navbar";
+@import "landing";
+@import "instagram";
+@import "footer";
+@import "best-sellers";
+
+@import "product_section";
+
+@import "news-events";
+
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+div * {
+  font-family: "Poppins", sans-serif !important;
+}

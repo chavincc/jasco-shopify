@@ -1,1 +1,17 @@
-{{ content_for_index }}
+
+{% comment %} {{ content_for_index }} {% endcomment %}
+{% section 'landing'%}
+{% section 'shipping-detail' %}
+
+
+{% comment %} {{ content_for_index }} {% endcomment %}
+{% section 'home-best-sellers' %}
+
+{% section 'product_section' %}
+{% section 'brand_section' %}
+
+{% section 'home-news-events' %}
+
+{% section 'home-instagram' %}
+
+{{ 'home-slider.js' | asset_url | script_tag }}
