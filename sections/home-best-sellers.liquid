@@ -8,18 +8,10 @@
   >
     <div
       class="col-12 col-md-6 d-flex flex-column justify-content-start mb-5 mb-md-0"
-      id="best-sellers-collection-meta-primary"
+      id="best-sellers-collection-meta"
     >
       <div id="best-sellers-header">{{ primary_collection.title }}</div>
       <div id="best-sellers-subheader">{{ primary_collection.description }}</div>
-    </div>
-    <div
-      class="col-12 col-md-6 d-flex flex-column justify-content-start mb-5 mb-md-0"
-      id="best-sellers-collection-meta-secondary"
-      style="display: none !important;"
-    >
-      <div id="best-sellers-header">{{ secondary_collection.title }}</div>
-      <div id="best-sellers-subheader">{{ secondary_collection.description }}</div>
     </div>
     <div
       class="col-12 col-md-6 d-flex flex-column flex-md-row justify-content-start justify-content-md-end align-items-start"
@@ -196,3 +188,16 @@
     ]
   }
 {% endschema %}
+
+<script>
+  var BEST_SELLERS_LIQUID_VARIABLE = {
+    primaryCollection: {
+      title: "{{ primary_collection.title }}",
+      description: "{{ primary_collection.description }}"
+    },
+    secondaryCollection: {
+      title: "{{ secondary_collection.title }}",
+      description: "{{ secondary_collection.description }}"
+    }
+  }
+</script>

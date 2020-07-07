@@ -95,10 +95,23 @@ $("#home-new-arrival-tab-btn").click(() => {
   showSlider(allSlider.secondaryProduct);
   $("#home-new-arrival-tab-btn").addClass("current");
   $("#home-best-sellers-tab-btn").removeClass("current");
+  console.log();
+  $("#best-sellers-header").text(
+    BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.title
+  );
+  $("#best-sellers-subheader").text(
+    BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.description
+  );
 });
 $("#home-best-sellers-tab-btn").click(() => {
   hideSlider(allSlider.secondaryProduct);
   showSlider(allSlider.product);
   $("#home-best-sellers-tab-btn").addClass("current");
   $("#home-new-arrival-tab-btn").removeClass("current");
+  $("#best-sellers-header").text(
+    BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.title
+  );
+  $("#best-sellers-subheader").text(
+    BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.description
+  );
 });
