@@ -100,25 +100,8 @@
   }
 {% endschema %}
 
-{% comment %} <script>
-    const getRecentThumbnailUrl = async (
-        name = '{{ section.settings.instagram_username }}',
-        top = 9,
-        quality = 3
-    ) => {
-        const response = await fetch(`https://www.instagram.com/${name}/?__a=1`);
-        const JSONresponse = await response.json();
-        return JSONresponse.graphql.user.edge_owner_to_timeline_media.edges
-            .slice(0, top)
-            .map((item) => item.node.thumbnail_resources[quality].src);
-    }
+<script>
+    var INSTAGRAM_NAME_LIQUID_VARIABLE = "{{ section.settings.instagram_username }}"
+</script>
 
-    // RENDER INSTAGRAM IMAGE
-    let instagramArr;
-    (async () => {
-        instagramArr = await getRecentThumbnailUrl();
-        for (let i = 0; i < 9; i++) {
-            document.getElementById(`instagram-media-${i}`).src = instagramArr[i];
-        }
-    })();
-</script> {% endcomment %}
+{% comment %} {{ 'home-instagram.js' | asset_url | script_tag }} {% endcomment %}
