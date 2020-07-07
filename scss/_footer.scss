@@ -136,12 +136,21 @@ footer {
   &-social-icons {
     color: white;
   }
+
+  svg:hover {
+    fill: white !important;
+  }
+}
+
+.icon {
+  fill: white !important;
 }
 
 .no-underline {
   text-decoration-line: none !important;
 }
 
+// FORM
 #ContactFooter {
   max-width: 300px;
 
