@@ -10,13 +10,12 @@ $footer-text-color: #fff;
   height: 60px;
   background: #000000;
   border: none;
-  outline: none;
+  outline: 0;
   &-text {
     color: white;
     margin-left: 10px;
   }
 }
-
 #footer-visit-us-button:hover {
   background: #333333;
 }
@@ -131,7 +130,7 @@ footer {
     font-size: 11px;
     line-height: 16px;
     letter-spacing: 0.66px;
-    color: $footer-text-color;
+    color: $footer-text-color !important;
   }
 
   &-social-icons {
@@ -200,9 +199,13 @@ footer {
     transition: 0.2s;
     margin-top: 1px;
     border-radius: 3px;
+    outline: none;
   }
   button:hover {
     background: #717383;
+  }
+  button:focus {
+    outline: 0 !important;
   }
 
   .form-error-description {
@@ -220,4 +223,8 @@ footer {
   &.error > .form-error-description {
     display: block;
   }
+}
+
+.form-message--success {
+  color: black !important;
 }
