@@ -1,6 +1,13 @@
+
 {% comment %} {{ content_for_index }} {% endcomment %}
 {% section 'landing'%}
 {% section 'shipping-bar-detail' %}
 {% section 'product_section' %}
 {% section 'brand_section' %}
+
+{{ content_for_index }}
+{% section 'home-best-sellers' %}
+
 {% section 'home-instagram' %}
+
+{{ 'home-slider.js' | asset_url | script_tag }}

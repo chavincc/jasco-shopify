@@ -1,6 +1,13 @@
 @import "navbar";
 @import "landing";
 @import "instagram";
+@import "footer";
+@import "best-sellers";
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
 img {
   -moz-user-select: none;
@@ -8,6 +15,6 @@ img {
   user-select: none;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
+div * {
+  font-family: "Poppins", sans-serif !important;
 }
