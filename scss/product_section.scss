@@ -1,0 +1,157 @@
+@import "spacing";
+
+.icon-kitchen,
+.icon-bell {
+  padding-bottom: 20px;
+  z-index: 2;
+}
+
+#product-row {
+  margin: 0px;
+  #col-product {
+    padding: 0px;
+  }
+}
+
+#row-product-title {
+  margin: 0px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  right: 0;
+  background-color: #004b83;
+  overflow: hidden;
+  width: 40%;
+  height: 0;
+  transition: 0.5s ease;
+  .text-in-bar {
+    p {
+      color: white;
+      font-size: 1.2vw;
+      @media only screen and (max-width: 900px) and (min-width: $break-medium) {
+        font-size: 1.3vw;
+      }
+      text-align: center;
+      color: white;
+      position: absolute;
+      bottom: 11%;
+      left: 50%;
+      transform: translate(-48%, -50%);
+    }
+    .view-product {
+      border: 2px solid #ffffff;
+      background-color: #004b83;
+      text-decoration: underline;
+      color: white;
+      position: absolute;
+      font-size: 1vw;
+      bottom: 5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 12px 28px;
+    }
+  }
+}
+
+.xs-container {
+  .images-caption {
+    padding: 0 10px;
+    font-size: 5vw;
+    top: 45%;
+    @media only screen and (max-width: 425px) {
+      top: 35%;
+    }
+    left: 50%;
+  }
+  .img-back:hover,
+  .img-front:hover {
+    .overlay {
+      height: 100%;
+      width: 100%;
+      left: 0;
+      z-index: 1;
+    }
+  }
+  .text-in-bar {
+    p {
+      padding: 0 20px;
+      font-size: 2.5vw;
+      @media only screen and (max-width: 500px) {
+        padding: 0;
+        font-size: 3.2vw;
+      }
+      bottom: 20%;
+      left: 50%;
+    }
+    .view-product {
+      font-size: 2vw;
+      bottom: 7%;
+      left: 50%;
+      padding: 2% 9%;
+    }
+  }
+}
+
+.img-back:hover,
+.img-front:hover {
+  .overlay {
+    height: 100%;
+    width: 40%;
+    z-index: 1;
+  }
+}
+
+#header-shop::after {
+  content: "brands";
+  font-weight: bold;
+}
+
+#header-shop {
+  font-size: 36px;
+  padding: 70px 70px 50px;
+}
+
+#header-product {
+  font-size: 36px;
+  font-weight: 600;
+  padding: 60px 0 30px;
+  margin-bottom: 0px;
+}
+
+.img-front,
+.img-back {
+  img {
+    width: 100%;
+    height: auto;
+    z-index: -1;
+  }
+  position: relative;
+  text-align: center;
+}
+
+.images-caption {
+  z-index: 2;
+  font-size: 2.9vw;
+  font-weight: 500px;
+  color: white;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  p {
+    color: white;
+  }
+}
+
+#logo {
+  @include responsive-x-padding();
+  margin: 0px;
+  padding-bottom: 50px;
+  img {
+    padding-bottom: 30px;
+  }
+}

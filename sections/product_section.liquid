@@ -1,0 +1,87 @@
+<div class="row" id= "row-product-title" >
+    <div class="col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
+        <p id="header-product">{{section.settings.section_title}}</p>
+    </div>
+</div>
+<div class="d-none d-md-block">
+    <div class="row" id="product-row">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection_section] %}
+        <div class="col-md-6" id= "col-product">
+            <div class="img-front">
+                <img src= "{{ collection.image | img_url: 'master' }}" >
+                <div class="images-caption">
+                    <img src= "{{ block.settings.icon_product }}" style="width: auto;">
+                    <p> {{collection.title}} </p>
+                </div>
+                <div class="overlay">
+                    <div class="text-in-bar">
+                        <p>{{collection.description}}</p>
+                        <button class="text-uppercase view-product"> {{block.settings.text_button_product}} </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div class="xs-head-row d-md-none">
+    <div class="xs-container">
+        <div class="row" id="product-row">
+            {% for block in section.blocks %}
+                {% assign collection = collections[block.settings.collection_section] %}
+                <div class="col-md-6" id="col-product">
+                    <div class="img-front">
+                        <img src= "{{ collection.image | img_url: 'master' }}" >
+                        <div class="images-caption">
+                            <img src= "{{ block.settings.icon_product }}" style="width: auto;">
+                            <p> {{collection.title}} </p>
+                        </div>
+                        <div class="overlay">
+                            <div class="text-in-bar">
+                                <p>{{collection.description}}</p>
+                                <button class="text-uppercase view-product">    {{block.settings.text_button_product}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {   
+    "name":"product-section", 
+    "settings": [
+        {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section title"  
+        }
+    ],
+    "max_blocks": 2,
+    "blocks":[
+        {
+            "type": "collection",
+            "name": "product_collection",
+            "settings":[
+                {
+                    "type": "collection",
+                    "id": "collection_section",
+                    "label": "Select collection"
+                }, {
+                    "type": "url",
+                    "id": "icon_product",
+                    "label": "Collection icon"
+                },{
+                    "type": "text",
+                    "id": "text_button_product",
+                    "label": "Button text"
+                }
+            ]
+        }   
+    ]
+    }
+{% endschema %}

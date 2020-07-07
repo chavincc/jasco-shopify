@@ -1,0 +1,152 @@
+<div class="row" id= "landing-row" >
+  <div class="d-none d-md-block col-12 col-md-12" id="landing-col">
+      <div class="images-slider">
+       {% assign block_size = section.blocks.size %}
+        {% for block in section.blocks %}
+          <div class="slider fade">
+            <img id="main-pic" src= "{{ block.settings.slide | img_url: 'master' }}"  />
+            <div id="caption-in-image">
+              {% assign brand_name = block.settings.brand_name %}
+              {% assign main_description = block.settings.main_description %}
+              {% assign sub_description = block.settings.sub_description %}
+              {% assign landing_button_text = block.settings.landing_button_text %}
+
+              {% if brand_name == "" %} <p>Jasco</p> {% else %} <p> {{brand_name}} </p> {% endif %}
+              {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
+              {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
+              collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
+              {% if landing_button_text == "" %} <button>EXPLORE</button> {% else %} <button class="text-uppercase">{{landing_button_text}}</button> {% endif %}
+              
+            </div>
+          </div>
+        {% endfor %}
+        
+        <div class="d-none d-md-block">
+          <a class="prev" onclick="plusSlides(-1)">
+            <img src={{ "landing-img-prev-btn.svg" | asset_url }}>
+            <div class="prev-text">Prev &nbsp&nbsp</div>
+            <div class="circle-prev"></div>
+          </a>
+          <a class="next" onclick="plusSlides(1)">
+            <img src={{ "landing-img-next-btn.svg" | asset_url }}>
+            <div class="next-text">&nbsp&nbsp Next</div>
+            <div class="circle-next"></div>
+          </a>
+        </div>
+        <div class="d-none d-md-block" id="multi-dot">
+          {% for i in (1..block_size) %}
+             <span class="dot" onclick="currentSlide({{i}})"></span>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+  <div class="d-md-none xs-slider-pic col-md-12"  id= "landing-col">
+    <div class="images-slider" >
+        {% assign block_size = section.blocks.size %}
+        {% for block in section.blocks %}
+          <div class="xs-slider fade">
+            <img id="main-pic" src= "{{ block.settings.slide | img_url: 'master' }}"  />
+            <div id="caption-in-image">
+              {% assign slider_rate = section.settings.slider_home_rate %}
+              {% assign brand_name = block.settings.brand_name %}
+              {% assign main_description = block.settings.main_description %}
+              {% assign sub_description = block.settings.sub_description %}
+              {% assign landing_button_text = block.settings.landing_button_text %}
+              {% if brand_name == "" %} <p>Jasco</p> {% else %} <p> {{brand_name}} </p> {% endif %}
+              {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
+              {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
+              collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
+              {% if landing_button_text == "" %} <button>EXPLORE</button> {% else %} <button class="text-uppercase">{{landing_button_text}}</button> {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+<script> var slider_rate = {{slider_rate}};  </script>
+<script src="{{ 'landing.js' | asset_url }}"> </script>
+{% schema %}
+{
+  "name": {
+
+    "en": "Slideshow",
+    "th": "สไลด์โชว์"
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "select",
+      "id": "slider_home_rate",
+      "label": {
+        "en": "Transition time",
+        "th": "เวลาเปลี่ยน"
+      },
+      "info": "Transition time in small screen"
+      ,
+      "options": [
+        {
+          "value": "5000",
+          "label": {
+            "en": "5 seconds",
+            "th": "5 วินาที"
+          }
+        },
+        {
+          "value": "7000",
+          "label": {
+            "en": "7 seconds",
+            "th": "7 วินาที"
+          }
+        },
+        {
+          "value": "10000",
+          "label": {
+            "en": "10 seconds",
+            "th": "10 วินาที"
+          }
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": {
+        "en": "Image",
+        "th": "รูปภาพ"
+      },
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide",
+          "label": {
+            "en": "Image",
+            "th": "รูปภาพ"
+          }
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label":"Brand's name"
+        },
+        {
+          "type": "text",
+          "id": "main_description",
+          "label":"Image caption"
+        },
+        {
+          "type": "text",
+          "id": "sub_description",
+          "label":"Image detail"
+        },
+        {
+          "type": "text",
+          "id": "landing_button_text",
+          "label":"Button text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

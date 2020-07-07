@@ -1,0 +1,65 @@
+<div class="row" id="product-row">
+    <div class="col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
+        <p id="header-shop">Shop by </p>
+    </div>
+</div>
+<div class="row " id="logo">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-center align-items-center">
+        <a href= "{{section.settings.jasco_link}}" target = "_blank">
+            <img src= "{{ section.settings.jasco_logo | img_url :'medium' }}" /></a>
+    </div>
+    <div class="col-xl-3  col-lg-6 col-md-6 col-sm-6 col-xs-6 d-flex justify-content-center align-items-center">
+        <a href= "{{section.settings.sunnex_link}}" target = "_blank">
+        
+        <img src= "{{section.settings.sunnex_logo | img_url : 'medium' }}" ></a>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-center align-items-center">
+        <a href= "{{section.settings.toyo_link}}" target = "_blank">
+            <img src="{{section.settings.toyo_logo | img_url : 'medium' }}"></a>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-center align-items-center">
+        <a href= "{{section.settings.piazza_link}}" target = "_blank">
+            <img src= "{{section.settings.piazza_logo  | img_url : 'medium' }}"></a>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "brand_logo",
+        "settings" : [
+            {
+                "type": "image_picker", 
+                "id": "jasco_logo", 
+                "label" : "Jasco logo"
+            },{
+                "type": "url", 
+                "id": "jasco_link", 
+                "label" : "Jasco link"
+            },{
+                "type": "image_picker", 
+                "id": "sunnex_logo", 
+                "label" : "Sunnex logo"
+            },{
+                "type": "url", 
+                "id": "sunnex_link", 
+                "label" : "Sunnex link"
+            },{
+                "type": "image_picker", 
+                "id": "toyo_logo", 
+                "label" : "Toyo logo"
+            },{
+                "type": "url", 
+                "id": "toyo_link", 
+                "label" : "Toyo link"
+            },{
+                "type": "image_picker", 
+                "id": "piazza_logo", 
+                "label" : "Piazza logo"
+            },{
+                "type": "url", 
+                "id": "piazza_link", 
+                "label" : "Piazza link"
+            }
+        ]
+    }
+{% endschema %}
