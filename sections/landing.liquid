@@ -63,26 +63,8 @@
     </div>
   </div>
 </div>
-
+<script> var slider_rate = {{slider_rate}};  </script>
 <script src="{{ 'landing.js' | asset_url }}"> </script>
-<script> 
-  let slider_rate = {{slider_rate}};
-  var slideIndex = 0;
-  carousel(0);
-  function carousel(slide) {
-    const SLIDER_RATE = slider_rate;
-    var x = document.getElementsByClassName("xs-slider");
-    for (let i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > x.length) {
-      slideIndex = 1;
-    }
-    x[slideIndex - 1].style.display = "block";
-    setTimeout(carousel, SLIDER_RATE);
-  }
-</script>
 {% schema %}
 {
   "name": {
