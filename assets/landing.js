@@ -9,22 +9,24 @@ function plusSlides(n) {
 function currentSlide(n) {
   showSlides((slideIndex = n));
 }
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("slider");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {
+
+function showSlides(index) {
+  var img;
+  const SLIDES = document.getElementsByClassName("slider");
+  const DOTS = document.getElementsByClassName("dot");
+
+  if (index > SLIDES.length) {
     slideIndex = 1;
   }
-  if (n < 1) {
-    slideIndex = slides.length;
+  if (index < 1) {
+    slideIndex = SLIDES.length;
   }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+  for (img = 0; img < SLIDES.length; img++) {
+    SLIDES[img].style.display = "none";
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
+  for (img = 0; img < DOTS.length; img++) {
+    DOTS[img].className = DOTS[img].className.replace(" active", "");
   }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
+  SLIDES[slideIndex - 1].style.display = "block";
+  DOTS[slideIndex - 1].className += " active";
 }

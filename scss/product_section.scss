@@ -6,6 +6,13 @@
   z-index: 2;
 }
 
+#product-row {
+  margin: 0px;
+  #col-product {
+    padding: 0px;
+  }
+}
+
 #row-product-title {
   margin: 0px;
 }
@@ -142,4 +149,9 @@
 
 #logo {
   @include responsive-x-padding();
+  margin: 0px;
+  padding-bottom: 50px;
+  img {
+    padding-bottom: 30px;
+  }
 }
