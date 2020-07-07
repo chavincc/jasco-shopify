@@ -1,9 +1,8 @@
-{%- comment -%} xl and lg screen size{%- endcomment -%}
 <div class="d-none d-lg-block shipping-bar-detail">
   <div class="row" id="row-shipping-bar" >
       <div class="col-xl-2 col-lg-2 col-md-2 d-flex justify-content-center">
         <div class="text-uppercase delivery">
-          <img src= "{{ "landing-img-truck.svg" | asset_url }}" >
+         <img src= "{{ "section.settings.icon_delivery" | "img_url": 'medium' }}" >
           <p>{{section.settings.text_delivery}}</p>
         </div>
       </div>
@@ -12,7 +11,7 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-md-2 d-flex justify-content-center">
         <div class="text-uppercase returns">
-          <img src="{{ "landing-img-box.svg" | asset_url }}"/>
+          <img src= "{{ "section.settings.icon_returns" | "img_url": 'medium' }}" >
           <p >{{section.settings.text_returns}}</p>
         </div>
       </div>
@@ -21,7 +20,7 @@
       </div>
       <div class="col-xl-2 col-lg-2 col-md-1 d-flex justify-content-center">
         <div class="text-uppercase faq">
-          <img src="{{ "landing-img-faq.svg" | asset_url }}"/>
+          <img src= "{{ "section.settings.icon_faq" | "img_url": 'medium' }}" >
           <p>{{section.settings.text_faq}}</p>
         </div>
       </div>
@@ -30,20 +29,19 @@
       </div>
       <div class="col-xl-3 col-lg-4 col-md-3 d-flex justify-content-center">
         <div class="text-uppercase best-online">
-          <img src="{{ "landing-img-online-shopping.svg" | asset_url }}"/>
+          <img src= "{{ "section.settings.icon_online" | "img_url": 'medium' }}" >
           <p >{{section.settings.text_online}}</p>
         </div>
       </div>
   </div>
 </div>
 
-{%- comment -%} md screen size{%- endcomment -%}
 <div class="d-none d-md-block d-lg-none shipping-bar-detail">
   <div class="row d-flex justify-content-center" id="row-md-shipping">
     <div class="col-md-2"></div>
     <div class="col-lg-3 col-md-3">
       <div class="text-uppercase delivery">
-        <img src="{{ "landing-img-truck.svg" | asset_url }}"/>
+         <img src= "{{ "section.settings.icon_delivery" | "img_url": 'medium' }}" >
         <p>{{section.settings.text_delivery}}</p>
       </div>
     </div>
@@ -52,7 +50,7 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-3">
       <div class="text-uppercase returns">
-        <img src="{{ "landing-img-box.svg" | asset_url }}"/> 
+        <img src= "{{ "section.settings.icon_returns" | "img_url": 'medium' }}" >
         <p id="returns">{{section.settings.text_returns}}</p>
       </div>
     </div>
@@ -61,7 +59,7 @@
     <div class="col-md-2"></div>
     <div class="col-lg-3 col-md-3 col-sm-3">
       <div class="text-uppercase faq">
-        <img src="{{ "landing-img-faq.svg" | asset_url }}"/>
+        <img src= "{{ "section.settings.icon_faq" | "img_url": 'medium' }}" >
         <p id=faq>{{section.settings.text_faq}}</p>
       </div>
     </div>
@@ -70,7 +68,7 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-3">
       <div class="text-uppercase best-online">
-        <img src="{{ "landing-img-online-shopping.svg" | asset_url }}">
+        <img src= "{{ "section.settings.icon_online" | "img_url": 'medium' }}" >
         <p>{{section.settings.text_online}}</p>
       </div>
     </div>
@@ -81,13 +79,13 @@
     <div class="row d-flex justify-content-center" id="row-xs-shipping">
       <div class="col-xs-6">
         <div class="text-uppercase xs-delivery">
-          <img src="{{ "landing-img-truck.svg" | asset_url }}"/>
+           <img src= "{{ "section.settings.icon_delivery" | "img_url": 'medium' }}" >
           <p id="delivery">{{section.settings.text_delivery}}</p>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="text-uppercase xs-returns">
-         <img src="{{ "landing-img-box.svg" | asset_url }}" />
+         <img src= "{{ "section.settings.icon_returns" | "img_url": 'medium' }}" >
           <p>{{section.settings.text_returns}}</p>
         </div>
       </div>
@@ -95,15 +93,63 @@
     <div class="row d-flex justify-content-center" id= "second-rows-shipping">
       <div class="col-xs-6">
         <div class="text-uppercase xs-faq">
-          <img src="{{ "landing-img-faq.svg" | asset_url }}" />
+          <img src= "{{ "section.settings.icon_faq" | "img_url": 'medium' }}" >
           <p id="faq">{{section.settings.text_faq}}</p>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="text-uppercase xs-best-online" >
-        <img src="{{ "landing-img-online-shopping.svg" | asset_url }}"/>
+        <img src= "{{ "section.settings.icon_online" | "img_url": 'medium' }}" >
           <p >{{section.settings.text_online}}</p>
         </div>
       </div>
     </div>
   </div>
+
+{% schema %}
+  {
+    "name":"Shipping Detail",
+    "settings":[
+      {
+        "type": "image_picker", 
+        "id": "icon_delivery", 
+        "label" : "Delivery icon"
+      },
+      {
+      "type": "text", 
+      "id": "text_delivery", 
+      "label": "delivery text"
+    },
+    {
+        "type": "image_picker", 
+        "id": "icon_returns", 
+        "label" : "Returns and Claims icon"
+      },
+    {
+      "type": "text", 
+      "id": "text_returns", 
+      "label": "returns text"
+    }, 
+    {
+        "type": "image_picker", 
+        "id": "icon_faq", 
+        "label" : "Faq icon"
+    },
+    {
+      "type": "text", 
+      "id": "text_faq", 
+      "label": "faq text"
+    },
+     {
+        "type": "image_picker", 
+        "id": "icon_online", 
+        "label" : "Online icon"
+      },
+    {
+      "type": "text", 
+      "id": "text_online", 
+      "label": "online text"
+    }
+    ]
+  }
+{% endschema %}
