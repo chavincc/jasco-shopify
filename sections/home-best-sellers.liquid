@@ -48,11 +48,11 @@
                 quick look
               </div>
             </a>
-            <div class="product-add-to-cart-popup-icon">
-              <img src={{
-                "home-best-sellers-img-icon-shopping-bag.svg" | asset_url
-              }}/>
-            </div>
+            <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ current_variant.id }}" />
+              <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+              <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+            </form>
           </div>
         </div>
         <div class="product-text-wrapper mx-1">
@@ -97,11 +97,11 @@
                 quick look
               </div>
             </a>
-            <div class="product-add-to-cart-popup-icon">
-              <img src={{
-                "home-best-sellers-img-icon-shopping-bag.svg" | asset_url
-              }}/>
-            </div>
+            <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ current_variant.id }}" />
+              <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+              <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+            </form>
           </div>
         </div>
         <div class="product-text-wrapper mx-1">
