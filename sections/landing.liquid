@@ -1,78 +1,89 @@
-{% comment %} data-slider-home-auto="{{ section.settings.slider_home_auto }}" data-slider-home-rate="{{ section.settings.slider_home_rate }}" {% endcomment %}
 <div class="row" id= "landing-row" >
-  <ul class="slides">
-    <div class="d-none d-md-block col-12 col-md-12" id="landing-col" >
+  <div class="d-none d-md-block col-12 col-md-12" id="landing-col">
       <div class="images-slider">
+       {% assign block_size = section.blocks.size %}
         {% for block in section.blocks %}
           <div class="slider fade">
-            <img src= "{{ block.settings.slide | img_url: 'master' }}"  />
+            <img id="main-pic" src= "{{ block.settings.slide | img_url: 'master' }}"  />
             <div id="caption-in-image">
-              <p>Jasco</p>
-              <h1>Unique, stylish, functional</h1>
-              <p>
-                Bringing style to table with our quintessent dinnerware
-                collections
-              </p>
-              <button>EXPLORE</button>
+              {% assign brand_name = block.settings.brand_name %}
+              {% assign main_description = block.settings.main_description %}
+              {% assign sub_description = block.settings.sub_description %}
+              {% assign landing_button_text = block.settings.landing_button_text %}
+
+              {% if brand_name == "" %} <p>Jasco</p> {% else %} <p> {{brand_name}} </p> {% endif %}
+              {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
+              {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
+              collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
+              {% if landing_button_text == "" %} <button>EXPLORE</button> {% else %} <button class="text-uppercase">{{landing_button_text}}</button> {% endif %}
+              
             </div>
           </div>
         {% endfor %}
         
-         
-
         <div class="d-none d-md-block">
-          <a class="prev" onclick="plusSlides(-1)"
-            ><i class="icon-prev"> </i>
+          <a class="prev" onclick="plusSlides(-1)">
+            <img src={{ "landing-img-prev-btn.svg" | asset_url }}>
             <div class="prev-text">Prev &nbsp&nbsp</div>
             <div class="circle-prev"></div>
           </a>
           <a class="next" onclick="plusSlides(1)">
-            <i class="icon-next"> </i>
+            <img src={{ "landing-img-next-btn.svg" | asset_url }}>
             <div class="next-text">&nbsp&nbsp Next</div>
             <div class="circle-next"></div>
           </a>
         </div>
         <div class="d-none d-md-block" id="multi-dot">
-          <span class="dot" onclick="currentSlide(1)"></span>
-          <span class="dot" onclick="currentSlide(2)"></span>
+          {% for i in (1..block_size) %}
+             <span class="dot" onclick="currentSlide({{i}})"></span>
+          {% endfor %}
         </div>
       </div>
-    </div>
-    <div
-      class="xs-slider-pic col-md-12 d-md-none"
-      style="padding: 0px; display: flex;"
-    >
-      <div class="images-slider" >
-        <div class="xs-slider fade">
-          <img src="images/image1.png" style="width: 100%; height: 100%;" />
-          <div id="caption-in-image">
-            <p>Jasco</p>
-            <h1>Unique, stylish, functional</h1>
-            <p>
-              Bringing style to table with our quintessent dinnerware
-              collections
-            </p>
-            <button>EXPLORE</button>
+  </div>
+  <div class="d-md-none xs-slider-pic col-md-12"  id= "landing-col">
+    <div class="images-slider" >
+        {% assign block_size = section.blocks.size %}
+        {% for block in section.blocks %}
+          <div class="xs-slider fade">
+            <img id="main-pic" src= "{{ block.settings.slide | img_url: 'master' }}"  />
+            <div id="caption-in-image">
+              {% assign slider_rate = section.settings.slider_home_rate %}
+              {% assign brand_name = block.settings.brand_name %}
+              {% assign main_description = block.settings.main_description %}
+              {% assign sub_description = block.settings.sub_description %}
+              {% assign landing_button_text = block.settings.landing_button_text %}
+              {% if brand_name == "" %} <p>Jasco</p> {% else %} <p> {{brand_name}} </p> {% endif %}
+              {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
+              {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
+              collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
+              {% if landing_button_text == "" %} <button>EXPLORE</button> {% else %} <button class="text-uppercase">{{landing_button_text}}</button> {% endif %}
+            </div>
           </div>
-        </div>
-        <div class="xs-slider fade">
-          <img src="images/image2.png" style="width: 100%; height: 100%;" />
-          <div id="caption-in-image">
-            <p>Jasco</p>
-            <h1>Unique, stylish, functional</h1>
-            <p>
-              Bringing style to table with our quintessent dinnerware
-              collections
-            </p>
-            <button>EXPLORE</button>
-          </div>
-        </div>
-      </div>
+        {% endfor %}
     </div>
+  </div>
 </div>
+{% include 'shipping-bar-detail' %}
 
-<script src="{{ 'landing.js' | asset_url }}" defer="defer"></script>
-
+<script src="{{ 'landing.js' | asset_url }}"> </script>
+<script> 
+  let slider_rate = {{slider_rate}};
+  var slideIndex = 0;
+  carousel(0);
+  function carousel(slide) {
+    const SLIDER_RATE = slider_rate;
+    var x = document.getElementsByClassName("xs-slider");
+    for (let i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {
+      slideIndex = 1;
+    }
+    x[slideIndex - 1].style.display = "block";
+    setTimeout(carousel, SLIDER_RATE);
+  }
+</script>
 {% schema %}
 {
   "name": {
@@ -80,17 +91,8 @@
     "en": "Slideshow",
     "th": "สไลด์โชว์"
   },
-  "class": "slider-section",
   "max_blocks": 3,
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "slider_home_auto",
-      "label": {
-        "en": "Auto-rotate slides",
-        "th": "หมุนสไลด์อัตโนมัติ"
-      }
-    },
     {
       "type": "select",
       "id": "slider_home_rate",
@@ -98,6 +100,8 @@
         "en": "Transition time",
         "th": "เวลาเปลี่ยน"
       },
+      "info": "Transition time in small screen"
+      ,
       "options": [
         {
           "value": "5000",
@@ -118,13 +122,6 @@
           "label": {
             "en": "10 seconds",
             "th": "10 วินาที"
-          }
-        },
-        {
-          "value": "15000",
-          "label": {
-            "en": "15 seconds",
-            "th": "15 วินาที"
           }
         }
       ]
@@ -160,6 +157,11 @@
           "type": "text",
           "id": "sub_description",
           "label":"Image detail"
+        },
+        {
+          "type": "text",
+          "id": "landing_button_text",
+          "label":"Button text"
         }
       ]
     }

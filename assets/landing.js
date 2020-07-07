@@ -2,8 +2,6 @@ var slideIndex = 1;
 
 showSlides(slideIndex);
 
-carousel(0);
-
 function plusSlides(n) {
   showSlides((slideIndex += n));
 }
@@ -29,18 +27,4 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
-}
-
-function carousel(slide) {
-  var i;
-  var x = document.getElementsByClassName("xs-slider");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > x.length) {
-    slideIndex = 1;
-  }
-  x[slideIndex - 1].style.display = "block";
-  setTimeout(carousel, 5000);
 }
