@@ -1,0 +1,215 @@
+@charset "UTF-8";
+#best-sellers {
+  background-color: #004b83;
+  color: white;
+}
+#best-sellers > .row {
+  margin: 0;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+#best-sellers button:focus {
+  outline: 0;
+  display: none;
+}
+@media only screen and (max-width: 1200px) {
+  #best-sellers > .row {
+    padding-left: 115px;
+    padding-right: 115px;
+  }
+}
+@media only screen and (max-width: 960px) {
+  #best-sellers > .row {
+    padding-left: 65px;
+    padding-right: 65px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  #best-sellers > .row {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+#best-sellers > .row.full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+#best-sellers-header {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+}
+#best-sellers-subheader {
+  font-weight: 200;
+  font-size: 36px;
+  line-height: 54px;
+}
+#best-sellers-meta button {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+}
+#best-sellers-meta button.current {
+  background-color: white;
+  color: black;
+}
+#best-sellers img:hover ~ .product-add-to-cart-popup,
+#best-sellers .product-add-to-cart-popup:hover {
+  transform: translateY(0);
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.no-scroll-bar ::-webkit-scrollbar {
+  display: none;
+}
+
+.product {
+  margin-right: 30px;
+  border-bottom: rgba(255, 255, 255, 0.25) thin solid;
+}
+.product-filler {
+  min-width: 10vw;
+}
+@media only screen and (max-width: 1200px) {
+  .product-filler {
+    min-width: 115px;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .product-filler {
+    min-width: 65px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .product-filler {
+    min-width: 30px;
+  }
+}
+.product-img {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  width: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-shadow: 0px 2px 36px #252f45;
+  -moz-box-shadow: 0px 2px 36px #252f45;
+  box-shadow: 0px 2px 36px #252f45;
+}
+.product-img > img {
+  position: absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+}
+.product-add-to-cart-popup {
+  position: absolute;
+  bottom: 0;
+  background-color: black;
+  transform: translateY(100%);
+  transition: 0.1s;
+  display: flex;
+  height: 50px;
+}
+.product-add-to-cart-popup a {
+  text-decoration: none;
+  color: white;
+}
+.product-add-to-cart-popup-text {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.84px;
+  padding: 0 36px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.product-add-to-cart-popup-icon {
+  background-color: #e6e6ea;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.product-img:hover {
+  transition: 0.2s;
+  -webkit-box-shadow: 0px 31px 46px #131825;
+  -moz-box-shadow: 0px 31px 46px #131825;
+  box-shadow: 0px 31px 46px #131825;
+}
+.product-name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.84px;
+}
+.product-id {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
+  max-height: 21px;
+  letter-spacing: 0.84px;
+}
+.product-price {
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 29px;
+  letter-spacing: 1.26px;
+}
+.product-price::before {
+  content: "฿";
+}
+.product:first-child {
+  margin-left: 30px;
+}
+.product-switch-line {
+  width: 120px;
+  height: 1px;
+  border-top: 1px solid #ffffff;
+}
+
+#secondary-product-switch-wrapper,
+#product-switch-wrapper {
+  margin-top: 75px;
+}
+
+#secondary-product-switch-prev,
+#secondary-product-switch-next,
+#product-switch-prev,
+#product-switch-next {
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  opacity: 0.5;
+  transition: 0.1s;
+}
+#secondary-product-switch-prev:hover,
+#secondary-product-switch-next:hover,
+#product-switch-prev:hover,
+#product-switch-next:hover {
+  opacity: 1;
+}
