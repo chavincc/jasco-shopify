@@ -131,12 +131,21 @@ $footer-text-color: #fff;
     }
 
     &-icon {
-      background-color: #e6e6ea;
-      padding: 0 20px;
       height: 100%;
+      width: 60px;
+      background-color: #e6e6ea;
       display: flex;
       align-items: center;
-      cursor: pointer;
+
+      button {
+        height: 100%;
+        width: 100%;
+        border: none;
+        outline: 0;
+      }
+      button:active {
+        outline: 0;
+      }
     }
   }
 
