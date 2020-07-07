@@ -1,0 +1,61 @@
+<section class="pt-5" id="news-events">
+    <div class="row">
+        <div class="col-12" id="news-events-main-header">
+            News&Events
+        </div>
+    </div>
+    <div class="row full-width no-scroll-bar" id="news-events-carousel">
+        <div class="carousel" id="news-events-article-showcase">
+            <div class="article-filler">
+                <div class="article-text-wrapper mx-1 py-2">
+                    <div class="row mb-1">
+                        <div class="col-12 article-topic"></div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12 article-brief-detail"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 article-date"></div>
+                    </div>
+                </div>
+            </div>
+            {% for article in blogs['news'].articles %}
+                <a href={{ article.url }}>
+                    <div class="article p-2 pt-5">
+                        <div class="article-img mb-4">
+                            <img src={{ article.image.src | img_url: "master" }}/>
+                        </div>
+                        <div class="article-text-wrapper mx-1 py-2">
+                            <div class="row mb-1">
+                                <div class="col-12 article-topic">
+                                    {{ article.title }}
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-12 article-brief-detail">
+                                    {{ article.excerpt }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 article-date">
+                                    {{ article.published_at | date: "%d %b, %Y" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% if blogs['news'].articles_count > 3 %}
+        <div class="row pb-5" id="article-switch-wrapper">
+            <div class="article-switch col-12 d-flex justify-content-end align-items-center">
+                <img id="article-switch-prev" src={{ "home-img-icon-right-arrow-black.svg" | asset_url }}/>
+                <div class="article-switch-line mx-4"></div>
+                <img id="article-switch-next" src={{ "home-img-icon-right-arrow-black.svg" | asset_url }}/>
+            </div>
+        </div>
+    {% else %}
+        <div class="row py-3" id="article-switch-wrapper-fallback"></div>
+    {% endif %}
+</section>
