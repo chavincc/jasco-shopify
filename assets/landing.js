@@ -1,17 +1,17 @@
 var slideIndex = 1;
 
-showSlides(slideIndex);
+plusSlides = (num) => {
+  slideIndex += num;
+  showSlides(slideIndex);
+};
 
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
+currentSlide = (num) => {
+  slideIndex = num;
+  showSlides(slideIndex);
+};
 
-function currentSlide(n) {
-  showSlides((slideIndex = n));
-}
-
-function showSlides(index) {
-  var img;
+showSlides = (index) => {
+  let img;
   const SLIDES = document.getElementsByClassName("slider");
   const DOTS = document.getElementsByClassName("dot");
 
@@ -29,4 +29,6 @@ function showSlides(index) {
   }
   SLIDES[slideIndex - 1].style.display = "block";
   DOTS[slideIndex - 1].className += " active";
-}
+};
+
+showSlides(slideIndex);
