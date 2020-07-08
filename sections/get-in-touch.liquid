@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="row pb-5">
-    <form method="post" action="/" class="col-lg-6 col-12" id="get-in-touch-inquiry-form">
+    {% form 'contact', id: 'get-in-touch-inquiry-form', class: 'col-lg-6 col-12' %}
       <div class="row">
         <div class="get-in-touch-header text-uppercase py-lg-5 pb-3">
           {{ section.settings.get_in_touch_header }}
@@ -26,7 +26,16 @@
             class="get-in-touch-inquiry-form-input-wrapper"
             id="get-in-touch-inquiry-form-input-wrapper-name"
           >
-            <input class="get-in-touch-inquiry-form-input" id="get-in-touch-inquiry-form-name" placeholder="{{ section.settings.get_in_touch_name_placeholder }}" type="text" />
+            <input
+              class="get-in-touch-inquiry-form-input"
+              id="get-in-touch-inquiry-form-name"
+              placeholder="{{ section.settings.get_in_touch_name_placeholder }}"
+              type="text"
+              name="contact[name]"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-required="true"
+            />
             <div
               class="get-in-touch-inquiry-form-error-message"
               id="get-in-touch-inquiry-form-error-message-name"
@@ -38,7 +47,16 @@
             class="get-in-touch-inquiry-form-input-wrapper"
             id="get-in-touch-inquiry-form-input-wrapper-email"
           >
-            <input class="get-in-touch-inquiry-form-input" id="get-in-touch-inquiry-form-email" placeholder="{{ section.settings.get_in_touch_email_placeholder }}" type="text" />
+            <input
+              class="get-in-touch-inquiry-form-input"
+              id="get-in-touch-inquiry-form-email"
+              placeholder="{{ section.settings.get_in_touch_email_placeholder }}"
+              type="text"
+              name="contact[email]"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-required="true"
+            />
             <div
               class="get-in-touch-inquiry-form-error-message"
               id="get-in-touch-inquiry-form-error-message-email"
@@ -52,7 +70,16 @@
             class="get-in-touch-inquiry-form-input-wrapper"
             id="get-in-touch-inquiry-form-input-wrapper-message"
           >
-            <input class="get-in-touch-inquiry-form-input" id="get-in-touch-inquiry-form-message" placeholder="{{ section.settings.get_in_touch_message_placeholder }}" type="text" />
+            <input
+              class="get-in-touch-inquiry-form-input"
+              id="get-in-touch-inquiry-form-message"
+              placeholder="{{ section.settings.get_in_touch_message_placeholder }}"
+              type="text"
+              name="contact[message]"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-required="true"
+            />
             <div
               class="get-in-touch-inquiry-form-error-message"
               id="get-in-touch-inquiry-form-error-message-message"
@@ -65,7 +92,7 @@
           <button class="text-uppercase">{{ section.settings.get_in_touch_form_button_text }}</button>
         </div>
       </div>
-    </form>
+    {% endform %}
     <div class="col-1 d-lg-block d-none"></div>
     <div class="col-5 get-in-touch-img-wrapper d-lg-block d-none">
       <img class="get-in-touch-img" src={{ section.settings.get_in_touch_header_image | img_url: 'master' }}
