@@ -5,14 +5,14 @@
     <div
       class="responsive-img-wrapper col-md-5 col-12 d-flex d-md-block justify-content-md-start justify-content-end"
     >
-      <img class="responsive-img" src={{ "get-in-touch-img-customer-service.png" | asset_url }}/>
+      <img class="responsive-img" src={{ section.settings.customer_service_image | img_url: "master" }}/>
     </div>
     <div class="col-md-1 col-0"></div>
     <div class="col-md-6 col-12">
       <div
         class="row location-customer-service-header text-capitalize pb-xl-5 pb-4 pt-3"
       >
-        Customer Service
+        {{ section.settings.customer_service_header }}
       </div>
       <div class="row pb-xl-5 pb-3">
         <div class="col-xl-6 col-12 mb-3">
@@ -21,8 +21,7 @@
               <img src={{ "get-in-touch-img-icon-tel.svg" | asset_url }}/>
             </div>
             <div class="col-9 d-flex flex-column">
-              <div>02-1800-709-11,</div>
-              <div>02-1800-628</div>
+              {{ section.settings.customer_service_telephone }}
             </div>
           </div>
         </div>
@@ -31,7 +30,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-paper-plane.svg" | asset_url }}/>
             </div>
-            <div class="col-9">jnpshop@jnpjasco.com</div>
+            <div class="col-9">{{ section.settings.customer_service_email }}</div>
           </div>
         </div>
         <div class="col-xl-6 col-12 mb-3">
@@ -40,8 +39,7 @@
               <img src={{ "get-in-touch-img-icon-fax.svg" | asset_url }}/>
             </div>
             <div class="col-9 d-flex flex-column">
-              <div>02-1800-629,</div>
-              <div>02-1860-146</div>
+              {{ section.settings.customer_service_fax }}
             </div>
           </div>
         </div>
@@ -50,7 +48,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-line.svg" | asset_url }}/>
             </div>
-            <div class="col-9">0818414608</div>
+            <div class="col-9">{{ section.settings.customer_service_line }}</div>
           </div>
         </div>
       </div>
@@ -58,16 +56,69 @@
         <div
           class="col-12 location-customer-service-opening-hours-header text-capitalize"
         >
-          Opening Hours
+          {{ section.settings.customer_service_lower_header }}
         </div>
 
         <div class="col-12 location-customer-service-opening-hours-content pb-1">
-          Mon-Fri 8:30 am - 5:30 pm Sat 8:30 am - 12:00 pm
+          {{ section.settings.customer_service_lower_body }}
         </div>
         <div class="col-12 location-customer-service-opening-hour-closing">
-          closed on Sunday
+          {{ section.settings.customer_service_lower_note }}
         </div>
       </div>
     </div>
   </div>
 </section>
+
+{% schema %}
+  {
+    "name": "Customer Service",
+    "settings": [
+      {
+        "type": "text",
+        "id": "customer_service_header",
+        "label": "header"
+      },
+      {
+        "type": "image_picker",
+        "id": "customer_service_image",
+        "label": "image"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_service_telephone",
+        "label": "tel"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_service_email",
+        "label": "email"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_service_fax",
+        "label": "fax"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_service_line",
+        "label": "line"
+      },
+      {
+        "type": "text",
+        "id": "customer_service_lower_header",
+        "label": "lower header"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_service_lower_body",
+        "label": "lower body"
+      },
+      {
+        "type": "text",
+        "id": "customer_service_lower_note",
+        "label": "lower note"
+      }
+    ]
+  }
+{% endschema %}
