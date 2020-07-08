@@ -5,7 +5,6 @@ const FORM_INPUT_ID = {
   EMAIL: `${FOOTER_FORM_ID}-email`,
   FIRST_NAME: `${FOOTER_FORM_ID}-first-name`,
 };
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // intercept form submit and validate
 $(FOOTER_FORM_ID).submit((e) => {
@@ -37,6 +36,8 @@ $(FOOTER_FORM_ID).submit((e) => {
 });
 
 const validateFooterInput = ({ email, firstName }) => {
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   let fieldError = false;
   let errorMessage = "";
 
