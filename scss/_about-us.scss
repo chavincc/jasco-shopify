@@ -18,18 +18,11 @@
     @include responsive-x-padding();
     padding-bottom: 80px;
     p {
-      font-weight: bold;
-      color: black;
-    }
-    p::before {
-      content: "In 1991, J&P ";
       font-weight: normal;
       color: #878a9d;
-    }
-    p::after {
-      content: " was founded as an importer and a distributor in Thailand. Since then, we have been one of the most reliable and chosen vendors in the field of food service business. What began as an experience now becomes a lifelong profession. Today, our main clients include independent and luxurious hotels, restaurants, national F&B chains, healthcare, industrial food manufacturing, and food service management.";
-      font-weight: normal;
-      color: #878a9d;
+      strong {
+        color: black;
+      }
     }
   }
   .images-and-scroll {
@@ -79,8 +72,8 @@
   #image2 {
     position: absolute;
     height: auto;
-    top: -50%;
-    right: 120%;
+    top: -55%;
+    left: -120%;
   }
   #locations {
     @include responsive-x-padding();
@@ -106,6 +99,7 @@
       }
     }
   }
+
   @media only screen and (max-width: 2755px) and (min-width: 2356px) {
     .images-and-scroll {
       #scroll-down {
@@ -123,20 +117,13 @@
         bottom: 30%;
         font-size: 20px;
       }
-      .image1-change-img {
-        img {
-          content: url("../images/about-us/jasco-company-lg.png");
-        }
+      #image2 {
+        left: -140%;
       }
-      .image3-change-img {
+      .image-change-img {
         img {
-          content: url("../images/about-us/light-bulb-lg.png");
-        }
-        .image2-change-img {
-          right: 160%;
-          img {
-            content: url("../images/about-us/meeting-lg.png");
-          }
+          width: 633px;
+          height: 670px;
         }
       }
     }
@@ -158,20 +145,13 @@
       #long-line {
         margin: -20px 0px 0px 7px;
       }
-      .image1-change-img {
-        img {
-          content: url("../images/about-us/jasco-company-md.png");
-        }
+      #image2 {
+        left: -160%;
       }
-      .image3-change-img {
+      .image-change-img {
         img {
-          content: url("../images/about-us/light-bulb-md.png");
-        }
-        .image2-change-img {
-          right: 140%;
-          img {
-            content: url("../images/about-us/meeting-md.png");
-          }
+          width: 490px;
+          height: 470px;
         }
       }
     }
@@ -195,23 +175,25 @@
       }
     }
   }
-  @media only screen and (max-width: 2755px) and (min-width: 1974px) {
+  @media only screen and (max-width: 2755px) and (min-width: 1700px) {
     .our-promise-row {
       img {
-        content: url("../images/about-us/our-promise-md.png");
-      }
-    }
-  }
-  @media only screen and (max-width: 1973px) and (min-width: 1528px) {
-    .our-promise-row {
-      img {
-        content: url("../images/about-us/our-promise-lg.png");
+        width: 538px;
+        height: 607px;
       }
     }
   }
   @media only screen and (max-width: 2250px) {
     #locations {
       padding-top: 100px;
+    }
+  }
+  @media only screen and (max-width: 1749px) {
+    .image-change-img {
+      img {
+        max-width: 418px;
+        max-height: 480px;
+      }
     }
   }
   @media only screen and (max-width: 648px) {
