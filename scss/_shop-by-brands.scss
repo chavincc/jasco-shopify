@@ -5,6 +5,19 @@
   margin-right: 0;
 }
 
+.gray-scale {
+  opacity: 50%;
+  filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: lightgray; /* IE6-9 */
+}
+
+#custom-padding {
+  padding-left: 30px;
+}
+
 .logo-brand {
   padding: 80px 39px 35px 60px;
 }
@@ -146,6 +159,7 @@ hr {
   position: relative;
   text-align: center;
   #mission-img {
+    width: 100%;
     position: relative;
     min-height: 400px;
     justify-content: center;
