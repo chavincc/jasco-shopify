@@ -1,10 +1,10 @@
 // CONSTANT ###########################
 const LOCATION_TAB = {
-  bangkok: {
-    id: "#tab-bangkok",
+  primary: {
+    id: "#tab-primary",
   },
-  chiangmai: {
-    id: "#tab-chiangmai",
+  secondary: {
+    id: "#tab-secondary",
   },
 };
 // const ADDRESS_WRAPPER_ID = "#location-address-ontab";
