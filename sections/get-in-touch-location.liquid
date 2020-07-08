@@ -1,12 +1,12 @@
 <section class="location pt-5 pb-5">
   <div class="row">
     <div class="location-header" class="text-uppercase">
-      LOCATION
+      {{ section.settings.section_header }}
     </div>
   </div>
   <div class="row">
     <div class="location-tabs current text-capitalize" id="tab-bangkok">
-      Bangkok
+      {{ section.settings.primary_location_name }}
     </div>
     <div class="divider-wrapper">
       <div class="divider"></div>
@@ -18,11 +18,8 @@
   <div class="row-divider"></div>
   <div class="row pt-4 pb-0 pb-md-5">
     <div class="col-md-6 col-12 pb-4 pb-md-0">
-      <div class="location-address" id="location-address-ontab-bangkok">
-        1143/1 Srinakarin road, Suan Luang, Suan Luang Bangkok 10250
-      </div>
-      <div class="location-address" id="location-address-ontab-chiangmai">
-        mockup address chiangmai lorem ipsum red apple big apple
+      <div class="location-address" id="location-address-ontab">
+        {{ section.settings.primary_location_address }}
       </div>
     </div>
     <div class="col-md-6 col-12">
@@ -32,7 +29,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-tel.svg" | asset_url }}/>
             </div>
-            <div class="col-9">02-721-2332</div>
+            <div class="col-9">{{ section.settings.primary_location_telephone }}</div>
           </div>
         </div>
         <div class="col-lg-6 col-12 mb-3">
@@ -42,7 +39,7 @@
                 "get-in-touch-img-icon-paper-plane.svg" | asset_url
               }}/>
             </div>
-            <div class="col-9">jnpshop@jnpjasco.com</div>
+            <div class="col-9">{{ section.settings.primary_location_email }}</div>
           </div>
         </div>
         <div class="col-lg-6 col-12 mb-3">
@@ -50,7 +47,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-fax.svg" | asset_url }}/>
             </div>
-            <div class="col-9">02-721-1575</div>
+            <div class="col-9">{{ section.settings.primary_location_fax }}</div>
           </div>
         </div>
         <div class="col-lg-6 col-12 mb-3">
@@ -58,7 +55,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-line.svg" | asset_url }}/>
             </div>
-            <div class="col-9">0818414608</div>
+            <div class="col-9">{{ section.settings.primary_location_line }}</div>
           </div>
         </div>
       </div>
@@ -66,25 +63,134 @@
   </div>
   <div class="row pb-5">
     <div class="col-md-6 col-12 mt-3 pb-4 pb-md-0">
-      <div class="location-get-direction-button">
+      <a target="_blank" href={{ section.settings.primary_location_link }} class="location-get-direction-button">
         <div class="location-get-direction-button-text text-uppercase">
-          GET DIRECTION
+          {{ section.settings.button_text }}
         </div>
         <div class="location-get-direction-button-icon">
           <img src={{ "get-in-touch-img-icon-location.svg" | asset_url }}/>
         </div>
-      </div>
+      </a>
     </div>
     <div class="location-opening-hours col-md-6 col-12">
       <div class="location-opening-hours-header text-capitalize">
-        Opening Hours:
+        {{ section.settings.primary_location_note_header }}
       </div>
       <div class="location-opening-hours-content">
-        Mon-Sat 8:30 am - 6:30 pm closed on Sunday
+        {{ section.settings.primary_location_note_body }}
       </div>
     </div>
   </div>
   <div class="row-divider"></div>
 </section>
+
+{% schema %}
+  {
+    "name": "location",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_header",
+        "label": "section header"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_name",
+        "label": "primary location name"
+      },
+      {
+        "type": "richtext",
+        "id": "primary_location_address",
+        "label": "primary location address"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_telephone",
+        "label": "primary location telephone"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_email",
+        "label": "primary location email"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_fax",
+        "label": "primary location fax"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_line",
+        "label": "primary location line"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_link",
+        "label": "primary location map link"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "button text"
+      },
+      {
+        "type": "text",
+        "id": "primary_location_note_header",
+        "label": "primary location note header"
+      },
+      {
+        "type": "richtext",
+        "id": "primary_location_note_body",
+        "label": "primary location note body"
+      },
+
+      {
+        "type": "text",
+        "id": "secondary_location_name",
+        "label": "secondary location name"
+      },
+      {
+        "type": "richtext",
+        "id": "secondary_location_address",
+        "label": "secondary location address"
+      },
+      {
+        "type": "text",
+        "id": "secondary_location_telephone",
+        "label": "secondary location telephone"
+      },
+      {
+        "type": "text",
+        "id": "secondary_location_email",
+        "label": "secondary location email"
+      },
+      {
+        "type": "text",
+        "id": "secondary_location_fax",
+        "label": "secondary location fax"
+      },
+      {
+        "type": "text",
+        "id": "secondary_location_line",
+        "label": "secondary location line"
+      },
+      {
+        "type": "text",
+        "id": "secondary_location_link",
+        "label": "secondary location map link"
+      },
+      {
+        "type": "text",
+        "id": "secondary_location_note_header",
+        "label": "secondary location note header"
+      },
+      {
+        "type": "richtext",
+        "id": "secondary_location_note_body",
+        "label": "secondary location note body"
+      }
+    ]
+  }
+{% endschema %}
 
 {{ "get-in-touch-tab.js" | asset_url | script_tag }}

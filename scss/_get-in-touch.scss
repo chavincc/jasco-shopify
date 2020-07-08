@@ -284,6 +284,7 @@
   height: 53px;
   border: 1px solid black;
   display: flex;
+  text-decoration: none !important;
   cursor: pointer;
 }
 @media only screen and (max-width: 576px) {
