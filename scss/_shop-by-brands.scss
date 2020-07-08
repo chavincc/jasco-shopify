@@ -1,0 +1,348 @@
+@import "spacing";
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.logo-brand {
+  padding: 80px 39px 35px 60px;
+}
+
+.jasco-img {
+  margin: 25px 0;
+}
+
+.toyo-img {
+  margin: 25px 0;
+}
+
+.piazza-img {
+  margin: 25px 0;
+}
+
+.sunnex-img {
+  padding-left: 0px;
+  margin: 25px 0;
+}
+
+.color-grey {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 51px;
+  text-transform: uppercase;
+  color: #878a9d;
+  margin: -15px 0px;
+}
+
+.title-head {
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 67px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.toyo-info {
+  font-size: 22px;
+  line-height: 43px;
+  letter-spacing: -0.676923px;
+  color: #878a9d;
+  padding-top: 28px;
+  p {
+    color: #878a9d;
+  }
+  strong {
+    color: black;
+  }
+}
+
+hr {
+  border-top: 1px solid #979797;
+}
+
+.images-and-scroll {
+  margin-top: 128px;
+
+  #scroll-down {
+    font-weight: bold;
+    font-size: 12px;
+    width: 100px;
+    height: 13px;
+    background-color: none;
+    color: black;
+    transform: rotate(90deg);
+    margin-left: -40px;
+  }
+
+  img {
+    padding: 50px 0px 40px 8px;
+  }
+}
+
+.info-bottom {
+  margin-bottom: 228px;
+}
+
+.glass-img {
+  padding-top: 120px;
+}
+
+.red-glass-img {
+  padding-top: 78px;
+  padding-bottom: 30px;
+}
+
+.lemon-glass-img {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.title-center {
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 67px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.mission-info {
+  p {
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 30px;
+    margin-bottom: 106px;
+  }
+}
+
+.text-right {
+  a::before {
+    content: "Next to ";
+    letter-spacing: -0.646154px;
+    color: #000000;
+    font-weight: bold;
+    letter-spacing: -0.646154px;
+  }
+}
+
+.text-right a {
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 36px;
+  letter-spacing: -0.646154px;
+  color: #004b83;
+}
+
+.text-right a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+.section-mission {
+  width: 100%;
+  margin-top: 140px;
+  position: relative;
+  text-align: center;
+  #mission-img {
+    position: relative;
+    min-height: 400px;
+    justify-content: center;
+    background-size: cover;
+    object-fit: cover;
+  }
+}
+
+#mission-txt {
+  position: absolute;
+  top: 19%;
+}
+
+.button {
+  width: 178px;
+  height: 61px;
+}
+
+.mission-button {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.button-light {
+  border: solid 2px #ffffff;
+  padding: 15px 68px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.button-light:hover {
+  color: #1b1b1b;
+  text-decoration: none;
+}
+
+@media (max-width: 1440px) {
+  .title-head {
+    font-size: 46px;
+    line-height: 64px;
+  }
+
+  .color-grey {
+    font-size: 14px;
+    line-height: 51px;
+  }
+}
+
+@media (max-width: 991px) {
+  .title-head {
+    font-size: 35px;
+    line-height: 60px;
+  }
+
+  .color-grey {
+    font-size: 12px;
+    line-height: 45px;
+  }
+
+  .logo-brand {
+    padding: 40px 37px 9px 60px;
+  }
+
+  .toyo-info {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .info-bottom {
+    margin-bottom: 105px;
+  }
+
+  .text-right a {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .title-center {
+    font-size: 35px;
+    line-height: 30px;
+  }
+
+  .mission-info {
+    p {
+      font-size: 20px;
+      line-height: 32px;
+    }
+  }
+
+  .button-light {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .title-head {
+    font-size: 30px;
+    line-height: 50px;
+  }
+
+  .color-grey {
+    font-size: 10px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .toyo-info {
+    font-size: 14px;
+    line-height: 28px;
+  }
+
+  .logo-brand {
+    padding: 0;
+  }
+
+  .title-center {
+    font-size: 28px;
+    line-height: 24px;
+  }
+
+  .mission-info {
+    p {
+      font-size: 18px;
+      line-height: 32px;
+    }
+  }
+
+  .button-light {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 680px) {
+  .title-head {
+    font-size: 26px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .toyo-info {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .logo-brand {
+    padding: 0;
+  }
+
+  .images-and-scroll #scroll-down {
+    font-size: 8px;
+  }
+
+  .images-and-scroll img {
+    padding: 20px 0px 40px 8px;
+  }
+
+  .glass-img {
+    padding-top: 60px;
+  }
+
+  .red-glass-img {
+    padding-top: 64px;
+    padding-bottom: 46px;
+  }
+
+  .text-right a {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .title-head {
+    font-size: 28px;
+    padding-bottom: 25px;
+  }
+
+  .color-grey {
+    font-size: 8px;
+  }
+
+  .logo-brand {
+    padding: 0;
+  }
+
+  .title-center {
+    font-size: 24px;
+    line-height: 20px;
+  }
+
+  .mission-info {
+    p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}
