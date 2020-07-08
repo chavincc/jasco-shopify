@@ -1,5 +1,8 @@
 @import "spacing";
 
+#col-remove-padding {
+  padding: 0px;
+}
 .about-us-page {
   .plain-text {
     h1 {
@@ -242,5 +245,11 @@
         padding-right: 0px;
       }
     }
+  }
+}
+
+#our-story-padding {
+  img {
+    padding-bottom: 80px;
   }
 }
