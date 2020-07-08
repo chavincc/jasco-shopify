@@ -7,19 +7,18 @@
             </div>
         </div>
         <div class="row align-items-center logo-brand text-center">
-            {% assign a = 0 %}
+            {% assign num = 0 %}
             {%- for block in section.blocks -%}
                  <div class=" col-md-3">
                     <a href={{block.settings.url_brand}}>
-                 {% if a == 1 %}
-                        <img class="img-fluid jasco-img" src= "{{ block.settings.icon_brand | img_url : 'master'}}" />
-                 {% else %}
-                        <img class="img-fluid jasco-img gray-scale" src= "{{ block.settings.icon_brand | img_url : 'master'}}" />
-                    </a>
-                 {%- endif -%}
+                        {% if num == 1 %}
+                                <img class="img-fluid jasco-img" src= "{{ block.settings.icon_brand | img_url : 'master'}}" />
+                        {% else %}
+                                <img class="img-fluid jasco-img gray-scale" src= "{{ block.settings.icon_brand | img_url : 'master'}}" />
+                        {%- endif -%}
                    </a>
                  </div>
-            {% assign a = a | plus: 1 %}
+                {% assign num = num | plus: 1 %}
             {%- endfor -%}
         </div> 
         <hr>

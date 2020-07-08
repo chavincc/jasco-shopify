@@ -14,15 +14,15 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <img class="lemon-glass-img img-fluid" src="{{section.settings.image_2 |  img_url: 'master' }}" alt="product1" />
+                        <img class="lemon-glass-img img-fluid" src="{{section.settings.image_2 |  img_url: 'master' }}"  />
                     </div>
                 </div>
 
                 <p class="toyo-info"> {{section.settings.toyo_description_section2}} </p>
             </div>
             <div class="col-md-5" id = "custom-padding">
-                <img class="glass-img img-fluid" src="{{section.settings.image_1 |  img_url: 'master' }}" alt="product1" />
-                <img class="red-glass-img img-fluid" src="{{section.settings.image_3 |  img_url: 'master' }}" alt="product3" />
+                <img class="glass-img img-fluid" src="{{section.settings.image_1 |  img_url: 'master' }}"  />
+                <img class="red-glass-img img-fluid" src="{{section.settings.image_3 |  img_url: 'master' }}"  />
             </div>
             <div class="row align-items-center py-md-5">
                 <div class="row align-items-end">
@@ -45,14 +45,15 @@
     <div class="section-mission"> 
        
         {% for block in section.blocks %}
-         <img id= "mission-img" src = "{{block.settings.bg_image |  img_url: 'master' }}" />
+        <img id= "mission-img" src = "{{block.settings.bg_image |  img_url: 'master' }}" />
         <div id = "mission-txt" class="col-md-12 a-mission text-center" >
              <p class="title-center">{{block.settings.image_title}}</p>
              <div class="rte mission-info">{{ block.settings.caption_image }}</div>
              <a class="button button-light mission-button" href={{block.settings.link_button}}>{{block.settings.button_text}}</a>
+         </div>
         {% endfor %}
             
-        </div>
+       
     </div> 
 </div> 
 
