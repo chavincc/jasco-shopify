@@ -12,7 +12,7 @@
       <div class="divider"></div>
     </div>
     <div class="location-tabs text-capitalize" id="tab-chiangmai">
-      Chiangmai
+      {{ section.settings.secondary_location_name }}
     </div>
   </div>
   <div class="row-divider"></div>
@@ -29,7 +29,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-tel.svg" | asset_url }}/>
             </div>
-            <div class="col-9">{{ section.settings.primary_location_telephone }}</div>
+            <div class="col-9" id="location-phone-wrapper">{{ section.settings.primary_location_telephone }}</div>
           </div>
         </div>
         <div class="col-lg-6 col-12 mb-3">
@@ -39,7 +39,7 @@
                 "get-in-touch-img-icon-paper-plane.svg" | asset_url
               }}/>
             </div>
-            <div class="col-9">{{ section.settings.primary_location_email }}</div>
+            <div class="col-9" id="location-email-wrapper">{{ section.settings.primary_location_email }}</div>
           </div>
         </div>
         <div class="col-lg-6 col-12 mb-3">
@@ -47,7 +47,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-fax.svg" | asset_url }}/>
             </div>
-            <div class="col-9">{{ section.settings.primary_location_fax }}</div>
+            <div class="col-9" id="location-fax-wrapper">{{ section.settings.primary_location_fax }}</div>
           </div>
         </div>
         <div class="col-lg-6 col-12 mb-3">
@@ -55,7 +55,7 @@
             <div class="location-contact-info-icon col-2">
               <img src={{ "get-in-touch-img-icon-line.svg" | asset_url }}/>
             </div>
-            <div class="col-9">{{ section.settings.primary_location_line }}</div>
+            <div class="col-9" id="location-line-wrapper">{{ section.settings.primary_location_line }}</div>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
   </div>
   <div class="row pb-5">
     <div class="col-md-6 col-12 mt-3 pb-4 pb-md-0">
-      <a target="_blank" href={{ section.settings.primary_location_link }} class="location-get-direction-button">
+      <a target="_blank" href={{ section.settings.primary_location_link }} class="location-get-direction-button" id="location-link-to-address-btn">
         <div class="location-get-direction-button-text text-uppercase">
           {{ section.settings.button_text }}
         </div>
@@ -73,10 +73,10 @@
       </a>
     </div>
     <div class="location-opening-hours col-md-6 col-12">
-      <div class="location-opening-hours-header text-capitalize">
+      <div class="location-opening-hours-header text-capitalize" id="location-note-header-wrapper">
         {{ section.settings.primary_location_note_header }}
       </div>
-      <div class="location-opening-hours-content">
+      <div class="location-opening-hours-content" id="location-note-body-wrapper">
         {{ section.settings.primary_location_note_body }}
       </div>
     </div>
@@ -192,5 +192,30 @@
     ]
   }
 {% endschema %}
+
+<script>
+  var LOCATION_DATA_LIQUID_VARIABLE = {
+    primary: {
+      address: "{{ section.settings.primary_location_address }}",
+      tel: "{{ section.settings.primary_location_telephone }}",
+      email: "{{ section.settings.primary_location_email }}",
+      fax: "{{ section.settings.primary_location_fax }}",
+      line: "{{ section.settings.primary_location_line }}",
+      link: "{{ section.settings.primary_location_link }}",
+      noteHeader: "{{ section.settings.primary_location_note_header }}",
+      noteBody: "{{ section.settings.primary_location_note_body }}"
+    },
+    secondary: {
+      address: "{{ section.settings.secondary_location_address }}",
+      tel: "{{ section.settings.secondary_location_telephone }}",
+      email: "{{ section.settings.secondary_location_email }}",
+      fax: "{{ section.settings.secondary_location_fax }}",
+      line: "{{ section.settings.secondary_location_line }}",
+      link: "{{ section.settings.secondary_location_link }}",
+      noteHeader: "{{ section.settings.secondary_location_note_header }}",
+      noteBody: "{{ section.settings.secondary_location_note_body }}"
+    }
+  }
+</script>
 
 {{ "get-in-touch-tab.js" | asset_url | script_tag }}
