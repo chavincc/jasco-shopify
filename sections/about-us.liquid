@@ -1,0 +1,150 @@
+<section>
+  <div class="about-us-page">
+    <div class="plain-text" id="our-story-txt">
+      <h1>OUR STORY</h1>
+      <p>Jasco Products (Thailand) Co., Ltd.</p>
+    </div>
+    <div class="images-and-scroll d-none d-xl-block">
+      <div class="row">
+        <div class="col-xl-1 col-lg-1">
+          <div class="text-uppercase" id="scroll-down">Scroll down</div>
+          <div id="long-line"
+            ><img src={{ "about-us-img-scroll-line.svg" | asset_url }} /></div
+          >
+        </div>
+        <div class="col-xl-5 col-lg-5"></div>
+        <div class="col-xl-6 col-lg-3 right" style="padding: 0px;">
+          <div class="d-flex justify-content-end">
+            <div id="text-img1">
+              Jasco Products (Thailand) Co., Ltd
+            </div>
+            <div class="image1-change-img"
+              ><img src=
+              {{ "about-us-img-jasco-company-sm.png" | asset_url }} /></div
+            >
+          </div>
+        </div>
+      </div>
+      <div class="padding-row">
+        <div class="row">
+          <div
+            class="col-xl-12 col-lg-12 d-flex justify-content-end"
+            style="padding: 0px;"
+          >
+            <div class="image3-change-img" id="image3">
+              <img src= {{ "about-us-img-light-bulb-sm.png" | asset_url }}
+              <div class="image2-change-img" id="image2"
+                ><img src={{ "about-us-img-meeting-sm.png" | asset_url }}/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="images-and-scroll d-xl-none">
+      <div class="row">
+        <div
+          class="col-lg-2 col-md-1 col-sm-1 d-none d-sm-block"
+          style="padding: 0px;"
+        >
+          <div class="text-uppercase" id="scroll-down">Scroll down</div>
+          <div id="long-line"
+            ><img src={{ "about-us-img-scroll-line.svg" | asset_url }} /></div
+          >
+        </div>
+        <div
+          class="col-lg-10 col-md-11 col-sm-11 col-xs-12 d-flex justify-content-end"
+          style="padding: 0px;"
+        >
+          <div class="our-story-images" id="image1">
+            <div id="text-img1">
+              Jasco Products (Thailand) Co., Ltd
+            </div>
+            <img src={{ "about-us-img-jasco-company-sm.png" | asset_url }} />
+          </div>
+        </div>
+      </div>
+      <div class="padding-row">
+        <div class="row">
+          <div
+            class="col-sm-11 d-flex justify-content-start"
+            style="padding: 0px;"
+          >
+            <div class="our-story-images"
+              ><img src={{
+                "about-us-img-meeting-sm.png" | asset_url
+              }}
+              style="padding-bottom: 80px;" /></div
+            >
+          </div>
+          <div class="col-md-1 col-sm-1"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1 col-sm-1"></div>
+          <div
+            class="col-sm-11 d-flex justify-content-end"
+            style="padding: 0px;"
+          >
+            <div class="our-story-images">
+              <img src=
+              {{ "about-us-img-light-bulb-sm.png" | asset_url }} /></div
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin: 0; padding: 0;">
+      <div class="plain-text" id="locations">
+        <h1>2 locations Bangkok and Chiangmai</h1>
+        <p> {{ settings.locations_text }}</p>
+      </div>
+    </div>
+    <div class="our-promise-row d-none d-xl-block">
+      <div class="row" style="margin: 0;">
+        <div class="col-xl-7 d-flex justify-content-start">
+          <img src= {{ "about-us-img-our-promise-sm.png" | asset_url }}/>
+        </div>
+        <div class="col-xl-5 d-flex justify-content-end">
+          <div class="plain-text" id="our-promise">
+            <h1>OUR PROMISE</h1>
+            <p>{{ settings.our_promises_text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="our-promise-row d-xl-none">
+      <div class="row" style="margin: 0;">
+        <div class="col-xl-7 d-flex justify-content-center">
+          <img src={{ "about-us-img-our-promise-sm.png" | asset_url }} />
+        </div>
+        <div class="col-xl-5 d-flex justify-content-center">
+          <div class="plain-text" id="our-promise">
+            <h1>OUR PROMISE</h1>
+            <p>{{ settings.our_promises_text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+    {
+    "name": "About Us",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "locations_text",
+        "default": "readily stocked with top notched equipment and utensils, there is no better place in Thailand with a selection quite as complete. Both branches offer professional quality kitchen products ranging from smallware, flatware, cutlery, tabletops, barwares, and cookware that make life easier in your kitchen",
+        "label": "locations description"
+      },
+      {
+        "type": "textarea",
+        "id": "our_promises_text",
+        "default": "Through countless years of experience on Food Service Equipment and Utility, we can assure our customers that our companies are capable of providing low cost, high quality products ranging from Smallwares, Tabletop, Bar Supplies, Bake Wares, Buffet Wares to Cookwares. This is why we are now the largest and leading distributor of foodservice supplies in Thailand.",
+        "label": "our promise description"
+      }
+    ]
+  }
+{% endschema %}
