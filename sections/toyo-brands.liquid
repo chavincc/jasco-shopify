@@ -1,0 +1,141 @@
+<div id="toyo" class="section-toyo-sasaki pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 a-toyo-sasaki">
+                <p class="title-head">{{section.settings.toyo_title}}</p>
+                <div class="toyo-info">
+                     <div class="rte">{{ section.settings.toyo_description }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="images-and-scroll">
+                            <div class="text-uppercase" id="scroll-down">Scroll down</div>
+                            <img class="img-fluid" src={{"about-us-img-scroll-line.svg" | asset_url }}>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <img class="lemon-glass-img img-fluid" src="{{section.settings.image_2 |  img_url: 'master' }}"  />
+                    </div>
+                </div>
+
+                <p class="toyo-info"> {{section.settings.toyo_description_section2}} </p>
+            </div>
+            <div class="col-md-5" id = "custom-padding">
+                <img class="glass-img img-fluid" src="{{section.settings.image_1 |  img_url: 'master' }}"  />
+                <img class="red-glass-img img-fluid" src="{{section.settings.image_3 |  img_url: 'master' }}"  />
+            </div>
+            <div class="row align-items-center py-md-5">
+                <div class="row align-items-end">
+                    <div class="col-md-6">
+                        <img class="img-fluid" src="{{section.settings.image_4 |  img_url: 'master' }}" />
+                    </div>
+                    <div class="col-md-6">
+                        <p class="toyo-info info-bottom">{{section.settings.toyo_description_section3}}</p>
+                        <div class="text-right">
+                            <a href="#"><b>PIAZZA</b></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" >
+    <div class="section-mission"> 
+       
+        {% for block in section.blocks %}
+        <img id= "mission-img" src = "{{block.settings.bg_image |  img_url: 'master' }}" />
+        <div id = "mission-txt" class="col-md-12 a-mission text-center" >
+             <p class="title-center">{{block.settings.image_title}}</p>
+             <div class="rte mission-info">{{ block.settings.caption_image }}</div>
+             <a class="button button-light mission-button" href={{block.settings.link_button}}>{{block.settings.button_text}}</a>
+         </div>
+        {% endfor %}
+            
+       
+    </div> 
+</div> 
+
+{% schema %}
+    {
+        "name": "TOYO-BRANDS", 
+        "max_blocks": 1,
+        "settings": [
+            
+            {
+                "type": "text", 
+                "id": "toyo_title", 
+                "label" : "Content title"
+            },
+            {
+                "type": "richtext",
+                "id": "toyo_description",
+                "label": "Content description"
+            }, 
+            {
+                "type": "image_picker",
+                "id": "image_1",
+                "label": "Image 1"
+             },
+             {
+                "type": "image_picker",
+                "id": "image_2",
+                "label": "Image 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_3",
+                "label": "Image 3"
+            },
+             {
+                "type": "textarea",
+                "id": "toyo_description_section2",
+                "label": "Content detail"
+            },
+            {
+                "type": "image_picker",
+                "id": "image_4",
+                "label": "Image 4"
+            },
+            {
+                "type": "textarea",
+                "id": "toyo_description_section3",
+                "label": "Content detail"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "image", 
+                "name": "shop-by-brand-mission",
+                "settings": [
+                    {
+                        "type": "image_picker", 
+                        "id" : "bg_image",
+                        "label" : "Background image"
+                    },
+                    {
+                        "type": "text", 
+                        "id" : "image_title", 
+                        "label" :  "Title in image section" 
+                    },
+                    {
+                        "type": "richtext", 
+                        "id" : "caption_image",
+                        "label" :  "Image Caption"
+                    },
+                    {
+                        "type": "text", 
+                        "id" : "button_text", 
+                        "label" :  "Button text" 
+                    },
+                    {
+                        "type": "url", 
+                        "id" : "link_button", 
+                        "label" :  "Button link" 
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

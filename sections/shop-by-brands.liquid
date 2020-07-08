@@ -1,0 +1,63 @@
+<div id="shop-by-brand" class="section-shop-by-brand">
+    <div class="container">
+        <div class="row align-items-center pt-5">
+            <div class="col-md-7 a-sbb">
+                <p class="color-grey">Company Profile</p>
+                <p class="text-uppercase title-head">{{section.settings.section_title}}</p>
+            </div>
+        </div>
+        <div class="row align-items-center logo-brand text-center">
+            {% assign num = 0 %}
+            {%- for block in section.blocks -%}
+                 <div class=" col-md-3">
+                    <a href={{block.settings.url_brand}}>
+                        {% if num == 1 %}
+                                <img class="img-fluid jasco-img" src= "{{ block.settings.icon_brand | img_url : 'master'}}" />
+                        {% else %}
+                                <img class="img-fluid jasco-img gray-scale" src= "{{ block.settings.icon_brand | img_url : 'master'}}" />
+                        {%- endif -%}
+                   </a>
+                 </div>
+                {% assign num = num | plus: 1 %}
+            {%- endfor -%}
+        </div> 
+        <hr>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Shop-by-brands",
+        "max_blocks": 4,
+        "settings": [
+            {
+                "type": "text", 
+                "id": "section_title", 
+                "label" : "Section title"
+            }
+        ],
+        "blocks": [
+            {
+                "type":"image", 
+                "name": "icon-brands", 
+                "settings": [
+                    {
+                        "type": "text", 
+                        "id" : "brand_name", 
+                        "label": "Name of the brand"
+                    },
+                    {
+                        "type": "image_picker", 
+                        "id" : "icon_brand", 
+                        "label": "Icon brand"
+                    },
+                    {
+                        "type": "url", 
+                        "id" : "url_brand", 
+                        "label": "Link to the brand"
+                    }   
+                ]
+            }
+        ]
+    }
+{% endschema %}
