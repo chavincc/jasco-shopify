@@ -353,3 +353,8 @@
 .location-customer-service-opening-hours-closing {
   font-weight: 500;
 }
+
+#location-customer-service {
+  @include responsive-x-padding();
+  background-color: #f8fbff;
+}
