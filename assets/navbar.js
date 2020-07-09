@@ -47,22 +47,25 @@ stickyMenu = () => {
 };
 
 setTabNavbar = (current_page) => {
-  for (i = 0; i < ALL_PAGES.length; i++) {
-    if (current_page === i || current_page + 6 === i) {
+  console.log(current_page);
+
+  for (i = 0; i < PAGE.length; i++) {
+    if (current_page === PAGE[i].text) {
       PAGE[i].style.fontWeight = "bold";
       PAGE[i].style.textDecoration = "none";
     }
   }
 };
 
-removeTabNavbar = (current_page) => {
-  for (i = 0; i < ALL_PAGES.length; i++) {
-    if (current_page === i || current_page + 6 === i) {
-      PAGE[i].style.fontWeight = "normal";
-      PAGE[i].style.textDecoration = "none";
-    }
-  }
-};
+setTabNavbar(current_page);
+// removeTabNavbar = (current_page) => {
+//   // for (i = 0; i < ALL_PAGES.length; i++) {
+//   //   if (current_page === i || current_page + 6 === i) {
+//   //     PAGE[i].style.fontWeight = "normal";
+//   //     PAGE[i].style.textDecoration = "none";
+//   //   }
+//   // }
+// };
 
 hover_product_navbar = () => {
   for (let j = 0; j < ALL_PAGES.length; j++) {
