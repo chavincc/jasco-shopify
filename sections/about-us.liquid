@@ -1,0 +1,181 @@
+<section>
+  <div class="about-us-page">
+    <div class="plain-text" id="our-story-txt">
+      <h1 class= "text-uppercase"> {{section.settings.story_heading}}</h1>
+      <div class="rte">{{ section.settings.story_text }}</div>
+    </div>
+    <div class="images-and-scroll d-none d-xl-block">
+      <div class="row">
+        <div class="col-xl-1 col-lg-1">
+          <div class="text-uppercase" id="scroll-down">Scroll down</div>
+          <div id="long-line"><img src={{"about-us-img-scroll-line.svg" | asset_url }}/></div>
+        </div>
+        <div class="col-xl-5 col-lg-5"></div>
+        <div class="col-xl-6 col-lg-3 right" id="col-remove-padding" >
+          <div class="d-flex justify-content-end">
+            <div id="text-img1"> {{section.settings.image1_caption}} </div>
+            <div class="image-change-img"><img src="{{section.settings.image_1 |  img_url: 'master' }}"/></div>
+          </div>
+        </div>
+      </div>
+      <div class="padding-row">
+        <div class="row">
+          <div
+            class="col-xl-12 col-lg-12 d-flex justify-content-end"
+            id = "col-remove-padding"
+          >
+            <div class="image-change-img" id="image3">
+              <img src="{{ section.settings.image_3 |  img_url: 'master' }}" />
+              <div class="image-change-img" id="image2"
+                ><img id="image2-change" src="{{ section.settings.image_2 |  img_url: 'master' }}" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="images-and-scroll d-xl-none">
+      <div class="row">
+        <div
+          class="col-lg-2 col-md-1 col-sm-1 d-none d-sm-block"
+          id="col-remove-padding"
+        >
+          <div class="text-uppercase" id="scroll-down">Scroll down</div>
+          <div id="long-line"><img src={{"about-us-img-scroll-line.svg" | asset_url }}/></div>
+        </div>
+        <div
+          class="col-lg-10 col-md-11 col-sm-11 col-xs-12 d-flex justify-content-end"
+          id="col-remove-padding"
+        >
+          <div class="our-story-images" id="image1">
+            <div id="text-img1"> {{section.settings.image1_caption}} </div>
+            <img src="{{ section.settings.image_1 |  img_url: 'master' }}" />
+          </div>
+        </div>
+      </div>
+      <div class="padding-row">
+        <div class="row">
+          <div
+            class="col-sm-11 d-flex justify-content-start"
+            id= "col-remove-padding"
+          >
+            <div class="our-story-images" id= "our-story-padding"
+              ><img
+                src="{{ section.settings.image_2 |  img_url: 'master' }}"
+            /></div>
+          </div>
+          <div class="col-md-1 col-sm-1"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1 col-sm-1"></div>
+          <div
+            class="col-sm-11 d-flex justify-content-end"
+            id= "col-remove-padding"
+          >
+            <div class="our-story-images">
+              <img src="{{ section.settings.image_3 |  img_url: 'master' }}" />
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-0 m-0 row" >
+      <div class="plain-text" id="locations">
+        <h1> {{section.settings.location_heading}} </h1>
+        <p>{{section.settings.locations_text}}</p>
+      </div>
+    </div>
+    <div class="our-promise-row d-none d-xl-block">
+      <div class="row" id="col-remove-padding">
+        <div class="col-xl-7 d-flex justify-content-start">
+          <img src="{{ section.settings.image_4 |  img_url: 'master' }}" />
+        </div>
+        <div class="col-xl-5 d-flex justify-content-end">
+          <div class="plain-text" id="our-promise">
+            <h1 class= "text-uppercase" >{{section.settings.our_promises_heading}}</h1>
+            <p>{{section.settings.our_promises_text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="our-promise-row d-xl-none">
+      <div class="row" id= "col-remove-padding">
+        <div class="col-xl-7 d-flex justify-content-center">
+            <img src="{{ section.settings.image_4 |  img_url: 'master' }}"  />
+        </div>
+        <div class="col-xl-5 d-flex justify-content-center">
+          <div class="plain-text" id="our-promise">
+            <h1 class= "text-uppercase">{{section.settings.our_promises_heading}}</h1>
+            <p>{{section.settings.our_promises_text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+    {
+        "name": "About Us",
+        "settings": [
+        {
+            "type": "text",
+            "id": "story_heading",
+            "label": "First title"
+        },
+        {
+            "type": "richtext",
+            "id": "story_text",
+            "label": "First description"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image 1"
+        },
+         {
+            "type": "text",
+            "id": "image1_caption",
+            "label": "Image 1 caption"
+        },
+         {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image 2"
+        },
+         {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image 3"
+        },
+        {
+            "type": "text",
+            "id": "location_heading",
+            "label": "Second title"
+        },
+        {
+            "type": "textarea",
+            "id": "locations_text",
+            "default": "readily stocked with top notched equipment and utensils, there is no better place in Thailand with a selection quite as complete. Both branches offer professional quality kitchen products ranging from smallware, flatware, cutlery, tabletops, barwares, and cookware that make life easier in your kitchen",
+            "label": "Second description"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_4",
+            "label": "Image 4"
+        },
+        {
+            "type": "text",
+            "id": "our_promises_heading",
+            "label": "Third title"
+        },
+        {
+            "type": "textarea",
+            "id": "our_promises_text",
+            "default": "Through countless years of experience on Food Service Equipment and Utility, we can assure our customers that our companies are capable of providing low cost, high quality products ranging from Smallwares, Tabletop, Bar Supplies, Bake Wares, Buffet Wares to Cookwares. This is why we are now the largest and leading distributor of foodservice supplies in Thailand.",
+            "label": "Third description"
+        }
+        ]
+    }
+{% endschema %}
