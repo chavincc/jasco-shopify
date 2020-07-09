@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "cypress": "^4.10.0"
+  },
+  "name": "jasco-shopify-master",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/chavincc/jasco-shopify.git",
+  "author": "chavincc <cc6chavin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "cypress:open": "cypress open"
+  }
+}
