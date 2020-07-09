@@ -371,8 +371,11 @@ header {
     background-color: #d8d8d8;
     border: transparent;
   }
-  .front-of-house,
-  .back-of-house {
+  .front-of-house {
+    #img-h1 {
+      align-self: flex-start;
+      margin-right: 15px;
+    }
     color: white;
     h1 {
       font-size: 14px;
@@ -388,8 +391,7 @@ header {
       border: transparent;
       margin-bottom: 20px;
     }
-    #front-of-house-actions,
-    #back-of-house-actions {
+    #front-of-house-actions {
       li {
         padding-bottom: 20px;
         a {
@@ -405,18 +407,6 @@ header {
       #last-item {
         padding-bottom: 0px;
       }
-    }
-  }
-  .front-of-house {
-    h1::before {
-      content: url("../images/sm-front-icon.svg");
-      padding-right: 15px;
-    }
-  }
-  .back-of-house {
-    h1::before {
-      content: url("../images/sm-back-icon.svg");
-      padding-right: 15px;
     }
   }
 }
