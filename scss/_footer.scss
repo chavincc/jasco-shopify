@@ -21,8 +21,11 @@ $footer-text-color: #fff;
 }
 
 footer {
+  margin-top: 0 !important;
+
   & > .row {
     @include responsive-x-padding();
+    margin: 0;
   }
 
   .icon {
