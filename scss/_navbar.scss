@@ -371,8 +371,7 @@ header {
     background-color: #d8d8d8;
     border: transparent;
   }
-  .front-of-house,
-  .back-of-house {
+  .front-of-house {
     #img-h1 {
       align-self: flex-start;
       margin-right: 15px;
@@ -392,8 +391,7 @@ header {
       border: transparent;
       margin-bottom: 20px;
     }
-    #front-of-house-actions,
-    #back-of-house-actions {
+    #front-of-house-actions {
       li {
         padding-bottom: 20px;
         a {
