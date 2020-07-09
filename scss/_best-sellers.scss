@@ -177,9 +177,6 @@ $footer-text-color: #fff;
     line-height: 29px;
     letter-spacing: 1.26px;
   }
-  &-price::before {
-    content: "฿";
-  }
 
   &:first-child {
     margin-left: 30px;
