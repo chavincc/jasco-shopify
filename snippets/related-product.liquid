@@ -25,7 +25,7 @@
           {{ product.selected_or_first_available_variant.sku }}
         </div>
         <div class="product-price col-5 text-right">
-          {{ product.price | money_without_currency }}
+          {{ product.price | money_without_trailing_zeros }}
         </div>
         <div class="wishlist-container col-3 d-flex justify-content-end">
           <img alt="wishlist-icon" src={{ "product-img-icon-heart.svg" | asset_url }} />
