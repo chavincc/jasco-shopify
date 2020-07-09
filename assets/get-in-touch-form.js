@@ -70,7 +70,6 @@ $(INQUIRY_FORM_ID).submit((e) => {
     }
   });
 
-  console.log(formIsError);
   if (!formIsError) {
     $(INQUIRY_FORM_ID).submit();
   }
