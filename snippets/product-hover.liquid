@@ -1,61 +1,112 @@
 <div class="row d-none d-lg-block" id="products-hover-row">
     <div class="products-hover">
         <div class="col-md-1 col-sm-1"></div>
-        <div class="col-5" id="col-bootstrap">
-            <div class="front-of-house text-uppercase">
-                <div class="row" id= "heading-products-hover">
-                    <h1>FRONT OF HOUSE</h1>
-                </div>
-                <div id="products-hover-short-line"></div>
-                <div class="row">
-                    <div class="pr-0 col-md-5 col-sm-6 col-xs-1 d-flex justify-content-start">
-                        <ul class="list-inline" id="front-of-house-actions">
-                            <li>
-                                <a href="#">
-                                    CUTLERY
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    SERVICEWARE
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    BARWARE
-                                </a>
-                            </li>
-                            <li id="last-item">
-                                <a href="#">
-                                    BEVERAGEWARE
-                                </a>
-                            </li>
-                        </ul>
+        {% assign num = 0 %}
+        {% for link in linklists.main-menu.links  %}
+            {% if link.title == "PRODUCTS" %}
+                {% for child_link in link.links %}
+                    <div class="col-5">
+                        <div class="front-of-house text-uppercase">
+                            <div class="row" id= "heading-products-hover">
+                            {% assign child_link_upper = child_link.title | upcase %}
+                                {% if child_link_upper == "FRONT OF HOUSE" %}
+                                    <img id= img-h1 src= {{'navbar-img-sm-front-icon.svg' | asset_url }}/>
+                                {% else %}
+                                    <img id= img-h1 src= {{'navbar-img-sm-back-icon.svg' | asset_url}}/>
+                                {% endif %}
+                                <h1 class= "text-uppercase"> {{ child_link.title }} </h1>
+                            </div>
+                            <div id="products-hover-short-line"></div>
+                                {% assign col_product = child_link.links.size | divided_by: 4.0  | ceil %}
+                                {% assign child_num = 0 %}
+                                <div class="row">    
+                                    {% for col in (1..col_product) %}
+                                            {% if child_num == 0 %}
+                                                <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
+                                                <ul class="list-inline" id="front-of-house-actions">
+                                                    {% for grandchild_link in child_link.links limit: 4 %} 
+                                                        <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                                </div>
+                                            {% elsif child_num == 1 %}
+                                                <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
+                                                    <ul class="list-inline" id="front-of-house-actions">
+                                                        {% for grandchild_link in child_link.links offset: 4 %} 
+                                                            <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% else %}
+                                                {% break %}
+                                            {% endif %}
+                                        {% assign child_num = child_num | plus: 1 %}
+                                    {% endfor %}
+                                </div> 
+                        </div>
                     </div>
-                    <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
-                        <ul class="list-inline" id="front-of-house-actions">
-                            <li>
-                                <a href="#">TABLE PRESENTATION</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    MENUS & SIGNS
-                                </a>
-                            </li>
-                            <li id="last-item">
-                                <a href="#">
-                                    BUFFETWARE & DISPLAYS
-                                </a>
-                            </li>
-                        </ul>
+                {% if num == 0 %}
+                    <div class="col-md-1 col-sm-1">
+                        <div class="middle-line"></div>
+                    </div>
+                {% endif %}
+                {% assign num = num | plus: 1 %}
+                {% endfor%}
+            {% endif %}
+            {% comment %} <div class="col-5" id="col-bootstrap">
+                <div class="front-of-house text-uppercase">
+                    <div class="row" id= "heading-products-hover">
+                        <h1>FRONT OF HOUSE</h1>
+                    </div>
+                    <div id="products-hover-short-line"></div>
+                    <div class="row">
+                        <div class="pr-0 col-md-5 col-sm-6 col-xs-1 d-flex justify-content-start">
+                            <ul class="list-inline" id="front-of-house-actions">
+                                <li>
+                                    <a href="#">
+                                        CUTLERY
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        SERVICEWARE
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        BARWARE
+                                    </a>
+                                </li>
+                                <li id="last-item">
+                                    <a href="#">
+                                        BEVERAGEWARE
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
+                            <ul class="list-inline" id="front-of-house-actions">
+                                <li>
+                                    <a href="#">TABLE PRESENTATION</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        MENUS & SIGNS
+                                    </a>
+                                </li>
+                                <li id="last-item">
+                                    <a href="#">
+                                        BUFFETWARE & DISPLAYS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-1 col-sm-1">
-            <div class="middle-line"></div>
-        </div>
-        <div class="col-5">
+            </div> {% endcomment %}
+        {% endfor %}
+    
+        {% comment %} <div class="col-5">
             <div class="back-of-house text-uppercase">
                 <div class="row" id="heading-products-hover">
                     <h1>BACK OF HOUSE</h1>
@@ -99,6 +150,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
