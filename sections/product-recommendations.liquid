@@ -10,9 +10,11 @@
             {% for product in recommendations.products %}
               {% assign related_product_object = product %}
               {% assign spare = false %}
+              {% assign test = false %}
               {% case forloop.index0 %}
                 {% when 0 %}
                   {% assign direction = "align-items-xl-start align-items-center" %}
+                  {% assign test = true %}
                 {% when 1 %}
                   {% assign direction = "align-items-center" %}
                 {% when 2 %}
