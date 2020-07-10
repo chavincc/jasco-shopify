@@ -6,6 +6,9 @@
     margin: 0;
   }
 
+  .responsive-img-wrapper {
+    outline: none;
+  }
   .responsive-img-wrapper:after {
     content: "";
     padding-bottom: 100%;
@@ -65,6 +68,33 @@
         padding-left: 0;
       }
     }
+  }
+}
+
+#product-detail-tab-content-description,
+#product-detail-tab-content-dimension {
+  ul,
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 2rem;
+  }
+  ul > *,
+  ol > * {
+    flex: 0 0 50%;
+  }
+
+  ul li {
+    list-style: disc !important;
+  }
+
+  ol li {
+    list-style: decimal !important;
+  }
+
+  li {
+    padding-right: 2rem;
+    word-wrap: break-word !important;
   }
 }
 
