@@ -99,6 +99,12 @@
 }
 
 .product-detail {
+  &-shipping-option-icon {
+    img {
+      max-width: none;
+    }
+  }
+
   &-tabs {
     font-size: 16px;
     line-height: 24px;
