@@ -390,7 +390,13 @@
   {% else %}
     {% assign link_icon = 'wishlist-icon-empty' %}
   {% endif %}
-  <a href="{{ wishlist.url }}" class="wk-link wk-{{ wishlist.state }}" title="View Wishlist" style="margin-top:-1px"><div class="wk-icon">{% include link_icon %}</div><span class="wk-label" style="padding-bottom:0.5px">Wishlist</span> <span class="wk-count">({{ wishlist.item_count }})</span></a>
+  <a href="{{ wishlist.url }}" class="wk-link wk-{{ wishlist.state }}" title="View Wishlist" style="margin-top:-1px">
+    <div class="wk-icon">{% include link_icon %}</div>
+    <span class="wk-label" style="padding-bottom:0.5px">Wishlist</span>  
+  </a>
+  {% if wishlist.item_count != 0  %}
+     <div class="circle wk-count">{{ wishlist.item_count }}</div>
+  {% endif %}
 </script>
 
 <script
@@ -540,8 +546,7 @@
         {% include 'wishlist-collection-share' %}
       {% endunless %}
     {% endif %}
-
-    {% include 'wishlist-collection-loop' %}
+      {% include 'wishlist-collection-loop' %} 
 
     {% if settings.app_wk_share_position == "bottom" %}
       {% unless wishlist.read_only %}
@@ -670,21 +675,33 @@
 
         {% assign items_per_row = settings.app_wk_products_per_row %}
         {% assign wk_item_width = 100 | divided_by: items_per_row %}
-
-        <div class="wk-item-column" style="width: {{ wk_item_width }}%">
-          <div id="wk-item-{{ product.wishlist_item_id }}" class="wk-item {{ wk_item_class }} {% unless wishlist.read_only %}wk-fadeout{% endunless %}" data-wk-item="{{ product.wishlist_item_id }}">
-
-            {% include 'wishlist-collection-product-image' with product %}
-            {% include 'wishlist-button-wishlist-page' with product %}
+          <div class="wk-item-column" >
+        
+                   
+           <div id="wk-item-{{ product.wishlist_item_id }}" class="wk-item {{ wk_item_class }} {% unless wishlist.read_only %}wk-fadeout{% endunless %}" data-wk-item="{{ product.wishlist_item_id }}">
+            
+             {% include 'wishlist-collection-product-image' with product %}
+             {% include 'wishlist-button-wishlist-page' with product %}
             {% include 'wishlist-collection-product-title' with product %}
             {% include 'wishlist-collection-product-price' %}
-            {% include 'wishlist-collection-product-form' with product %}
-          </div>
-        </div>
+            {% include 'wishlist-collection-product-form' with product %}  
+          </div> 
+        </div> 
       {% endunless %}
     {% endfor %}
   </div>
 </script>
+
+<script
+  id="wishlist-page-item"
+  data="wishlist"
+  type="text/x-template"
+  app="wishlist-king"
+>
+  {% include 'wishlist-page-item' %}
+</script>
+
+
 
 <script
   id="wishlist-collection-product-image"
@@ -692,13 +709,13 @@
   type="text/x-template"
   app="wishlist-king"
 >
-  <div class="wk-image">
+   <div class="wk-image">
     <a href="{{ product | variant_url }}" class="wk-variant-link wk-content" title="View product">
       <img class="wk-variant-image"
          src="{{ product | variant_img_url: '1000x' }}"
          alt="{{ product.title }}" />
     </a>
-  </div>
+  </div> 
 </script>
 
 <script

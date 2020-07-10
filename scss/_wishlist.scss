@@ -1,0 +1,231 @@
+@import "spacing";
+
+.header-text-wishlist {
+  @include responsive-x-padding();
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 55px;
+  h1 {
+    font-size: 48px;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+  }
+}
+
+#back-to-products {
+  @include responsive-x-padding();
+  padding-bottom: 50px;
+  a {
+    text-decoration: underline;
+    color: #878a9d;
+  }
+}
+#back-to-products::before {
+  content: url("../images/left-arrow-gray.svg");
+  padding-right: 10px;
+}
+
+#header-table {
+  @include responsive-x-padding();
+}
+
+#header-wishlist {
+  width: 100%;
+  text-align: center;
+  justify-items: center;
+  padding-bottom: 30px;
+  #check-box {
+    width: 16px;
+    height: 16px;
+    border: 0.8px solid #d8d8d8;
+    border-radius: 1.6px;
+  }
+  #delete-icon-head {
+    width: 18px;
+    height: 16px;
+    border: transparent;
+    color: transparent;
+  }
+  #product-head {
+    width: 72px;
+    height: 16px;
+    border: transparent;
+    color: transparent;
+  }
+  #add-to-cart-head {
+    width: 105px;
+    height: 56px;
+    border: transparent;
+    color: transparent;
+  }
+  #delete-icon {
+    border: transparent;
+    background-color: transparent;
+    margin-bottom: 5px;
+  }
+  #delete-icon:focus {
+    outline: none;
+  }
+  #checkbox {
+    width: 16px;
+    height: 16px;
+  }
+  td {
+    height: 200px;
+  }
+
+  #quanlity-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .show-data {
+      width: 31px;
+      height: 29px;
+      border: 0.5px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      font-size: 15px;
+      padding-top: 3px;
+    }
+    #minus,
+    #add {
+      border: transparent;
+      background-color: transparent;
+      font-size: 14px;
+    }
+    #minus:focus,
+    #add:focus {
+      outline: none;
+    }
+  }
+  #add-to-cart-btn {
+    width: 179px;
+    height: 45px;
+    color: white;
+    background-color: black;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  #stock-txt {
+    color: #004b83;
+  }
+}
+
+#border-top {
+  border-top: 1px solid black;
+}
+
+@media only screen and (max-width: 1200px) {
+  .header-text-wishlist {
+    h1 {
+      font-size: 38px;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+  #header-wishlist {
+    #add-to-cart-head {
+      width: 80px;
+    }
+    #add-to-cart-btn {
+      width: 130px;
+      height: 35px;
+      color: white;
+      background-color: black;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .header-text-wishlist {
+    h1 {
+      font-size: 30px;
+    }
+  }
+  #xs-wishlist-view {
+    #delete-icon {
+      margin-left: 130px;
+    }
+  }
+}
+#xs-wishlist-view {
+  @include responsive-x-padding();
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+  #add-to-cart-btn {
+    width: 140px;
+    height: 35px;
+    color: white;
+    background-color: black;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  #delete-icon {
+    border: transparent;
+    background-color: transparent;
+    margin-bottom: 5px;
+  }
+  #delete-icon:focus {
+    outline: none;
+  }
+  #xs-product-img {
+    img {
+      max-width: 72px;
+      max-height: 87px;
+    }
+  }
+  .group-quanlity-and-btn {
+    #quanlity-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 25px;
+      .show-data {
+        width: 31px;
+        height: 29px;
+        border: 0.5px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        font-size: 15px;
+        padding-top: 3px;
+      }
+      #minus,
+      #add {
+        border: transparent;
+        background-color: transparent;
+        font-size: 14px;
+      }
+      #minus:focus,
+      #add:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+#xs-product-header {
+  #xs-product-name {
+    font-size: 18px;
+    padding-bottom: 15px;
+    font-weight: bold;
+  }
+  #xs-header-name {
+    font-size: 13px;
+    padding-bottom: 10px;
+  }
+  .stock-txt {
+    color: #004b83;
+  }
+}

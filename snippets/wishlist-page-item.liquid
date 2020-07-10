@@ -1,0 +1,87 @@
+  {% comment %} <div class="header-text-wishlist">
+    <h1> My wishlist</h1>
+  </div> {% endcomment %}
+  <div id="back-to-products"> <a href="#">Back to product</a></div>
+  <div class="d-none d-md-block" id="header-table">
+    <table id="header-wishlist">
+      <tr>
+        <th> <div id="delete-icon-head"></div></th>
+        <th> <div id="product-head"></div></th>
+        <th> Product name</th>
+        <th> Until price</th>
+        <th> Quantity</th>
+        <th> Stock status</th>
+        <th> <div id="add-to-cart-head"> </div></th>
+      </tr>
+      <tr id="border-top">
+        <td>
+          <button id="delete-icon"><img src="images/delete.svg" /></button
+        ></td>
+        <td>
+          <div id="product-img"> <img src="images/product-1.png" /></div
+        ></td>
+        <td> Premium shaker</td>
+        <td> ฿ 120</td>
+        <td>
+          <div id="quanlity-box">
+            <button id="minus" onclick="minus_btn()"> - </button>
+            <div class="show-data" id="show-data-1">0 </div>
+            <button id="add" onclick="plus_btn()"> + </button>
+          </div></td
+        >
+        <td id="stock-txt">In stock</td>
+        <td>
+          <button class="text-uppercase" id="add-to-cart-btn">
+            add to cart
+          </button></td
+        >
+      </tr>
+    </table>
+  </div>
+  <div class="d-md-none">
+    <div id="xs-wishlist-view">
+      <div class="row" style="margin: 0px;">
+        <div
+          class="col-sm-1 col-xs-1 d-flex justify-content-center align-items-center"
+        >
+          <button id="delete-icon"><img src="images/delete.svg" /></button>
+        </div>
+        <div
+          class="col-sm-3 col-xs-2 d-flex justify-content-center align-items-center"
+          id="xs-product-img"
+        >
+          <img src="images/product-1.png" />
+        </div>
+        <div
+          class="col-sm-5 col-xs-12 d-flex justify-content-center"
+          id="xs-product-header"
+        >
+          <div style="margin: 0px; padding-top: 10px;">
+            <div id="xs-product-name"> Premium shaker</div>
+            <div class="w-100"></div>
+            <div id="xs-header-name"> ฿120 </div>
+            <div class="w-100"></div>
+            <div class="w-100"></div>
+            <div class="stock-txt" id="xs-header-name"> In stock </div>
+          </div>
+        </div>
+        <div
+          class="col-sm-3 col-xs-3 d-flex justify-content-center align-items-center"
+        >
+          <div class="group-quanlity-and-btn">
+            <div id="quanlity-box">
+              <button id="minus" onclick="minus_btn()"> - </button>
+              <div class="show-data" id="show-data-0">0 </div>
+              <button id="add" onclick="plus_btn()"> + </button>
+            </div>
+            <div id="btn-add-to-cart">
+              <button class="text-uppercase" id="add-to-cart-btn">
+                add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
