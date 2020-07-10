@@ -220,6 +220,7 @@
                     {% include 'icon-spinner' %}
                   </span>
                 </button>
+                <!-- include 'wishlist-button-product' with '{{product.id}}' -->
                 {% if section.settings.enable_payment_button %}
                   {{ form | payment_button }}
                 {% endif %}

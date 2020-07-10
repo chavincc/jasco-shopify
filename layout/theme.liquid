@@ -126,6 +126,10 @@
     {{
       content_for_header
     }}
+  
+    {% if settings.app_wk_enabled %}
+      {% include 'appmate-wishlist-king' %}
+    {% endif %}
   </head>
 
   <body class="template-{{ request.page_type | handle }}">
@@ -165,5 +169,6 @@
         {{ "general.accessibility.selection_help" | t }}
       </li>
     </ul>
+  
   </body>
 </html>
