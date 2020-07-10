@@ -5,7 +5,7 @@
   width: 100%;
   height: 50%;
   top: initial;
-  z-index: -1;
+  z-index: 0;
 }
 
 #whats-new-section {
@@ -19,18 +19,21 @@
   flex-direction: column;
   justify-content: center;
   padding-bottom: 55px;
+  z-index: 2;
   h1 {
     font-size: 48px;
     font-weight: bold;
     padding-bottom: 50px;
     align-self: center;
     text-align: center;
+    z-index: 2;
   }
   p {
     font-size: 16px;
     color: #878a9d;
     align-self: center;
     text-align: center;
+    z-index: 2;
   }
 }
 
