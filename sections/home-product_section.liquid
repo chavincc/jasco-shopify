@@ -17,7 +17,7 @@
                 <div class="overlay">
                     <div class="text-in-bar">
                         <p>{{collection.description}}</p>
-                        <button class="text-uppercase view-product"> {{block.settings.text_button_product}} </button>
+                        <a href= {{block.settings.button_url}} ><button class="text-uppercase view-product"> {{block.settings.text_button_product}} </button> </a>
                     </div>
                 </div>
             </div>
@@ -79,6 +79,11 @@
                     "type": "text",
                     "id": "text_button_product",
                     "label": "Button text"
+                },
+                {
+                    "type": "url",
+                    "id": "button_url", 
+                    "label" : "Button link"
                 }
             ]
         }   
