@@ -55,7 +55,7 @@
 
     {{ "jquery-3.5.1.slim.min.js" | asset_url | script_tag }}
 
-    <script src="{{ 'navbar.js' | asset_url }}" defer="defer"></script>
+    
     <script>
       var theme = {
         breakpoints: {
@@ -125,7 +125,7 @@
     <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
     <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
-
+    
     {{
       content_for_header
     }}
