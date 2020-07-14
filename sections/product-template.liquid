@@ -50,27 +50,8 @@
             {{ product.description }}
           </div>
       </div>
-      <div class="row mb-3 with-divider">
-        <div class="col-12 d-flex">
-          <div class="product-detail-tabs current text-capitalize" id="tab-description">
-            Description
-          </div>
-          <div class="divider-wrapper">
-            <div class="divider"></div>
-          </div>
-          <div class="product-detail-tabs text-capitalize" id="tab-dimension">
-            Dimensions
-          </div>
-        </div>
-      </div>
-      <div class="row mb-4 with-divider">
-        <div class="col-12" class="product-detail-tab-content" id="product-detail-tab-content-description">
-          {{ product.metafields.global["description"] }}
-        </div>
-        <div class="col-12" class="product-detail-tab-content" id="product-detail-tab-content-dimension" style="display: none;">
-          {{ product.metafields.global["dimension"] }}
-        </div>
-      </div>
+
+      {% include 'product-detail-meta' %}
 
       <div class="product-single__meta">
           {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
@@ -146,12 +127,9 @@
               <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
             </div>
 
-            <div class="product-form__controls-group product-form__controls-group--submit">
-              <div class="product-form__item product-form__item--submit
-                {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
-                {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}"
-              >
-                <button type="submit" name="add"
+            <div class="row mb-xl-3 mb-sm-5 mb-4">
+              <div class="product-detail-button-group mb-sm-0 mb-3">
+                <button type="submit" name="add" class="add-to-cart text-uppercase d-flex align-items-center justify-content-center"
                   {% unless current_variant.available %} aria-disabled="true"{% endunless %}
                   aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
                   class="btn product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
@@ -168,19 +146,8 @@
                     {% include 'icon-spinner' %}
                   </span>
                 </button>
-                {% if section.settings.enable_payment_button %}
-                  {{ form | payment_button }}
-                {% endif %}
-              </div>
-            </div>
-
-            <div class="row mb-xl-3 mb-sm-5 mb-4">
-              <div class="product-detail-button-group mb-sm-0 mb-3">
-                <div class="add-to-cart text-uppercase d-flex align-items-center justify-content-center">
-                    ADD TO CART
-                </div>
                 <div class="wishlist-button text-uppercase d-flex align-items-center justify-content-center">
-                    <img src={{ 'product-img-icon-heart.svg' | asset_url }} />
+                  <img src={{ 'product-img-icon-heart.svg' | asset_url }} />
                 </div>
               </div>
             </div>
