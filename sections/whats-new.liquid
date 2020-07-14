@@ -1,0 +1,88 @@
+<div id="whats-new-section">
+    <div class="blue-bg"></div>
+    <div class="header-text-new">
+        <h1> {{section.settings.title_text}}</h1>
+        <p> {{section.settings.description_text}} </p>
+    </div>
+
+    <div class="img-grp d-none d-lg-block">
+        <div class="row" style="margin: 0px;">
+        {% for block in section.blocks %}
+            {% assign collection = collections[block.settings.whats_new_collection] %}
+            <div class="col drink-food-img">
+                <img src="{{ collection.image | img_url: 'master' }}"/>
+                <div class="text-uppercase drink-food-txt text-uppercase">
+                    {{collection.title}}
+                    <a href={{block.settings.url_collection}}><button class= "text-uppercase"id="view-more" > {{block.settings.button_text}} </button></a>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% assign num = 0 %}
+    <div class="xs-img-grp d-lg-none">
+         {% for block in section.blocks %}
+            {%- if num == 0  -%}
+                <div class="row" >
+            {%- else -%}
+                <div class="row" id="row-padding">
+            {%- endif -%}
+           
+            {% assign collection = collections[block.settings.whats_new_collection] %}
+            <div class="col drink-food-img">
+                <img src="{{ collection.image | img_url: 'master' }}"/>
+                <div class="text-uppercase drink-food-txt text-uppercase">
+                    {{collection.title}}
+                    <a href={{block.settings.url_collection}}><button class= "text-uppercase"id="view-more" > {{block.settings.button_text}} </button></a>
+                </div>
+            </div>
+        </div>
+        {% assign num = num | plus: 1 %}
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{{ 'whats-new.js' | asset_url }}" ></script>
+
+{% schema %}
+    {
+        "name" : "What's new", 
+        "settings":[
+            {
+                "type": "text", 
+                "id": "title_text", 
+                "label": "Title"
+            },
+            { 
+                "type": "text", 
+                "id": "description_text", 
+                "label": "Description"
+            }
+        ],
+       "max_blocks": 2,
+       "blocks":[
+        {
+            "type": "collection",
+            "name": "whats_new_collection",
+            "settings":[
+                {
+                    "type": "collection",
+                    "id": "whats_new_collection",
+                    "label": "Select collection"
+                },
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button text"
+                } 
+                ,
+                {
+                    "type": "url",
+                    "id": "url_collection",
+                    "label": "Url collection"
+                }
+            ]
+        }   
+        ]
+    }
+{% endschema %}

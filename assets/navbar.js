@@ -21,7 +21,6 @@ hideMenuToggle = () => {
   overlay_rec.style.display = "none";
 };
 
-const ALL_PAGES = $("#page-header li");
 const PAGE = $("#page-header li a");
 const NAVBAR = $("#navbar-header");
 const TOP_POS = NAVBAR.height();
@@ -47,17 +46,19 @@ stickyMenu = () => {
 };
 
 setTabNavbar = (current_page) => {
-  for (i = 0; i < ALL_PAGES.length; i++) {
-    if (current_page === i || current_page + 6 === i) {
+  for (i = 0; i < PAGE.length; i++) {
+    if (current_page === PAGE[i].text) {
       PAGE[i].style.fontWeight = "bold";
       PAGE[i].style.textDecoration = "none";
     }
   }
 };
 
+setTabNavbar(current_page);
+
 removeTabNavbar = (current_page) => {
-  for (i = 0; i < ALL_PAGES.length; i++) {
-    if (current_page === i || current_page + 6 === i) {
+  for (i = 0; i < PAGE.length; i++) {
+    if (current_page === PAGE[i].text) {
       PAGE[i].style.fontWeight = "normal";
       PAGE[i].style.textDecoration = "none";
     }
@@ -65,13 +66,21 @@ removeTabNavbar = (current_page) => {
 };
 
 hover_product_navbar = () => {
-  for (let j = 0; j < ALL_PAGES.length; j++) {
+  for (let j = 0; j < PAGE.length; j++) {
     if (PAGE[j].text === "PRODUCTS") {
-      PAGE[j].onmouseover = function () {
-        hover_true();
+      PAGE[j].onmouseover = function (e) {
+        if ($(e.target).css("fontWeight") === "700") {
+          hover_false();
+        } else {
+          hover_true();
+        }
       };
       PAGE[j].onmouseout = function () {
         hover_product();
+      };
+    } else {
+      PAGE[j].onmouseover = function () {
+        hover_false();
       };
     }
   }
@@ -108,21 +117,14 @@ if (!is_touch_device()) {
 hover_product = () => {
   $(".products-hover").mouseover(function () {
     $(this).css("display", "flex");
-    setTabNavbar(2);
+    setTabNavbar("PRODUCTS");
   });
   $(".products-hover").mouseout(function () {
     $(this).css("display", "none");
-    removeTabNavbar(2);
+    removeTabNavbar("PRODUCTS");
   });
   $("#navbar-header-hide").mouseenter(function () {
     hover_false();
-  });
-  $("#products").mouseover(function (e) {
-    if ($(e.target).css("fontWeight") === "700") {
-      hover_false();
-    } else {
-      hover_true();
-    }
   });
 };
 
@@ -130,12 +132,12 @@ hover_true = () => {
   PRODUCT_DROP.css({
     display: "flex",
   });
-  setTabNavbar(2);
+  setTabNavbar("PRODUCTS");
 };
 
 hover_false = () => {
   PRODUCT_DROP.css({
     display: "none",
   });
-  removeTabNavbar(2);
+  removeTabNavbar("PRODUCTS");
 };

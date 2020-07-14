@@ -30,6 +30,7 @@
   }
   .images-and-scroll {
     @include responsive-x-padding();
+    margin-top: 0px;
     .row {
       margin: 0px;
       padding: 0px;
