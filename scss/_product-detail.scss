@@ -149,6 +149,7 @@
     line-height: 24px;
     letter-spacing: 0.96px;
     margin-bottom: 12px;
+    display: block;
   }
 
   .quantity-input-group {
@@ -156,8 +157,31 @@
       height: 30px;
       width: 30px;
       border: 1.5px solid #91929e;
-      margin: 0 6px;
       border-radius: 3px;
+      text-align: center;
+
+      // OVERWRITE
+      padding: 0;
+      min-height: 0;
+    }
+
+    .quantity-input-button {
+      height: 30px;
+      padding: 0 10px;
+
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
     }
   }
 
