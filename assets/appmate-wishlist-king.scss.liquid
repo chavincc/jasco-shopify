@@ -206,7 +206,7 @@ button.wk-button-product {
 
   /* Icon and Text */
   display: block;
-  margin: 18px 0 0 0 !important;
+  {% comment %} margin: 18px 0 0 0 !important; {% endcomment %}
   padding: 0;
   border: none;
   border-radius: 0;
@@ -250,7 +250,8 @@ button.wk-button-wishlist-page {
   display: inline-block;
 
   &.wk-with-hover {
-    opacity: 0;
+    opacity: 1;
+    display:contents;
   }
 
   position: absolute;
@@ -537,11 +538,10 @@ p.wk-login-note {
   margin: 0 auto;
   left: 0;
   right: 0;
-
   background: $wk-variant-form-background;
   padding: 10px;
-  opacity: 0;
-
+  {% comment %} opacity: 0; {% endcomment %}
+  display:contents;
   -webkit-transition: opacity .5s;
   transition: opacity .5s;
 
@@ -549,7 +549,7 @@ p.wk-login-note {
     box-sizing: content-box;
     border: none;
     margin: 0;
-    padding: 14px 24px;
+    {% comment %} padding: 14px 24px; {% endcomment %}
     color: $wk-add-to-cart-color;
     background: $wk-add-to-cart-background;
     color: $wk-add-to-cart-color;
@@ -821,3 +821,4 @@ ul#wk-share-list {
 @media (max-width: 320px) {
 
 }
+

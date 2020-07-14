@@ -1,7 +1,7 @@
 @import "spacing";
 
 .header-text-wishlist {
-  @include responsive-x-padding();
+  // @include responsive-x-padding();
   padding-top: 80px;
   display: flex;
   flex-direction: column;
@@ -29,10 +29,18 @@
 }
 
 #header-table {
-  @include responsive-x-padding();
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  //   @include responsive-x-padding();
 }
 
 #header-wishlist {
+  td,
+  th {
+    text-align: center;
+    align-items: center;
+  }
   width: 100%;
   text-align: center;
   justify-items: center;
@@ -90,7 +98,7 @@
       align-items: center;
       font-weight: 500;
       font-size: 15px;
-      padding-top: 3px;
+      // padding-top: 3px;
     }
     #minus,
     #add {
@@ -104,8 +112,8 @@
     }
   }
   #add-to-cart-btn {
-    width: 179px;
-    height: 45px;
+    width: 150px;
+    height: 35px;
     color: white;
     background-color: black;
     font-size: 14px;
@@ -228,4 +236,11 @@
   .stock-txt {
     color: #004b83;
   }
+}
+
+#span-table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

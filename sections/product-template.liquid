@@ -203,7 +203,9 @@
                 {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
                 {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}"
               >
-                <button type="submit" name="add"
+              <div class="row" style="margin:0px">
+                <div class= "col-md-9 ">
+                  <button type="submit" name="add"
                   {% unless current_variant.available %} aria-disabled="true"{% endunless %}
                   aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
                   class="btn product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
@@ -220,7 +222,13 @@
                     {% include 'icon-spinner' %}
                   </span>
                 </button>
-                <!-- include 'wishlist-button-product' with '{{product.id}}' -->
+                </div>
+                <div class= "col-md-3 ">
+                  <!-- include 'wishlist-button-product' with '{{product.id}}' -->
+                </div>
+              </div>
+                
+                
                 {% if section.settings.enable_payment_button %}
                   {{ form | payment_button }}
                 {% endif %}
