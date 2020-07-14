@@ -58,4 +58,17 @@
   .bcpo-buttons label.bcpo-front-button-label {
     min-width: 0 !important;
   }
+
+  .bcpo-title {
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    letter-spacing: 0.96px !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+  .bcpo-value {
+    display: none !important;
+  }
 }

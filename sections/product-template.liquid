@@ -95,7 +95,8 @@
                     <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
                       {{ option.name }}
                     </label>
-                    <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+                    <select
+                      class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
                       id="SingleOptionSelector-{{ forloop.index0 }}"
                       data-index="option{{ forloop.index }}"
                     >
