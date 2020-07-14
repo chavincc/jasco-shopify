@@ -31,3 +31,6 @@ Icon?
 
 # node environment
 node_modules
+
+# default test file
+cypress/integration/examples
