@@ -137,6 +137,23 @@
         width: 22px !important;
         border: 3px white solid !important;
       }
+
+      #bcpo .bcpo-front-button-label {
+        padding: 0 !important;
+        background: white !important;
+        border: none !important;
+        font-size: 16px !important;
+        line-height: 24px !important;
+        color: #878a9d !important;
+        cursor: pointer !important;
+      }
+      #bcpo .bcpo-front-button-label:hover {
+        color: #4d4e57 !important;
+      }
+      #bcpo .bcpo-front-button-option:checked + label {
+        font-weight: bold !important;
+        color: black !important;
+      }
     </style>
 
     {%- if request.page_type contains 'customers/' -%}

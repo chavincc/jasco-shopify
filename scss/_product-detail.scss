@@ -189,93 +189,12 @@
     }
   }
 
-  &-color-picker {
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    margin-right: 0.25rem;
-    cursor: pointer;
-
-    &-inner {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-
-      &-red {
-        @extend .product-detail-color-picker-inner;
-        background: #e6352b;
-      }
-      &-green {
-        @extend .product-detail-color-picker-inner;
-        background: #5cb328;
-      }
-      &-yellow {
-        @extend .product-detail-color-picker-inner;
-        background: #f8e71c;
-      }
-      &-white {
-        @extend .product-detail-color-picker-inner;
-        border: 1px solid #ededed;
-      }
-      &-gray {
-        @extend .product-detail-color-picker-inner;
-        background: #afafaf;
-      }
-      &-orange {
-        @extend .product-detail-color-picker-inner;
-        background: #f36c23;
-      }
-      &-purple {
-        @extend .product-detail-color-picker-inner;
-        background: #8d42a1;
-      }
-      &-ultramarine {
-        @extend .product-detail-color-picker-inner;
-        background: #3753d8;
-      }
-      &-blue {
-        @extend .product-detail-color-picker-inner;
-        background: #20a5ea;
-      }
-      &-brown {
-        @extend .product-detail-color-picker-inner;
-        background: #7c5f50;
-      }
-      &-black {
-        @extend .product-detail-color-picker-inner;
-        background: #000;
-      }
-    }
-  }
-
-  &-color-picker:hover,
-  &-color-picker.current {
-    border-color: rgb(97, 97, 97);
-  }
-
   &-size {
-    font-size: 16px;
-    line-height: 24px;
-    color: #878a9d;
-    cursor: pointer;
-    &.current {
-      font-weight: bold;
-      color: black;
-    }
-
     &-wrapper {
       .divider-wrapper {
         width: 30px;
       }
     }
-  }
-
-  &-size:hover {
-    color: #4d4e57;
   }
 
   &-button-group {
