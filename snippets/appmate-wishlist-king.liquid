@@ -332,6 +332,7 @@
     }
   }
 </script>
+<script src="{{ 'wishlist.js' | asset_url }}" ></script>
 
 {% raw %}
 
@@ -536,6 +537,9 @@
   app="wishlist-king"
 >
   <div class='wishlist-collection'>
+    <div class="header-text-wishlist">
+      <h1> My wishlist</h1>
+    </div> 
   {% if wishlist.item_count == 0 %}
     {% include 'wishlist-collection-empty' %}
   {% else %}
@@ -670,9 +674,8 @@
     {% assign item_count = 0 %}
         {% comment %} {% assign items_per_row = settings.app_wk_products_per_row %}
         {% assign wk_item_width = 100 | divided_by: items_per_row %} {% endcomment %}
-
           <div class="wk-item-column" id="span-table" >
-            <div class="d-none d-md-block " id="header-table">
+            <div class="d-none d-lg-block " id="header-table">
               <table id="header-wishlist">
                 <tr>
                   <th> <div id="delete-icon-head"></div></th>
@@ -681,6 +684,7 @@
                   <th> Until price</th>
                   <th> Quantity</th>
                   <th> Stock status</th>
+                  <th> Detail </div></th>
                   <th> <div id="add-to-cart-head"> </div></th>
                 </tr>
                 {% for product in wishlist.products %}
@@ -700,36 +704,92 @@
                   <td>  {% include 'wishlist-collection-product-title' with product %} </td>
                   <td>  {% include 'wishlist-collection-product-price' with product %} </td>
                   <td>
-                  <div class="cart__qty" id ="quanlity-box">
+                  {% comment %} <div class="cart__qty" id ="quanlity-box">
                     <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
                     <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
                       name="updates[]" value="{{ item.quantity }}" min="0" pattern="[0-9]*"
                       data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop>
-                  </div>
-                    {% comment %} <div id="quanlity-box">
-                      <button id="minus" onclick="minus_btn()"> - </button>
-                      <div class="show-data" id="show-data-1">0 </div>
-                      <button id="add" onclick="plus_btn()"> + </button>
-                    </div></td> {% endcomment %}
+                  </div> {% endcomment %}
+                    <div id="quanlity-box">
+                      <button id="minus" onclick="minus_btn({{product.id}})"> - </button>
+                      <div class="show-data" id="show-data-1-{{product.id}}">0 </div>
+                      <button id="add" onclick="plus_btn({{product.id}})"> + </button>
+                    </div></td>
                   <td id="stock-txt"> 
-                    In stock
+                   {% if product.available > 0 %}
+                      In stock  
+                      {% else %}
+                      Out of stock
+                      {% endif %} 
                   </td>
                   <td>
                    {% include 'wishlist-collection-product-form' with product %}  
                   </td>
-                  <td>
-                    {% comment %} <button class="text-uppercase" id="add-to-cart-btn" >
-                      add to cart
-                    </button> {% endcomment %}
-                  </td>
-
                 </tr>
                 {% endunless %}
                 {% endfor %}
               </table>
             </div>
-        </div> 
-      
+            <div class="d-lg-none" style ="width: 100%;">
+            {% for product in wishlist.products %}
+                {% assign item_count = item_count | plus: 1 %}
+                {% unless limit and item_count > limit %}
+                  {% assign hide_default_title = false %}
+                  {% if product.variants.length == 1 and product.variants[0].title contains 'Default' %}
+                    {% assign hide_default_title = true %}
+                  {% endif %}
+              <div id="xs-wishlist-view" style="padding:0px; width: 100% ; padding-bottom:20px;">
+                
+                <div class="row d-flex align-items-center" style="margin: 0px;width:80%">
+                  <div
+                    class="col-md-2 col-sm-2 col-xs-1 d-flex justify-content-center align-items-center" id = "delete-icon">
+                    {% include 'wishlist-button-wishlist-page' with product %}
+                  </div>
+                  <div
+                    class="col-md-2 col-sm-2 col-xs-2 d-flex justify-content-center align-items-center"
+                    id="xs-product-img">{% include 'wishlist-collection-product-image' with product %}
+                  </div>
+                  <div
+                    class="col-md-5 col-sm-5 col-xs-12 d-flex justify-content-sm-start justify-content-center"
+                    id="xs-product-header"
+                  >
+                    <div style="margin: 0px; padding-top: 10px;">
+                      <div id="xs-product-name"> {% include 'wishlist-collection-product-title' with product %}</div>
+                      <div class="w-100"></div>
+                      <div id="xs-header-name"> {% include 'wishlist-collection-product-price' with product %} </div>
+                      <div class="w-100"></div>
+                      <div class="w-100"></div>
+                      <div class="stock-txt" id="xs-header-name"> {% if product.available %}
+                      In stock  
+                      {% else %}
+                      Out of stock
+                      {% endif %} </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-md-3 col-sm-3 col-xs-3  align-items-center"
+                  >
+                    <div class="group-quanlity-and-btn">
+                      <div id="quanlity-box">
+                        <button id="minus" onclick="minus_btn({{product.id}})"> - </button>
+                        <div class="show-data" id="show-data-0-{{product.id}}">0 </div>
+                        <button id="add" onclick="plus_btn({{product.id}})"> + </button>
+                      </div>
+                      <div id="btn-add-to-cart">
+                      {% include 'wishlist-collection-product-form' with product %} 
+                        {% comment %} <button class="text-uppercase" id="add-to-cart-btn">
+                          add to cart
+                        </button> {% endcomment %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              {% endunless %}
+                {% endfor %}
+            </div>
+          </div> 
   </div>
 </script>
 
@@ -795,23 +855,19 @@
   app="wishlist-king"
 >
   <form id="wk-add-item-form-{{ product.wishlist_item_id }}" action="/cart/add" method="post" class="wk-add-item-form" >
-
     <!-- Begin product options -->
     <div class="wk-product-options {% if hide_default_title %}wk-no-options{% endif %}">
-
       <div class="wk-select" {% if hide_default_title %} style="display:none"{% endif %}>
         <select id="wk-option-select-{{ product.wishlist_item_id }}" class="wk-option-select" name="id">
-
           {% for variant in product.variants %}
           <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
             {{ variant.title }} - {{ variant.price | money }}
           </option>
           {% endfor %}
-
         </select>
       </div>  
-      <td>
-      <div class="wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}">
+      <td >
+      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}">
         {% unless product.available %}
         <input type="submit" class="wk-add-to-cart disabled text-uppercase" disabled="disabled" value="Sold Out" />
         {% else %}
@@ -823,6 +879,7 @@
         {% endunless %}
       </div>
       </td>
+      
     </div>
     <!-- End product options -->
   </form>
