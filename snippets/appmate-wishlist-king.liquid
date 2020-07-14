@@ -684,8 +684,8 @@
                   <th> Until price</th>
                   <th> Quantity</th>
                   <th> Stock status</th>
-                  <th> Detail </div></th>
-                  <th> <div id="add-to-cart-head"> </div></th>
+                  <th> </th>
+                  {% comment %} <th> <div id="add-to-cart-head"> </div></th> {% endcomment %}
                 </tr>
                 {% for product in wishlist.products %}
                 {% assign item_count = item_count | plus: 1 %}
@@ -704,17 +704,18 @@
                   <td>  {% include 'wishlist-collection-product-title' with product %} </td>
                   <td>  {% include 'wishlist-collection-product-price' with product %} </td>
                   <td>
-                  {% comment %} <div class="cart__qty" id ="quanlity-box">
-                    <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
-                    <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
-                      name="updates[]" value="{{ item.quantity }}" min="0" pattern="[0-9]*"
-                      data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop>
-                  </div> {% endcomment %}
-                    <div id="quanlity-box">
+                    <div class="cart__qty" id ="quanlity-box">
+                      <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
+                      <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
+                        name="updates[]" value="{{ item.quantity }}" min="0" pattern="[0-9]*"
+                        data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop>
+                    </div> 
+                    {% comment %} <div id="quanlity-box">
                       <button id="minus" onclick="minus_btn({{product.id}})"> - </button>
                       <div class="show-data" id="show-data-1-{{product.id}}">0 </div>
                       <button id="add" onclick="plus_btn({{product.id}})"> + </button>
-                    </div></td>
+                    </div> {% endcomment %}
+                  </td>
                   <td id="stock-txt"> 
                    {% if product.available > 0 %}
                       In stock  
@@ -722,6 +723,7 @@
                       Out of stock
                       {% endif %} 
                   </td>
+                
                   <td>
                    {% include 'wishlist-collection-product-form' with product %}  
                   </td>
@@ -750,7 +752,7 @@
                     id="xs-product-img">{% include 'wishlist-collection-product-image' with product %}
                   </div>
                   <div
-                    class="col-md-5 col-sm-5 col-xs-12 d-flex justify-content-sm-start justify-content-center"
+                    class="col-md-5 col-sm-4 col-xs-12 d-flex justify-content-sm-start justify-content-center"
                     id="xs-product-header"
                   >
                     <div style="margin: 0px; padding-top: 10px;">
@@ -813,7 +815,7 @@
    <div class="wk-image">
     <a href="{{ product | variant_url }}" class="wk-variant-link wk-content" title="View product">
       <img class="wk-variant-image"
-         src="{{ product | variant_img_url: '250x' }}"
+         src="{{ product | variant_img_url: '220x' }}"
          alt="{{ product.title }}" />
     </a>
   </div> 
@@ -856,8 +858,8 @@
 >
   <form id="wk-add-item-form-{{ product.wishlist_item_id }}" action="/cart/add" method="post" class="wk-add-item-form" >
     <!-- Begin product options -->
-    <div class="wk-product-options {% if hide_default_title %}wk-no-options{% endif %}">
-      <div class="wk-select" {% if hide_default_title %} style="display:none"{% endif %}>
+    <div class="wk-product-options {% if hide_default_title %}wk-no-options{% endif %}" style="display: inline-flex;flex-wrap:wrap">
+      <div class="wk-select" {% if hide_default_title %} style="display:none"{% endif %} >
         <select id="wk-option-select-{{ product.wishlist_item_id }}" class="wk-option-select" name="id">
           {% for variant in product.variants %}
           <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
@@ -866,8 +868,8 @@
           {% endfor %}
         </select>
       </div>  
-      <td >
-      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}">
+      
+      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}" style="padding-left:20px">
         {% unless product.available %}
         <input type="submit" class="wk-add-to-cart disabled text-uppercase" disabled="disabled" value="Sold Out" />
         {% else %}
@@ -875,14 +877,14 @@
           {% if wishlist.read_only %}
             {% assign cart_action = 'wk-add-to-cart' %}
           {% endif %}
-          <input type="submit" class="wk-add-to-cart text-uppercase" id="add-to-cart-btn" data-{{ cart_action }}="{{ product.wishlist_item_id }}" name="add" value="Add to Cart" />
+          <input type="submit" style="padding:0px"class="wk-add-to-cart text-uppercase" id="add-to-cart-btn" data-{{ cart_action }}="{{ product.wishlist_item_id }}" name="add" value="Add to Cart" />
         {% endunless %}
       </div>
-      </td>
-      
+ 
     </div>
     <!-- End product options -->
-  </form>
+  </form> 
+
 </script>
 
 <script
