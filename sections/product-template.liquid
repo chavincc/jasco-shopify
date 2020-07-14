@@ -64,12 +64,11 @@
         </div>
       </div>
       <div class="row mb-4 with-divider">
-        <div class="product-detail-description row">
-          <div class="col-md-6 col-12 product-detail-description-item">lorem ipsum</div>
-          <div class="col-md-6 col-12 product-detail-description-item">lorem ipsum</div>
-          <div class="col-md-6 col-12 product-detail-description-item">lorem ipsum</div>
-          <div class="col-md-6 col-12 product-detail-description-item">lorem ipsum</div>
-          <div class="col-md-6 col-12 product-detail-description-item">lorem ipsum</div>
+        <div class="col-12" class="product-detail-tab-content" id="product-detail-tab-content-description">
+          {{ product.metafields.global["description"] }}
+        </div>
+        <div class="col-12" class="product-detail-tab-content" id="product-detail-tab-content-dimension" style="display: none;">
+          {{ product.metafields.global["dimension"] }}
         </div>
       </div>
 
@@ -123,17 +122,15 @@
               {% endfor %}
             </select>
 
-            {% if section.settings.show_quantity_selector %}
-              <div class="product-form__controls-group">
-                <div class="product-form__item">
-                  <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
-                  <input type="number" id="Quantity-{{ section.id }}"
-                    name="quantity" value="1" min="1" pattern="[0-9]*"
-                    class="product-form__input product-form__input--quantity" data-quantity-input
-                  >
-                </div>
+            <div class="product-form__controls-group">
+              <div class="product-form__item">
+                <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+                <input type="number" id="Quantity-{{ section.id }}"
+                  name="quantity" value="1" min="1" pattern="[0-9]*"
+                  class="product-form__input product-form__input--quantity" data-quantity-input
+                >
               </div>
-            {% endif %}
+            </div>
 
             <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}"
               data-error-message-wrapper
@@ -172,6 +169,21 @@
               </div>
             </div>
           {% endform %}
+
+          <div class="row mb-3 d-flex flex-column">
+            <div class="row d-flex align-items-center mb-xl-0 mb-3">
+              <div class="col-xl-1 col-2 product-detail-shipping-option-icon"><img src={{ "landing-img-truck.svg" | asset_url }} /></div>
+              <div class="col-xl-11 col-10 pl-5 product-detail-delivery-option-text text-uppercase">
+                DELIVERY
+              </div>
+            </div>
+            <div class="row d-flex align-items-center">
+              <div class="col-xl-1 col-2 product-detail-shipping-option-icon"><img src={{ "landing-img-box.svg" | asset_url }} /></div>
+              <div class="col-xl-11 col-10 pl-5 product-detail-delivery-option-text text-uppercase">
+                RETURNS-CLAIMS
+              </div>
+            </div>
+          </div>
         </div>
 
         {%- comment -%}
@@ -562,3 +574,5 @@
   ]
 }
 {% endschema %}
+
+{{ 'product-detail-tab.js' | asset_url | script_tag }}

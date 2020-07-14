@@ -28,7 +28,7 @@
   Load different poster image sizes depending on the product layout
 {%- endcomment -%}
 <div id="{{ media_wrapper_id }}"
-    class="col-md-6 col-12 d-flex justify-content-center js{% unless featured_media == media %} hide{% endunless %}"
+    class="responsive-img-wrapper col-md-6 col-12 d-flex justify-content-center js{% unless featured_media == media %} hide{% endunless %}"
     data-product-single-media-wrapper
     data-media-id="{{ section.id }}-{{ media.id }}"
     tabindex="-1">
