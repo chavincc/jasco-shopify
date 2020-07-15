@@ -1,0 +1,21 @@
+<div class="row mb-3 with-divider">
+    <div class="col-12 d-flex">
+        <div class="product-detail-tabs current text-capitalize" id="tab-description">
+            Description
+        </div>
+        <div class="divider-wrapper">
+            <div class="divider"></div>
+        </div>
+        <div class="product-detail-tabs text-capitalize" id="tab-dimension">
+            Dimensions
+        </div>
+    </div>
+    </div>
+    <div class="row mb-4 with-divider">
+    <div class="col-12" class="product-detail-tab-content" id="product-detail-tab-content-description">
+        {{ product.metafields.global["description"] }}
+    </div>
+    <div class="col-12" class="product-detail-tab-content" id="product-detail-tab-content-dimension" style="display: none;">
+        {{ product.metafields.global["dimension"] }}
+    </div>
+</div>
