@@ -1,5 +1,5 @@
-
-{% comment %} <div class="page-width">
+{% comment %} 
+<div class="page-width">
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
       <div class="section-header text-center">
@@ -8,12 +8,15 @@
 
       <div class="rte">
         {{ page.content }} 
-        {% comment %} {% include 'wishlist-page-item' %}
+        
         
       </div>
     </div>
   </div>
-</div>  {% endcomment %}
+</div>   {% endcomment %}
 
 
 <!-- include 'wishlist-collection' -->
+
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
