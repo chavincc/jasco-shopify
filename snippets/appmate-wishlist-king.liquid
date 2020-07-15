@@ -742,17 +742,18 @@
                   {% endif %}
               <div id="xs-wishlist-view" style="padding:0px; width: 100% ; padding-bottom:20px;">
                 
-                <div class="row d-flex align-items-center" style="margin: 0px;width:80%">
+                <div class="row d-flex align-items-center" style="margin: 0px;">
                   <div
-                    class="col-md-2 col-sm-2 col-xs-1 d-flex justify-content-center align-items-center" id = "delete-icon">
+                    class="col-md-1 col-sm-1 col-xs-1 d-flex justify-content-center align-items-center" id = "delete-icon">
                     {% include 'wishlist-button-wishlist-page' with product %}
                   </div>
                   <div
-                    class="col-md-2 col-sm-2 col-xs-2 d-flex justify-content-center align-items-center"
-                    id="xs-product-img">{% include 'wishlist-collection-product-image' with product %}
+                    class="col-md-3 col-sm-2 col-xs-2 d-flex justify-content-center align-items-center"
+                    {% comment %} id="xs-product-img" {% endcomment %}
+                    >{% include 'wishlist-collection-product-image' with product %}
                   </div>
                   <div
-                    class="col-md-5 col-sm-4 col-xs-12 d-flex justify-content-sm-start justify-content-center"
+                    class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-sm-start justify-content-center"
                     id="xs-product-header"
                   >
                     <div style="margin: 0px; padding-top: 10px;">
@@ -769,7 +770,7 @@
                     </div>
                   </div>
                   <div
-                    class="col-md-3 col-sm-3 col-xs-3  align-items-center"
+                    class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-center align-items-center"
                   >
                     <div class="group-quanlity-and-btn">
                       <div id="quanlity-box">
@@ -777,9 +778,8 @@
                         <div class="show-data" id="show-data-0-{{product.id}}">0 </div>
                         <button id="add" onclick="plus_btn({{product.id}})"> + </button>
                       </div>
-                      <div id="btn-add-to-cart">
                       {% include 'wishlist-collection-product-form' with product %} 
-                        {% comment %} <button class="text-uppercase" id="add-to-cart-btn">
+                        {% comment %} <div id="btn-add-to-cart"><button class="text-uppercase" id="add-to-cart-btn">
                           add to cart
                         </button> {% endcomment %}
                       </div>
@@ -858,8 +858,8 @@
 >
   <form id="wk-add-item-form-{{ product.wishlist_item_id }}" action="/cart/add" method="post" class="wk-add-item-form" >
     <!-- Begin product options -->
-    <div class="wk-product-options {% if hide_default_title %}wk-no-options{% endif %}" style="display: inline-flex;flex-wrap:wrap">
-      <div class="wk-select" {% if hide_default_title %} style="display:none"{% endif %} >
+    <div class="wk-product-options {% if hide_default_title %}wk-no-options{% endif %}">
+      <div class="d-flex justify-content-center wk-select" {% if hide_default_title %} style="display:none"{% endif %} >
         <select id="wk-option-select-{{ product.wishlist_item_id }}" class="wk-option-select" name="id">
           {% for variant in product.variants %}
           <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
@@ -869,7 +869,7 @@
         </select>
       </div>  
       
-      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}" style="padding-left:20px">
+      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}">
         {% unless product.available %}
         <input type="submit" class="wk-add-to-cart disabled text-uppercase" disabled="disabled" value="Sold Out" />
         {% else %}
