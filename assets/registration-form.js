@@ -30,39 +30,31 @@ const getRegistrationItemId = (field, type) => {
 };
 
 $(REGISTRATION_PASSWORD_TOGGLE_ID).click(() => {
-  toggleRegistrationPasswordInput();
-  toggleRegistrationPasswordButton();
+  const passwordInput = $(
+    getRegistrationItemId(
+      REGISTRATION_FORM_FIELD.password,
+      REGISTRATION_FORM_TYPE.input
+    )
+  );
+  const isPassword = passwordInput.attr("type") === "password";
+
+  toggleRegistrationPasswordButton(isPassword);
+  toggleRegistrationPasswordInput(isPassword);
 });
 
-const toggleRegistrationPasswordButton = () => {
-  const passwordInput = $(
-    getRegistrationItemId(
-      REGISTRATION_FORM_FIELD.password,
-      REGISTRATION_FORM_TYPE.input
-    )
-  );
+const toggleRegistrationPasswordButton = (isPassword) => {
   const passwordButton = $(REGISTRATION_PASSWORD_TOGGLE_ID);
-
-  if (passwordInput.attr("type") === "password") {
-    passwordButton.text("Show");
-  } else {
-    passwordButton.text("Hide");
-  }
+  passwordButton.text(isPassword ? "hide" : "show");
 };
 
-const toggleRegistrationPasswordInput = () => {
+const toggleRegistrationPasswordInput = (isPassword) => {
   const passwordInput = $(
     getRegistrationItemId(
       REGISTRATION_FORM_FIELD.password,
       REGISTRATION_FORM_TYPE.input
     )
   );
-
-  if (passwordInput.attr("type") === "password") {
-    passwordInput.attr("type", "text");
-  } else {
-    passwordInput.attr("type", "password");
-  }
+  passwordInput.attr("type", isPassword ? "text" : "password");
 };
 
 $(REGISTRATION_FORM_ID).submit((e) => {
