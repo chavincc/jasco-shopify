@@ -23,6 +23,38 @@
         content: "*";
       }
     }
+
+    &.policy-group {
+      display: flex;
+
+      .registration-form-policy {
+        &-checkbox-wrapper {
+          width: 15%;
+          display: flex;
+          align-items: center;
+
+          input {
+            border: 1px solid #979797;
+            height: 26px;
+            width: 26px;
+            border-radius: 0 !important;
+          }
+        }
+
+        &-text {
+          width: 85%;
+          font-size: 14px;
+          line-height: 25px;
+          color: #1b1b1b;
+
+          a,
+          a:hover {
+            color: #1b1b1b;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 
   &-input-with-error-wrapper {
