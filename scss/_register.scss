@@ -1,0 +1,94 @@
+.registration-form {
+  width: 370px;
+
+  &-header {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  &-input-group {
+    width: 100%;
+    margin-bottom: 40px;
+
+    &-label {
+      mix-blend-mode: normal;
+      opacity: 0.3;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 19px;
+
+      &.required::after {
+        content: "*";
+      }
+    }
+  }
+
+  &-input-with-error-wrapper {
+    & > .registration-form-error-message {
+      display: none;
+    }
+
+    &.error > .registration-form-error-message {
+      display: block;
+    }
+  }
+
+  &-input-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    height: 55px;
+    color: #1b1b1b;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    position: relative;
+
+    &-helper {
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 25px;
+      color: #1b1b1b;
+      mix-blend-mode: normal;
+      opacity: 0.4;
+    }
+
+    &-toggle-password {
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 25px;
+      color: #1b1b1b;
+      mix-blend-mode: normal;
+      opacity: 0.4;
+      cursor: pointer;
+
+      position: absolute;
+      right: 0;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    label {
+      display: inline-block;
+      margin: 0;
+    }
+    label::after {
+      content: " :";
+    }
+
+    input {
+      width: 75%;
+      border: none;
+      outline: none;
+      padding: 0;
+      height: 100%;
+      color: #6e6e6e;
+      padding-left: 10px;
+      overflow: visible;
+    }
+  }
+}
