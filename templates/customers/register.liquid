@@ -11,19 +11,19 @@
       <div class="registration-form-input-group-label required text-uppercase">
         NAME
       </div>
-      <div class="registration-form-input-with-error-wrapper">
+      <div class="registration-form-input-with-error-wrapper" id="registration-form-input-with-error-wrapper-firstname">
         <div class="registration-form-input-wrapper">
           <label for="{{ formId }}-firstname">{{ 'customer.register.first_name' | t }}</label>
           <input type="text" name="customer[first_name]" id="{{ formId }}-firstname" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
         </div>
-        <div class="registration-form-error-message"></div>
+        <div class="registration-form-error-message" id="registration-form-error-message-firstname"></div>
       </div>
-      <div class="registration-form-input-with-error-wrapper">
+      <div class="registration-form-input-with-error-wrapper" id="registration-form-input-with-error-wrapper-lastname">
         <div class="registration-form-input-wrapper">
           <label for="{{ formId }}-lastname">{{ 'customer.register.last_name' | t }}</label>
           <input type="text" name="customer[last_name]" id="{{ formId }}-lastname" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
         </div>
-        <div class="registration-form-error-message"></div>
+        <div class="registration-form-error-message" id="registration-form-error-message-lastname"></div>
       </div>
     </div>
 
@@ -31,7 +31,7 @@
       <div class="registration-form-input-group-label required text-uppercase required">
         EMAIL & PASSWORD
       </div>
-      <div class="registration-form-input-with-error-wrapper">
+      <div class="registration-form-input-with-error-wrapper" id="registration-form-input-with-error-wrapper-email">
         <div class="registration-form-input-wrapper">
           <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
           <input
@@ -45,9 +45,9 @@
             aria-required="true"
           >
         </div>
-        <div class="registration-form-error-message"></div>
+        <div class="registration-form-error-message" id="registration-form-error-message-email"></div>
       </div>
-      <div class="registration-form-input-with-error-wrapper">
+      <div class="registration-form-input-with-error-wrapper" id="registration-form-input-with-error-wrapper-password">
         <div class="registration-form-input-wrapper">
           <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>
           <input
@@ -61,7 +61,7 @@
           <div class="registration-form-input-wrapper-toggle-password text-capitalize">Show</div>
         </div>
         <div class="registration-form-input-wrapper-helper">(min. 6 max. 15 characters )</div>
-        <div class="registration-form-error-message"></div>
+        <div class="registration-form-error-message" id="registration-form-error-message-password"></div>
       </div>
     </div>
 
@@ -86,3 +86,5 @@
 
   {% endform %}
 </div>
+
+{{ 'registration-form.js' | asset_url | script_tag }}
