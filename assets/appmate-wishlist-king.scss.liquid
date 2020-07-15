@@ -62,11 +62,13 @@ $swiper-button-color: #999;
   overflow: hidden;
 }
 
-@mixin wk-icon($color: #000, $icon-size: 15px, $icon-padding: 5px) {
+@mixin wk-icon($color: #000, $icon-size: 14px, $icon-padding: 5px) {
   .wk-icon {
     display: inline-block;
-    width: $icon-size;
-    height: $icon-size;
+    width: 14px;
+    height:14px;
+    {% comment %} width: $icon-size;
+    height: $icon-size; {% endcomment %}
     padding: $icon-padding;
 
     svg {
@@ -102,7 +104,7 @@ $swiper-button-color: #999;
   }
 }
 
-@mixin wk-icon-button($color, $backgrund-color, $icon-size: 15px, $icon-padding: 5px) {
+@mixin wk-icon-button($color, $backgrund-color, $icon-size: 14px, $icon-padding: 5px) {
   @include wk-button(#000, $backgrund-color);
   @include wk-icon($color, $icon-size, $icon-padding);
 
@@ -350,9 +352,10 @@ a.wk-link {
   }
 
   .wk-icon {
-    width: $wk-header-link-icon-size;
+     {% comment %} width: $wk-header-link-icon-size; 
+    height: $wk-header-link-icon-size; {% endcomment %}
+     width: $wk-header-link-icon-size; 
     height: $wk-header-link-icon-size;
-
     margin: 0 5px 0 0;
     padding: 0;
   }
@@ -803,6 +806,7 @@ ul#wk-share-list {
 
 .wk-option-select{
   font-size:14px;
+  width:220px;
 }
 
 

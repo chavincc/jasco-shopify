@@ -397,7 +397,7 @@
     <span class="wk-label" style="padding-bottom:0.5px">Wishlist</span>  
   </a>
   {% if wishlist.item_count != 0  %}
-     <div class="circle wk-count">{{ wishlist.item_count }}</div>
+     <div class="circle mb wk-count">{{ wishlist.item_count }}</div>
   {% endif %}
 </script>
 
@@ -694,7 +694,7 @@
                   {% if product.variants.length == 1 and product.variants[0].title contains 'Default' %}
                     {% assign hide_default_title = true %}
                   {% endif %}
-                <tr id="border-top">
+                <tr class="border-top">
                   <td>
                       {% include 'wishlist-button-wishlist-page' with product %}
                   </td>
@@ -740,7 +740,7 @@
                   {% if product.variants.length == 1 and product.variants[0].title contains 'Default' %}
                     {% assign hide_default_title = true %}
                   {% endif %}
-              <div id="xs-wishlist-view" style="padding:0px; width: 100% ; padding-bottom:20px;">
+              <div id="xs-wishlist-view" style="padding:0px; width: 100% ;">
                 
                 <div class="row d-flex align-items-center" style="margin: 0px;">
                   <div
@@ -754,8 +754,7 @@
                   </div>
                   <div
                     class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-sm-start justify-content-center"
-                    id="xs-product-header"
-                  >
+                    id="xs-product-header">
                     <div style="margin: 0px; padding-top: 10px;">
                       <div id="xs-product-name"> {% include 'wishlist-collection-product-title' with product %}</div>
                       <div class="w-100"></div>
@@ -763,26 +762,26 @@
                       <div class="w-100"></div>
                       <div class="w-100"></div>
                       <div class="stock-txt" id="xs-header-name"> {% if product.available %}
-                      In stock  
-                      {% else %}
-                      Out of stock
-                      {% endif %} </div>
+                        In stock  
+                        {% else %}
+                        Out of stock
+                        {% endif %} 
+                      </div>
                     </div>
                   </div>
                   <div
-                    class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-center align-items-center"
-                  >
+                    class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-center align-items-center">
                     <div class="group-quanlity-and-btn">
                       <div id="quanlity-box">
                         <button id="minus" onclick="minus_btn({{product.id}})"> - </button>
                         <div class="show-data" id="show-data-0-{{product.id}}">0 </div>
                         <button id="add" onclick="plus_btn({{product.id}})"> + </button>
                       </div>
-                      {% include 'wishlist-collection-product-form' with product %} 
+                        {% include 'wishlist-collection-product-form' with product %} 
                         {% comment %} <div id="btn-add-to-cart"><button class="text-uppercase" id="add-to-cart-btn">
                           add to cart
-                        </button> {% endcomment %}
-                      </div>
+                        </button>  </div>{% endcomment %}
+                     
                     </div>
                   </div>
                 </div>
@@ -792,6 +791,7 @@
                 {% endfor %}
             </div>
           </div> 
+        </div>
   </div>
 </script>
 
