@@ -6,6 +6,9 @@
     margin: 0;
   }
 
+  .responsive-img-wrapper {
+    outline: none;
+  }
   .responsive-img-wrapper:after {
     content: "";
     padding-bottom: 100%;
@@ -68,7 +71,40 @@
   }
 }
 
+#product-detail-tab-content-description,
+#product-detail-tab-content-dimension {
+  ul,
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 2rem;
+  }
+  ul > *,
+  ol > * {
+    flex: 0 0 50%;
+  }
+
+  ul li {
+    list-style: disc !important;
+  }
+
+  ol li {
+    list-style: decimal !important;
+  }
+
+  li {
+    padding-right: 2rem;
+    word-wrap: break-word !important;
+  }
+}
+
 .product-detail {
+  &-shipping-option-icon {
+    img {
+      max-width: none;
+    }
+  }
+
   &-tabs {
     font-size: 16px;
     line-height: 24px;
@@ -113,105 +149,44 @@
     line-height: 24px;
     letter-spacing: 0.96px;
     margin-bottom: 12px;
+    display: block;
   }
 
   .quantity-input-group {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
     .quantity-display {
       height: 30px;
       width: 30px;
       border: 1.5px solid #91929e;
-      margin: 0 6px;
       border-radius: 3px;
-    }
-  }
+      text-align: center;
 
-  &-color-picker {
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    margin-right: 0.25rem;
-    cursor: pointer;
-
-    &-inner {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-
-      &-red {
-        @extend .product-detail-color-picker-inner;
-        background: #e6352b;
-      }
-      &-green {
-        @extend .product-detail-color-picker-inner;
-        background: #5cb328;
-      }
-      &-yellow {
-        @extend .product-detail-color-picker-inner;
-        background: #f8e71c;
-      }
-      &-white {
-        @extend .product-detail-color-picker-inner;
-        border: 1px solid #ededed;
-      }
-      &-gray {
-        @extend .product-detail-color-picker-inner;
-        background: #afafaf;
-      }
-      &-orange {
-        @extend .product-detail-color-picker-inner;
-        background: #f36c23;
-      }
-      &-purple {
-        @extend .product-detail-color-picker-inner;
-        background: #8d42a1;
-      }
-      &-ultramarine {
-        @extend .product-detail-color-picker-inner;
-        background: #3753d8;
-      }
-      &-blue {
-        @extend .product-detail-color-picker-inner;
-        background: #20a5ea;
-      }
-      &-brown {
-        @extend .product-detail-color-picker-inner;
-        background: #7c5f50;
-      }
-      &-black {
-        @extend .product-detail-color-picker-inner;
-        background: #000;
-      }
-    }
-  }
-
-  &-color-picker:hover,
-  &-color-picker.current {
-    border-color: rgb(97, 97, 97);
-  }
-
-  &-size {
-    font-size: 16px;
-    line-height: 24px;
-    color: #878a9d;
-    cursor: pointer;
-    &.current {
-      font-weight: bold;
-      color: black;
+      // OVERWRITE
+      padding: 0;
+      min-height: 0;
     }
 
-    &-wrapper {
-      .divider-wrapper {
-        width: 30px;
-      }
-    }
-  }
+    .quantity-input-button {
+      height: 30px;
+      padding: 0 10px;
 
-  &-size:hover {
-    color: #4d4e57;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
 
   &-button-group {
@@ -223,6 +198,7 @@
       height: 100%;
       width: 70%;
       margin-right: 10px;
+      border: none;
 
       font-weight: bold;
       font-size: 14px;
@@ -336,7 +312,6 @@
     }
 
     &-add-to-cart-popup {
-      color: white;
       position: absolute;
       bottom: 0;
       background-color: black;
@@ -345,6 +320,11 @@
 
       display: flex;
       height: 50px;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
 
       &-text {
         font-style: normal;
@@ -360,12 +340,21 @@
       }
 
       &-icon {
-        background-color: #e6e6ea;
-        padding: 0 20px;
         height: 100%;
+        width: 60px;
+        background-color: #e6e6ea;
         display: flex;
         align-items: center;
-        cursor: pointer;
+
+        button {
+          height: 100%;
+          width: 100%;
+          border: none;
+          outline: 0;
+        }
+        button:active {
+          outline: 0;
+        }
       }
     }
 
@@ -389,7 +378,8 @@
       letter-spacing: 0.84px;
     }
 
-    &-price {
+    &-price,
+    &-price-no_interference {
       font-weight: normal;
       font-size: 21px;
       line-height: 29px;
