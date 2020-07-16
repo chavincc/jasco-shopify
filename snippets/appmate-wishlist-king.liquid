@@ -390,9 +390,9 @@
   {% else %}
     {% assign link_icon = 'wishlist-icon-empty' %}
   {% endif %}
-  <a href="{{ wishlist.url }}" class="wk-link wk-{{ wishlist.state }}" title="View Wishlist" style="margin-top:-1px">
+  <a href="{{ wishlist.url }}" class="wk-link wk-{{ wishlist.state }}" title="View Wishlist" >
     <div class="wk-icon">{% include link_icon %}</div>
-    <span class="wk-label" style="padding-bottom:0.5px">Wishlist</span>  
+    <span class="wk-label" id="wk-label-padding">Wishlist</span>  
   </a>
   {% if wishlist.item_count != 0  %}
      <div class="circle mb wk-count">{{ wishlist.item_count }}</div>
@@ -428,8 +428,8 @@
     {% assign btn_icon = 'wishlist-icon-empty' %}
   {% endif %}
 
-  <button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}" style="border: 1px solid; display:flex;align-items:center;justify-content:center;width:43px;height:43px">
-    <div class="wk-icon" style="margin:0px; display:flex">
+  <button type="button" class="wk-button-product {{ btn_action }}" title="{{ btn_title }}" data-{{ btn_action }}="{{ product.id }}" >
+    <div class="wk-icon" >
       {% include btn_icon %}
     </div>
     {% comment %} <span class="wk-label">{{ btn_text }}</span> {% endcomment %}
@@ -789,15 +789,15 @@
         </select> 
       </div>  
 
-      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}">
+      <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}"id="form-input">
         {% unless product.available %}
-        <input type="submit" id="sold-out-btn" style="padding:0px"class="wk-add-to-cart disabled text-uppercase" disabled="disabled" value="Sold Out" />
+        <input type="submit" class="wk-add-to-cart disabled text-uppercase" disabled="disabled" value="Sold Out" />
         {% else %}
           {% assign cart_action = 'wk-move-to-cart' %}
           {% if wishlist.read_only %}
             {% assign cart_action = 'wk-add-to-cart' %}
           {% endif %}
-          <input type="submit" style="padding:0px"class="wk-add-to-cart add-to-cart-btn text-uppercase"  data-{{ cart_action }}="{{ product.wishlist_item_id }}" name="add" value="Add to Cart" />
+          <input type="submit" class="wk-add-to-cart add-to-cart-btn text-uppercase"  data-{{ cart_action }}="{{ product.wishlist_item_id }}" name="add" value="Add to Cart" />
         {% endunless %}
       </div>
  
