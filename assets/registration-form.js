@@ -5,6 +5,7 @@ const REGISTRATION_FORM_FIELD = {
   lastname: "lastname",
   email: "email",
   password: "password",
+  policy: "policy",
 };
 const REGISTRATION_FORM_TYPE = {
   input: "input",
@@ -112,6 +113,15 @@ const validateRegisterPassword = () => {
   }
   return true;
 };
+const validateRegisterPolicy = () => {
+  const field = REGISTRATION_FORM_FIELD.policy;
+  const policyInput = getRegistrationItem(field, REGISTRATION_FORM_TYPE.input);
+  if (!policyInput.prop("checked")) {
+    policyInput.addClass("error");
+    return false;
+  }
+  return true;
+};
 
 const showRegistrationError = (field, message) => {
   $(getRegistrationItem(field, REGISTRATION_FORM_TYPE.wrapper)).addClass(
@@ -126,6 +136,12 @@ const clearRegistrationError = (field) => {
     "error"
   );
 };
+const clearPolicyError = () => {
+  getRegistrationItem(
+    REGISTRATION_FORM_FIELD.policy,
+    REGISTRATION_FORM_TYPE.input
+  ).removeClass("error");
+};
 
 $(REGISTRATION_FORM_ID).submit((e) => {
   e.preventDefault();
@@ -133,14 +149,21 @@ $(REGISTRATION_FORM_ID).submit((e) => {
   Object.keys(REGISTRATION_FORM_FIELD).forEach((field) => {
     clearRegistrationError(field);
   });
+  clearPolicyError();
 
   const firstnameIsValid = validateRegisterFirstname();
   const lastnameIsValid = validateRegisterLastname();
   const emailIsValid = validateRegisterEmail();
   const passwordIsValid = validateRegisterPassword();
+  const policyIsValid = validateRegisterPolicy();
 
   const formIsValid =
-    firstnameIsValid && lastnameIsValid && emailIsValid && passwordIsValid;
+    firstnameIsValid &&
+    lastnameIsValid &&
+    emailIsValid &&
+    passwordIsValid &&
+    policyIsValid;
+
   if (formIsValid) {
     $(REGISTRATION_FORM_ID).submit();
   }

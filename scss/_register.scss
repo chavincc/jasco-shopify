@@ -39,6 +39,10 @@
             width: 26px;
             border-radius: 0 !important;
           }
+
+          input.error {
+            outline: 1px solid rgb(231, 0, 0);
+          }
         }
 
         &-text {
