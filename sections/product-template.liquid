@@ -128,9 +128,11 @@
               <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
             </div>
 
+
             <div class="row mb-xl-3 mb-sm-5 mb-4">
               <div class="product-detail-button-group mb-sm-0 mb-3">
                 <button type="submit" name="add" class="add-to-cart text-uppercase d-flex align-items-center justify-content-center"
+
                   {% unless current_variant.available %} aria-disabled="true"{% endunless %}
                   aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
                   class="btn product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
@@ -147,9 +149,12 @@
                     {% include 'icon-spinner' %}
                   </span>
                 </button>
+
                 <div class="wishlist-button text-uppercase d-flex align-items-center justify-content-center">
+                   <!-- include 'wishlist-button-product' with '{{product.id}}' -->
                   <img src={{ 'product-img-icon-heart.svg' | asset_url }} />
                 </div>
+
               </div>
             </div>
           {% endform %}

@@ -11,11 +11,13 @@
           <div class="head-actions">
             <ul class="list-inline d-flex justify-content-end align-items-center">
               {% assign top_menus = "STORE,CART,WISHLIST,LOGIN" | split: ','%}
+             
               {% for head_menu in top_menus %}
                 {% assign iconTitle = head_menu | prepend: "navbar-img-" | append: ".svg" %} 
                 <li>   
-                  <img id= "icon" src= {{ iconTitle | asset_url }}/> 
+                  
                   {% if head_menu == 'LOGIN' %}
+                    <img id= "icon" src= {{ iconTitle | asset_url }}/> 
                     {% if shop.customer_accounts_enabled %}
                       {% if customer %}
                         <a href="{{ routes.account_url }}">{{ head_menu }} </a>
@@ -24,11 +26,16 @@
                       {% endif %}
                     {% endif %}
                   {% elsif head_menu == 'CART'%}
+                    <img id= "icon" src= {{ iconTitle | asset_url }}/> 
                     <a href="{{routes.cart_url }}" >{{ head_menu }}</a>
                     {% if cart.item_count != 0 %}
-                      <div class="circle"><p>{{ cart.item_count }}</p></div>
+                      <div class="circle" data-cart-count ><p>{{ cart.item_count }}</p></div>
                     {% endif %} 
+                     
+                  {% elsif head_menu == 'WISHLIST' %}
+                    <!-- include 'wishlist-link' -->
                   {% else %}
+                    <img id= "icon" src= {{ iconTitle | asset_url }}/> 
                     <a href="/">{{ head_menu }}</a>
                   {% endif %}
                 </li>
@@ -117,8 +124,8 @@
               {% for head_menu in top_menus %}
                 {% assign iconTitle = head_menu | prepend: "navbar-img-" | append: ".svg" %} 
                 <li>   
-                  <img id= "xs-icon" src= {{ iconTitle | asset_url }}/> 
                   {% if head_menu == 'LOGIN' %}
+                  <img id= "xs-icon" src= {{ iconTitle | asset_url }}/> 
                     {% if shop.customer_accounts_enabled %}
                       {% if customer %}
                         <a href="{{ routes.account_url }}">{{ head_menu }} </a>
@@ -127,11 +134,15 @@
                       {% endif %}
                     {% endif %}
                   {% elsif head_menu == 'CART'%}
+                  <img id= "xs-icon" src= {{ iconTitle | asset_url }}/> 
                     <a href="{{routes.cart_url }}" >{{ head_menu }}</a>
                     {% if cart.item_count != 0 %}
-                      <div class="circle"><p>{{ cart.item_count }}</p></div>
+                      <div class="circle" data-cart-count><p>{{ cart.item_count }}</p></div>
                     {% endif %} 
+                  {% elsif head_menu == 'WISHLIST' %}
+                    <!-- include 'wishlist-link' -->
                   {% else %}
+                  <img id= "xs-icon" src= {{ iconTitle | asset_url }}/> 
                     <a href="/">{{ head_menu }}</a>
                   {% endif %}
                 </li>
