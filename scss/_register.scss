@@ -64,6 +64,11 @@
 
     &.error > .registration-form-error-message {
       display: block;
+      color: rgb(231, 0, 0);
+      font-size: 12px;
+    }
+    &.error > .registration-form-input-wrapper {
+      border-color: rgb(231, 0, 0);
     }
   }
 
