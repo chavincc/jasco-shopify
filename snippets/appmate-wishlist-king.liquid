@@ -49,7 +49,6 @@
       }),
       'click [data-wk-remove-item]': eventHandler(function(){
         var itemId = this.getAttribute('data-wk-remove-item');
-        console.log(itemId)
         fadeOrNot(this, function() {
           Appmate.wk.removeItem(itemId).then(function(product){
             var variant = product.selected_or_first_available_variant || {};
@@ -139,7 +138,6 @@
           .moveToCart(item, formData)
           .then(function(product){
             $elem.prop("disabled", false);
-
             var variant = product.selected_or_first_available_variant || {};
             sendTracking({
               hitType: 'event',
@@ -157,7 +155,7 @@
               brand: product.vendor,
               variant: variant.title,
               price: variant.price,
-              quantity: 1
+              quantity: 1,
             }, {
               list: "{{ wkListTitle }}" || undefined
             });
@@ -165,42 +163,41 @@
         });
       }),
       'render .wk-option-select': function(elem){
-        appmateOptionSelect(elem);
-      },
-      'login-required': function (intent) {
-        var redirect = {
-          path: window.location.pathname,
-          intent: intent
-        };
-        window.location = '/account/login?wk-redirect=' + encodeURIComponent(JSON.stringify(redirect));
-      },
-      'render .swiper-container': function (elem) {
-        // initSlider()
-      },
-      'ready': function () {
-        // Appmate.wk.$(document).ready(initSlider);
-        fillContactForm();
-
-        var redirect = Appmate.wk.getQueryParam('wk-redirect');
-        if (redirect) {
-          Appmate.wk.addLoginRedirect(Appmate.wk.$('#customer_login'), JSON.parse(redirect));
-        }
-        var intent = Appmate.wk.getQueryParam('wk-intent');
-        if (intent) {
-          intent = JSON.parse(intent);
-          switch (intent.action) {
-            case 'addProduct':
-              Appmate.wk.addProduct(intent.product, intent.variant)
-              break;
-            default:
-              console.warn('Wishlist King: Intent not implemented', intent)
-          }
-          if (window.history && window.history.pushState) {
-            history.pushState(null, null, window.location.pathname);
-          }
-        }
-      }
-    });
+              appmateOptionSelect(elem);
+            },
+            'login-required': function (intent) {
+              var redirect = {
+                path: window.location.pathname,
+                intent: intent
+              };
+              window.location = '/account/login?wk-redirect=' + encodeURIComponent(JSON.stringify(redirect));
+            },
+            'render .swiper-container': function (elem) {
+              // initSlider()
+            },
+            'ready': function () {
+              // Appmate.wk.$(document).ready(initSlider);
+              fillContactForm();
+              var redirect = Appmate.wk.getQueryParam('wk-redirect');
+              if (redirect) {
+                Appmate.wk.addLoginRedirect(Appmate.wk.$('#customer_login'), JSON.parse(redirect));
+              }
+              var intent = Appmate.wk.getQueryParam('wk-intent');
+              if (intent) {
+                intent = JSON.parse(intent);
+                switch (intent.action) {
+                  case 'addProduct':
+                    Appmate.wk.addProduct(intent.product, intent.variant)
+                    break;
+                  default:
+                    console.warn('Wishlist King: Intent not implemented', intent)
+                }
+                if (window.history && window.history.pushState) {
+                  history.pushState(null, null, window.location.pathname);
+                }
+              }
+            }
+          });
 
     Appmate.init({
       shop: {
@@ -588,7 +585,7 @@
               {% endif %}
               <div
                 id="wk-item-{{ product.wishlist_item_id }}"
-                {% comment %} class="swiper-slide wk-item wk-fadeout" {% endcomment %}
+                 class="swiper-slide wk-item wk-fadeout" 
                 data-wk-item="{{ product.wishlist_item_id }}"
               >
                 {% include 'wishlist-collection-product-image' with product %}
@@ -615,7 +612,7 @@
     </div>
     {% endif %}
   </div>
-</script>
+</script> 
 
 <script
   id="wishlist-collection-empty"
@@ -671,92 +668,52 @@
   app="wishlist-king"
 > 
   <div id="back-to-products"> <a href="#">Back to product</a></div>
-  <div class="wk-row d-flex justify-content-center">
-    {% assign item_count = 0 %}
-        
-          <div class="wk-item-column" id="span-table" >
-            <div class="d-none d-lg-block " id="header-table">
-              <table id="header-wishlist">
-                <tr>
-                  <th> <div id="delete-icon-head"></div></th>
-                  <th> <div id="product-head"></div></th>
-                  <th> Product name</th>
-                  <th> Until price</th>
-                  <th> </th>
-                </tr>
-                {% for product in wishlist.products %}
-                {% assign item_count = item_count | plus: 1 %}
-                {% unless limit and item_count > limit %}
-                  {% assign hide_default_title = false %}
-                  {% if product.variants.length == 1 and product.variants[0].title contains 'Default' %}
-                    {% assign hide_default_title = true %}
-                  {% endif %}
-                <tr class="border-top">
-                  <td>
-                      {% include 'wishlist-button-wishlist-page' with product %}
-                  </td>
-                  <td>
-                    <div id="product-img">{% include 'wishlist-collection-product-image' with product %}</div>
-                  </td>
-                  <td>  {% include 'wishlist-collection-product-title' with product %} </td>
-                  <td>  {% include 'wishlist-collection-product-price' with product %} </td>
-                  <td>
-                  
-                   {% include 'wishlist-collection-product-form' with product %}  
-                  </td>
-                </tr>
-                {% endunless %}
-                {% endfor %}
-              </table>
-            </div>
-            <div class="d-lg-none" style ="width: 100%;">
-              {% for product in wishlist.products %}
-                  {% assign item_count = item_count | plus: 1 %}
-                  {% unless limit and item_count > limit %}
-                    {% assign hide_default_title = false %}
-                    {% if product.variants.length == 1 and product.variants[0].title contains 'Default' %}
-                      {% assign hide_default_title = true %}
-                    {% endif %}
-                <div id="xs-wishlist-view" style="padding:0px; width: 100% ;">
-                  
-                  <div class="row d-flex align-items-center" style="margin: 0px;">
-                    <div
-                      class="col-md-1 col-sm-1 col-xs-1 d-flex justify-content-center align-items-center" id = "delete-icon">
-                      {% include 'wishlist-button-wishlist-page' with product %}
-                    </div>
-                    <div
-                      class="col-md-3 col-sm-2 col-xs-2 d-flex justify-content-center align-items-center"
-                      {% comment %} id="xs-product-img" {% endcomment %}
-                      >{% include 'wishlist-collection-product-image' with product %}
-                    </div>
-                    <div
-                      class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-sm-start justify-content-center"
-                      id="xs-product-header">
-                      <div style="margin: 0px; padding-top: 10px;">
-                        <div id="xs-product-name"> {% include 'wishlist-collection-product-title' with product %}</div>
-                        <div class="w-100"></div>
-                        <div id="xs-header-name"> {% include 'wishlist-collection-product-price' with product %} </div>
-                        <div class="w-100"></div>
-                        <div class="w-100"></div>
-                      
-                      </div>
-                    </div>
-                    <div
-                      class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-center align-items-center">
-                      <div class="group-quanlity-and-btn">
-                          {% include 'wishlist-collection-product-form' with product %} 
-                      </div>
-                    </div>
+  
+  <div id="header-table">
+    <table id="header-wishlist">
+      <tr class= "table-hide">
+        <th> <div id="delete-icon-head"></div></th>
+        <th> <div id="product-head"></div></th>
+        <th> Product name</th>
+        <th> Until price</th>
+        <th> </th>
+      </tr>
+      <div class="wk-row d-flex justify-content-center">
+        {% assign item_count = 0 %}
+        {% for product in wishlist.products %}
+          {% assign item_count = item_count | plus: 1 %}
+          {% unless limit and item_count > limit %}
+            {% assign hide_default_title = false %}
+            {% if product.variants.length == 1 and product.variants[0].title contains 'Default' %}
+              {% assign hide_default_title = true %}
+            {% endif %}
+            <div class="d-flex justify-content-center wk-item-column" >
+
+              
+              <tr class="border-top-side wk-item {{ wk_item_class }} {% unless wishlist.read_only %}wk-fadeout{% endunless %}" id="wk-item-{{ product.wishlist_item_id }}" data-wk-item="{{ product.wishlist_item_id }}">
+                {% comment %} <div class="div-show" id="delete-button">{% include 'wishlist-button-wishlist-page' with product %}</div> {% endcomment %}
+                <td class="table-hide">{% include 'wishlist-button-wishlist-page' with product %}</td>
+                <td >
+                <div class="div-show" id="delete-button">{% include 'wishlist-button-wishlist-page' with product %}</div>
+                <div>{% include 'wishlist-collection-product-image' with product %}</div>
+                  <div class="table-show">
+                    {% include 'wishlist-collection-product-title' with product %}
+                    {% include 'wishlist-collection-product-price' with product %}
                   </div>
-                  
-                </div>
-                {% endunless %}
-              {% endfor %}
-            </div>
-          </div> 
-        </div>
+                </td>
+                <td class="table-hide">{% include 'wishlist-collection-product-title' with product %} </td>
+                <td class="table-hide">{% include 'wishlist-collection-product-price' with product %} </td>
+                <td id="gap">{% include 'wishlist-collection-product-form' with product %}</td>
+              </tr>
+            </div> 
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </table>
   </div>
+    
 </script>
+
 
 <script
   id="wishlist-page-item"
@@ -778,7 +735,7 @@
    <div class="wk-image">
     <a href="{{ product | variant_url }}" class="wk-variant-link wk-content" title="View product">
       <img class="wk-variant-image"
-         src="{{ product | variant_img_url: '220x' }}"
+         src="{{ product | variant_img_url: '200x' }}"
          alt="{{ product.title }}" />
     </a>
   </div> 
@@ -805,7 +762,7 @@
   <div class="wk-purchase">
     <span class="wk-price wk-price-preview">
       {% if variant.price >= variant.compare_at_price %}
-      {{ variant.price | money | prepend: '฿ '}}
+      {{ variant.price | money}}
       {% else %}
       <span class="saleprice">{{ variant.price | money }}</span> <del>{{ variant.compare_at_price | money }}</del>
       {% endif %}
@@ -823,24 +780,24 @@
     <!-- Begin product options -->
     <div class="wk-product-options {% if hide_default_title %}wk-no-options{% endif %}">
       <div class="d-flex justify-content-center wk-select" {% if hide_default_title %} style="display:none"{% endif %} >
-        <select id="wk-option-select-{{ product.wishlist_item_id }}" class="wk-option-select" name="id">
+         <select id="wk-option-select-{{ product.wishlist_item_id }}" class="wk-option-select" name="id">
           {% for variant in product.variants %}
           <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
             {{ variant.title }} - {{ variant.price | money }}
           </option>
           {% endfor %}
-        </select>
+        </select> 
       </div>  
-     
+
       <div class="d-flex justify-content-center wk-purchase-section{% if product.variants.length > 1 %} wk-multiple{% endif %}">
-        {% unless variant.available %}
-        <input type="submit"  style="padding:0px"class="wk-add-to-cart disabled text-uppercase"  id="add-to-cart-btn" disabled="disabled" value="Sold Out" />
+        {% unless product.available %}
+        <input type="submit" id="sold-out-btn" style="padding:0px"class="wk-add-to-cart disabled text-uppercase" disabled="disabled" value="Sold Out" />
         {% else %}
           {% assign cart_action = 'wk-move-to-cart' %}
           {% if wishlist.read_only %}
             {% assign cart_action = 'wk-add-to-cart' %}
           {% endif %}
-          <input type="submit" style="padding:0px"class="wk-add-to-cart text-uppercase" id="add-to-cart-btn" data-{{ cart_action }}="{{ product.wishlist_item_id }}" name="add" value="Add to Cart" />
+          <input type="submit" style="padding:0px"class="wk-add-to-cart add-to-cart-btn text-uppercase"  data-{{ cart_action }}="{{ product.wishlist_item_id }}" name="add" value="Add to Cart" />
         {% endunless %}
       </div>
  
@@ -1011,28 +968,21 @@
     var product = Appmate.wk.getProduct(variant.product_id);
     var itemId = Appmate.wk.$(selector.variantIdField).parents('[data-wk-item]').attr('data-wk-item');
     var container = Appmate.wk.$('#wk-item-' + itemId);
-
-
     {% if page.template_suffix == 'wishlist' %}
     if (variant) {
       Appmate.wk.updateItem(itemId, {selected_variant_id: variant.id});
     }
     {% endif %}
-
     var imageUrl = '';
-
     if (variant && variant.image) {
       imageUrl = Appmate.wk.filters.img_url(variant, '1000x');
     } else if (product) {
       imageUrl = Appmate.wk.filters.img_url(product, '1000x');
     }
-
     if (imageUrl) {
       container.find('.wk-variant-image').attr('src', imageUrl);
     }
-
     var formatMoney = Appmate.wk.filters.money;
-
     if (!product.hidden && variant && (variant.available || variant.inventory_policy === 'continue')) {
       container.find('.wk-add-to-cart').removeAttr('disabled').removeClass('disabled').attr('value', 'Add to Cart');
       if(parseFloat(variant.price) < parseFloat(variant.compare_at_price)){
@@ -1045,35 +995,28 @@
       container.find('.wk-add-to-cart').addClass('disabled').attr('disabled', 'disabled').attr('value', message);
       container.find('.wk-price-preview').text(message);
     }
-
   };
-
   function appmateOptionSelect(el){
     if (!Shopify || !Shopify.OptionSelectors) {
       throw new Error('Missing option_selection.js! Please check templates/page.wishlist.liquid');
     }
-
     var id = el.getAttribute('id');
     var itemId = Appmate.wk.$(el).parents('[data-wk-item]').attr('data-wk-item');
     var container = Appmate.wk.$('#wk-item-' + itemId);
-
     Appmate.wk.getItem(itemId).then(function(product){
       var selector = new Shopify.OptionSelectors(id, {
         product: product,
         onVariantSelected: appmateSelectCallback,
         enableHistoryState: false
       });
-
       if (product.selected_variant_id) {
         selector.selectVariant(product.selected_variant_id);
       }
-
       selector.selectors.forEach(function(selector){
         if (selector.values.length < 2) {
           Appmate.wk.$(selector.element).parents(".selector-wrapper").css({display: "none"});
         }
       });
-
       // Add label if only one product option and it isn't 'Title'.
       if (product.options.length == 1 && product.options[0] != 'Title') {
         Appmate.wk.$(container)
@@ -1093,6 +1036,7 @@
   href="{{ 'appmate-wishlist-king.scss.css' | asset_url }}"
   rel="stylesheet"
 />
+
 {% comment %}
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css"

@@ -375,10 +375,10 @@ a.wk-link {
   }
 }
 
-.wk-variant-image {
+{% comment %} .wk-variant-image {
   max-width: 100%;
   max-height: 100%;
-}
+}  {% endcomment %}
 
 // use this for mixed aspect ratios
 /*
@@ -396,7 +396,7 @@ a.wk-link {
   right: 0;
   width: 100%;
   height: 100%;
-  max-width: 250px;
+  max-width: 220px;
   max-height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
@@ -456,7 +456,7 @@ a.wk-link {
   .wk-span3 { width: 100%; }
   .wk-span4 { width: 100%; }
   .wk-span6 { width: 100%; }
-  .wk-item-column { width: 100% !important; }
+  {% comment %} .wk-item-column { width: 100% !important; } {% endcomment %}
 }
 
 
@@ -512,6 +512,8 @@ p.wk-login-note {
   .wk-product-options {
     border-bottom: none;
     flex-wrap:wrap;
+    display:flex;
+    flex-direction: column;
     justify-content:center;
     .selector-wrapper {
       //display: block !important;
@@ -804,12 +806,15 @@ ul#wk-share-list {
   }
 }
 
-.wk-option-select{
-  font-size:14px;
-  width:220px;
+.wk-select{
+  display:flex;
+  justify-content: center;
+  font-size: 14px;
+  .selector-wrapper{
+    font-size: 14px;
+    padding-right:20px
+  }
 }
-
-
 
 /*/////////////////////////////////////////////////////////////////////////////*/
 /* !Responsive Styles */
@@ -820,6 +825,17 @@ ul#wk-share-list {
       display: inline-block !important;
     }
   }
+  .wk-select{
+ 
+  font-size: 12px;
+  .selector-wrapper{
+    select{
+      font-size: 12px;
+    }
+    
+    padding-right:10px
+  }
+}
   #span-table{
     width:90%;
     padding:0px;
@@ -828,18 +844,35 @@ ul#wk-share-list {
 
 @media (max-width: 992px) {
   .wk-select{
-    text-align: center;
-    padding-bottom: 15px;
     .wk-option-select{
-      font-size: 12px;
+      select{
+        font-size: 12px;
+      }
     }
     #add-to-cart-btn{
-      font-weight: 700;
+      font-weight: 600;
     }
+  }
+  .wk-variant-image{
+    max-width:150px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 576px) {
+  .wk-variant-image {
+    max-width: 100px;
+  }
+  #gap{
+    padding:0px;
+    .wk-add-to-cart{
+      width: 100px;
+      height: 30px;
+      color: #fff;
+      background-color: #000;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
 
 }
 
