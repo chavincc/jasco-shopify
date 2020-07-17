@@ -141,3 +141,45 @@ hover_false = () => {
   });
   removeTabNavbar("PRODUCTS");
 };
+
+// let j;
+// for (j = 0; j < BTN_LANGS_LINK.length; j++) {
+//   console.log(BTN_LANGS_LINK[j].text());
+// }
+let BTN_LANGS_LINK = document.getElementsByClassName(
+  "ht-tms-dropdown__list-item__label"
+);
+
+findSubstring = (url_language, lang) => {
+  const URL_LENGTH = url_language.length;
+  const LANG_LENGTH = lang.length;
+  let i, j;
+  for (i = 0; i <= URL_LENGTH - LANG_LENGTH; i++) {
+    for (j = 0; j < LANG_LENGTH; j++) {
+      if (url_language[i + j] !== lang[j]) {
+        console.log(url_language[i + j]);
+        break;
+      }
+    }
+    if (j === LANG_LENGTH) {
+      return true;
+    }
+  }
+  return false;
+};
+
+selectLanguage = (language) => {
+  for (j = 0; j < BTN_LANGS_LINK.length; j++) {
+    if (BTN_LANGS_LINK[j].innerText == language) {
+      BTN_LANGS_LINK[j].style.fontWeight = "bold";
+    } else {
+      BTN_LANGS_LINK[j].style.fontWeight = "normal";
+    }
+  }
+};
+
+if (findSubstring(url_language, "th")) {
+  selectLanguage("TH");
+} else {
+  selectLanguage("EN");
+}

@@ -2,19 +2,19 @@
   <div class="d-none d-lg-block" id="navbar-header">
     <div class="header-first-row" id="navbar-header-hide" role="navigation">
       <div class="row">
-        <div class="col-lg-4 first-left d-flex justify-content-start">
+        <div class="col-lg-3 first-left d-flex justify-content-start">
           <div class="head-logo">
             {% include 'jasco-slogan' %}
           </div>
         </div>
-        <div class="col-lg-8 col-md-block first-right d-flex justify-content-end align-items-center">
+        <div class="col-lg-9 col-md-block first-right d-flex justify-content-end align-items-center">
           <div class="head-actions">
             <ul class="list-inline d-flex justify-content-end align-items-center">
               {% assign top_menus = "STORE,CART,WISHLIST,LOGIN" | split: ','%}
              
               {% for head_menu in top_menus %}
                 {% assign iconTitle = head_menu | prepend: "navbar-img-" | append: ".svg" %} 
-                <li>   
+                <li {% if head_menu == 'LOGIN' %} id="remove-padding"{%endif%}>   
                   
                   {% if head_menu == 'LOGIN' %}
                     <img id= "icon" src= {{ iconTitle | asset_url }}/> 
@@ -43,15 +43,9 @@
             </ul>
           </div>
           <div class= "header-languages" >
-            <ul class ="list-inline">
-              <li class= "english" >
-                <a href="#" class= "toggle-pop" data-pop:"pop-english"> EN </a>
-              </li>
-              <li class= "line-1"><p> | </p></li>
-              <li class= "thai" >
-                <a href="#" class= "toggle-pop" data-pop:"pop-thai">TH</a>
-              </li>
-            </ul>
+            <div class="ht-tms--float ht-tms--float-left ht-tms--float-top" style="left:15px; top:15px;">
+              {% render 'hextom_tms_dropdown' %}
+            </div> 
           </div>
         </div>
       </div>
@@ -181,7 +175,10 @@
   </div>
 </header>
 
-<script> var current_page = "{{ page.title  | upcase }}" ; </script>
+<script> 
+  var current_page = "{{ page.title  | upcase }}" ; 
+  var url_language = "{{canonical_url}}" ; 
+</script>
 <script src="{{ 'navbar.js' | asset_url }}" ></script>
 
 {% schema %}
