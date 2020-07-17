@@ -78,6 +78,13 @@ hover_product_navbar = () => {
       PAGE[j].onmouseout = function () {
         hover_product();
       };
+    } else if (PAGE[j].text === "ผลิตภัณฑ์") {
+      PAGE[j].onmouseover = function (e) {
+        hover_true();
+      };
+      PAGE[j].onmouseout = function () {
+        hover_product();
+      };
     } else {
       PAGE[j].onmouseover = function () {
         hover_false();
@@ -89,7 +96,10 @@ hover_product_navbar = () => {
 hover_product_mobile = () => {
   $("#products").attr("href", "#");
   $("#page-header li").on("touchstart", function (e) {
-    if ($(e.target)[0].text === "PRODUCTS") {
+    if (
+      $(e.target)[0].text === "PRODUCTS" ||
+      $(e.target)[0].text === "ผลิตภัณฑ์"
+    ) {
       if ($(e.target).css("fontWeight") === "700") {
         hover_false();
       } else {
@@ -133,6 +143,7 @@ hover_true = () => {
     display: "flex",
   });
   setTabNavbar("PRODUCTS");
+  setTabNavbar("ผลิตภัณฑ์");
 };
 
 hover_false = () => {
@@ -140,12 +151,9 @@ hover_false = () => {
     display: "none",
   });
   removeTabNavbar("PRODUCTS");
+  removeTabNavbar("ผลิตภัณฑ์");
 };
 
-// let j;
-// for (j = 0; j < BTN_LANGS_LINK.length; j++) {
-//   console.log(BTN_LANGS_LINK[j].text());
-// }
 let BTN_LANGS_LINK = document.getElementsByClassName(
   "ht-tms-dropdown__list-item__label"
 );
@@ -157,7 +165,6 @@ findSubstring = (url_language, lang) => {
   for (i = 0; i <= URL_LENGTH - LANG_LENGTH; i++) {
     for (j = 0; j < LANG_LENGTH; j++) {
       if (url_language[i + j] !== lang[j]) {
-        console.log(url_language[i + j]);
         break;
       }
     }
