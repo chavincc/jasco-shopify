@@ -7,6 +7,13 @@
     font-size: 40px;
     line-height: 60px;
     text-align: center;
+    outline: none;
+  }
+
+  &-subheader {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
   }
 
   &-input-group {
@@ -170,6 +177,7 @@
   }
 }
 
+#HideRecoverPasswordLink,
 #RecoverPassword {
   font-weight: bold;
   font-size: 13px;
@@ -219,6 +227,23 @@
         text-align: center;
         transform: translateX(-27.5px);
       }
+    }
+  }
+}
+
+#RecoverPasswordForm {
+  width: 370px;
+  max-width: 370px;
+
+  .registration-form {
+    &-header {
+      text-align: left;
+    }
+
+    &-subheader {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 30px;
     }
   }
 }
