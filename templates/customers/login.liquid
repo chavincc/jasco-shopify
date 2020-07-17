@@ -18,7 +18,7 @@
 
       <div class="registration-form-input-group">
         <div
-          class="registration-form-input-with-error-wrapper"
+          class="registration-form-input-with-error-wrapper {% if form.errors %} error{% endif %}"
           id="registration-form-input-with-error-wrapper-email"
         >
           <div class="registration-form-input-wrapper">
@@ -38,7 +38,7 @@
           <div class="registration-form-error-message" id="registration-form-error-message-email"></div>
         </div>
         <div
-          class="registration-form-input-with-error-wrapper"
+          class="registration-form-input-with-error-wrapper {% if form.errors %} error{% endif %}"
           id="registration-form-input-with-error-wrapper-password"
         >
           <div class="registration-form-input-wrapper">
