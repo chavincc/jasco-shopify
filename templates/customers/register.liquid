@@ -74,13 +74,6 @@
         I accept the <a href="#">Terms and Conditions</a> and I have read and understood the <a href="#">Privacy Policy</a>
       </div>
     </div>
-
-    {% comment %}
-      {%- if form.errors contains 'email' -%}{% endif %}
-      {%- if form.errors contains 'password' -%}{% endif %}
-      {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}
-    {% endcomment %}
-
     <button type="submit">
       {{ 'customer.register.submit' | t }}
     </button>
