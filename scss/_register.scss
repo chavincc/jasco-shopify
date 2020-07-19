@@ -1,4 +1,5 @@
 .registration-form {
+  max-width: 370px;
   width: 370px;
 
   &-header {
@@ -6,6 +7,13 @@
     font-size: 40px;
     line-height: 60px;
     text-align: center;
+    outline: none;
+  }
+
+  &-subheader {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
   }
 
   &-input-group {
@@ -38,6 +46,7 @@
             height: 26px;
             width: 26px;
             border-radius: 0 !important;
+            margin: 0 !important;
           }
 
           input.error {
@@ -130,14 +139,18 @@
       color: #6e6e6e;
       padding-left: 10px;
       overflow: visible;
+      margin: 0 !important;
     }
   }
 
+  a.registration-form-link-btn,
   button {
+    display: block;
     height: 50px;
-    width: 100%;
+    width: 100% !important;
     border: none;
     background-color: black;
+    color: white;
     outline: none;
 
     font-weight: 600;
@@ -145,9 +158,92 @@
     line-height: 19px;
     text-align: center;
     text-transform: uppercase;
-    color: #ffffff;
   }
   button:hover {
     background-color: rgb(51, 51, 51);
+  }
+
+  a.registration-form-link-btn {
+    background-color: transparent;
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+  }
+}
+
+#registration-form {
+  .ndnapps-sociallogin-wrapper {
+    display: none;
+  }
+}
+
+#HideRecoverPasswordLink,
+#RecoverPassword {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+
+.login-button-group > * {
+  margin-bottom: 10px;
+}
+
+#customer_login {
+  .ndnapps-sociallogin-wrapper * {
+    margin: 0;
+  }
+
+  .social_heading {
+    font-size: 13px;
+    line-height: 15px;
+    padding: 0;
+    margin-bottom: 10px;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .layout-ndn-socials {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      margin-bottom: 10px;
+
+      .ndn-label {
+        display: block;
+        text-align: center;
+        transform: translateX(-27.5px);
+      }
+    }
+  }
+}
+
+#RecoverPasswordForm {
+  width: 370px;
+  max-width: 370px;
+
+  .registration-form {
+    &-header {
+      text-align: left;
+    }
+
+    &-subheader {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 30px;
+    }
   }
 }
