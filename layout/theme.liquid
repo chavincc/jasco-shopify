@@ -175,12 +175,13 @@
         {{ "general.accessibility.selection_help" | t }}
       </li>
     </ul>
-  
-  
-<!-- **BEGIN** Hextom TMS Integration // Main Include - DO NOT MODIFY -->
-    {% comment %} <div class="ht-tms--float ht-tms--float-left ht-tms--float-top" style="left:15px; top:15px;">
-    {% render 'hextom_tms_dropdown' %}
-    </div> {% endcomment %}
+   
+    <!-- **BEGIN** Hextom TMS Integration // Main Include - DO NOT MODIFY -->
+      {% comment %} <div class="ht-tms--float ht-tms--float-left ht-tms--float-top" style="left:15px; top:15px;">
+      {% render 'hextom_tms_dropdown' %}
+      </div> {% endcomment %}
     <!-- **END** Hextom TMS Integration // Main Include - DO NOT MODIFY -->
+    {{ 'ndnapps-sociallogin.css' | asset_url | stylesheet_tag }}
+    {% if shop.customer_accounts_enabled %}{% unless customer  %}{{ 'ndnapps-sociallogin-script.js' | asset_url | script_tag }}{% endunless %}{% endif %}
 </body>
 </html>
