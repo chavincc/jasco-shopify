@@ -3,7 +3,7 @@
         <div class="col-md-1 col-sm-1"></div>
         {% assign num = 0 %}
         {% for link in linklists.main-menu.links  %}
-            {% if link.title == "PRODUCTS" %}
+            
                 {% for child_link in link.links %}
                     <div class="col-5">
                         <div class="front-of-house text-uppercase">
@@ -14,7 +14,7 @@
                                 {% else %}
                                     <img id= img-h1 src= {{'navbar-img-sm-back-icon.svg' | asset_url}}/>
                                 {% endif %}
-                                <h1 class= "text-uppercase"> {{ child_link.title }} </h1>
+                                <h1 class= "text-uppercase"> {{ child_link.title}} </h1>
                             </div>
                             <div id="products-hover-short-line"></div>
                                 {% assign col_product = child_link.links.size | divided_by: 4.0  | ceil %}
@@ -25,7 +25,7 @@
                                                 <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
                                                 <ul class="list-inline" id="front-of-house-actions">
                                                     {% for grandchild_link in child_link.links limit: 4 %} 
-                                                        <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+                                                        <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title  }}</a></li>
                                                     {% endfor %}
                                                 </ul>
                                                 </div>
@@ -52,7 +52,7 @@
                 {% endif %}
                 {% assign num = num | plus: 1 %}
                 {% endfor%}
-            {% endif %}
+           
         {% endfor %}
     </div>
 </div>

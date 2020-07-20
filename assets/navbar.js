@@ -27,6 +27,10 @@ const TOP_POS = NAVBAR.height();
 const PRODUCT_DROP = $(".products-hover");
 const COLLECTIONS_BAR = $(".collection-menu-row ");
 const COLLECTION_HEIGHT = COLLECTIONS_BAR[0].offsetHeight;
+const PRODUCT_WORD = {
+  product_EN: "PRODUCTS",
+  product_TH: "ผลิตภัณฑ์",
+};
 
 let home_menu = $(".header-third-row");
 let home_menu_top = home_menu.offset().top;
@@ -67,13 +71,20 @@ removeTabNavbar = (current_page) => {
 
 hover_product_navbar = () => {
   for (let j = 0; j < PAGE.length; j++) {
-    if (PAGE[j].text === "PRODUCTS") {
+    if (PAGE[j].text === PRODUCT_WORD.product_EN) {
       PAGE[j].onmouseover = function (e) {
         if ($(e.target).css("fontWeight") === "700") {
           hover_false();
         } else {
           hover_true();
         }
+      };
+      PAGE[j].onmouseout = function () {
+        hover_product();
+      };
+    } else if (PAGE[j].text === PRODUCT_WORD.product_TH) {
+      PAGE[j].onmouseover = function (e) {
+        hover_true();
       };
       PAGE[j].onmouseout = function () {
         hover_product();
@@ -89,7 +100,10 @@ hover_product_navbar = () => {
 hover_product_mobile = () => {
   $("#products").attr("href", "#");
   $("#page-header li").on("touchstart", function (e) {
-    if ($(e.target)[0].text === "PRODUCTS") {
+    if (
+      $(e.target)[0].text === PRODUCT_WORD.product_EN ||
+      $(e.target)[0].text === PRODUCT_WORD.product_TH
+    ) {
       if ($(e.target).css("fontWeight") === "700") {
         hover_false();
       } else {
@@ -133,6 +147,7 @@ hover_true = () => {
     display: "flex",
   });
   setTabNavbar("PRODUCTS");
+  setTabNavbar("ผลิตภัณฑ์");
 };
 
 hover_false = () => {
@@ -140,4 +155,42 @@ hover_false = () => {
     display: "none",
   });
   removeTabNavbar("PRODUCTS");
+  removeTabNavbar("ผลิตภัณฑ์");
 };
+
+let BTN_LANGS_LINK = document.getElementsByClassName(
+  "ht-tms-dropdown__list-item__label"
+);
+
+findSubstring = (url_language, lang) => {
+  const URL_LENGTH = url_language.length;
+  const LANG_LENGTH = lang.length;
+  let i, j;
+  for (i = 0; i <= URL_LENGTH - LANG_LENGTH; i++) {
+    for (j = 0; j < LANG_LENGTH; j++) {
+      if (url_language[i + j] !== lang[j]) {
+        break;
+      }
+    }
+    if (j === LANG_LENGTH) {
+      return true;
+    }
+  }
+  return false;
+};
+
+selectLanguage = (language) => {
+  for (j = 0; j < BTN_LANGS_LINK.length; j++) {
+    if (BTN_LANGS_LINK[j].innerText == language) {
+      BTN_LANGS_LINK[j].style.fontWeight = "bold";
+    } else {
+      BTN_LANGS_LINK[j].style.fontWeight = "normal";
+    }
+  }
+};
+
+if (findSubstring(url_language, "th")) {
+  selectLanguage("TH");
+} else {
+  selectLanguage("EN");
+}
