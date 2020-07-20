@@ -27,6 +27,10 @@ const TOP_POS = NAVBAR.height();
 const PRODUCT_DROP = $(".products-hover");
 const COLLECTIONS_BAR = $(".collection-menu-row ");
 const COLLECTION_HEIGHT = COLLECTIONS_BAR[0].offsetHeight;
+const PRODUCT_WORD = {
+  product_EN: "PRODUCTS",
+  product_TH: "ผลิตภัณฑ์",
+};
 
 let home_menu = $(".header-third-row");
 let home_menu_top = home_menu.offset().top;
@@ -67,7 +71,7 @@ removeTabNavbar = (current_page) => {
 
 hover_product_navbar = () => {
   for (let j = 0; j < PAGE.length; j++) {
-    if (PAGE[j].text === "PRODUCTS") {
+    if (PAGE[j].text === PRODUCT_WORD.product_EN) {
       PAGE[j].onmouseover = function (e) {
         if ($(e.target).css("fontWeight") === "700") {
           hover_false();
@@ -78,7 +82,7 @@ hover_product_navbar = () => {
       PAGE[j].onmouseout = function () {
         hover_product();
       };
-    } else if (PAGE[j].text === "ผลิตภัณฑ์") {
+    } else if (PAGE[j].text === PRODUCT_WORD.product_TH) {
       PAGE[j].onmouseover = function (e) {
         hover_true();
       };
@@ -97,8 +101,8 @@ hover_product_mobile = () => {
   $("#products").attr("href", "#");
   $("#page-header li").on("touchstart", function (e) {
     if (
-      $(e.target)[0].text === "PRODUCTS" ||
-      $(e.target)[0].text === "ผลิตภัณฑ์"
+      $(e.target)[0].text === PRODUCT_WORD.product_EN ||
+      $(e.target)[0].text === PRODUCT_WORD.product_TH
     ) {
       if ($(e.target).css("fontWeight") === "700") {
         hover_false();
