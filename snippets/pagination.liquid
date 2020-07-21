@@ -44,3 +44,9 @@
     </li>
   {% endif %}
 </ul>
+
+<script>
+  var PAGINATION_TEMPLATE_LINK = "{%- if paginate.next.url.size > 0 -%} {{ paginate.next.url }} {%- else -%} {{ paginate.previous.url }} {%- endif -%}"
+</script>
+
+{{ 'pagination-jump.js' | asset_url | script_tag }}
