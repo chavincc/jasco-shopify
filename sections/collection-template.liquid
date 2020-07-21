@@ -1,19 +1,5 @@
-{% case section.settings.grid %}
-  {% when 2 %}
-    {%- assign max_height = 530 -%}
-  {% when 3 %}
-    {%- assign max_height = 345 -%}
-  {% when 4 %}
-    {%- assign max_height = 250 -%}
-  {% when 5 %}
-    {%- assign max_height = 195 -%}
-{% endcase %}
-
-{% if section.settings.layout == 'grid' %}
-  {%- assign limit = section.settings.grid | times: section.settings.rows -%}
-{% else %}
-  {%- assign limit = 16 -%}
-{% endif %}
+{%- assign max_height = 250 -%}
+{%- assign limit = 8 -%}
 
 {% paginate collection.products by limit %}
 
@@ -94,16 +80,7 @@
   </header>
 
   <div class="page-width" id="Collection">
-    {% case section.settings.grid %}
-    {% when 2 %}
-      {%- assign grid_item_width = 'medium-up--one-half' -%}
-    {% when 3 %}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
-    {% when 4 %}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
-    {% when 5 %}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
-    {% endcase %}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
 
     <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
       {% for product in collection.products %}
