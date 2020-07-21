@@ -7,38 +7,19 @@
     Usage:
     {% include 'pagination', paginate: paginate %}
 {% endcomment %}
-<ul class="list--inline pagination">
-  {% unless paginate.previous.is_link %}
-    <li aria-hidden="true">
-      <button class="btn btn--tertiary btn--narrow" disabled>
-        {% include 'icon-arrow-left' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.previous' | t }}</span>
-      </button>
-    </li>
-    {% else %}
-    <li>
-      <a href="{{ paginate.previous.url }}" class="btn btn--tertiary btn--narrow">
-        {% include 'icon-arrow-left' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.previous' | t }}</span>
-      </a>
-    </li>
-  {% endunless %}
-  <li class="pagination__text">
-    {{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
-  </li>
-  {% unless paginate.next.is_link %}
-    <li aria-hidden="true">
-      <button class="btn btn--tertiary btn--narrow" disabled>
-        {% include 'icon-arrow-right' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.next' | t }}</span>
-      </button>
-    </li>
-  {% else %}
-    <li>
-      <a href="{{ paginate.next.url }}" class="btn btn--tertiary btn--narrow">
-        {% include 'icon-arrow-right' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.next' | t }}</span>
-      </a>
-    </li>
-  {% endunless %}
-</ul>
+
+<div class="row d-flex align-items-center justify-content-center">
+  <div class="pagination mb-sm-0 mb-5">
+    <a class="pagination-arrow-wrapper" id="pagination-arrow-wrapper-left" href="{% if paginate.previous.is_link %}{{ paginate.previous.url }}{% else %}#{% endif %}">
+      <img src={{ "pagination-arrow-right.svg" | asset_url }} id="pagination-arrow-left">
+    </a>
+    {% for i in (1..paginate.pages) %}
+      <div class="pagination-number{% if i == paginate.current_page %} current{% endif %}" id="pagination-number-{{i}}">{{i}}</div>
+    {% endfor %}
+    <a class="pagination-arrow-wrapper" id="pagination-arrow-wrapper-right" href="{% if paginate.next.is_link %}{{ paginate.next.url }}{% else %}#{% endif %}">
+      <img src={{ "pagination-arrow-right.svg" | asset_url }} id="pagination-arrow-right">
+    </a>
+  </div>
+</div>
+
+{{ 'pagination-jump.js' | asset_url | script_tag }}
