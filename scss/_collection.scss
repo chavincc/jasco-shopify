@@ -40,6 +40,10 @@
   &.current {
     background-color: #e6e6ea;
   }
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .pagination-number:hover {
