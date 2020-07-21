@@ -41,7 +41,8 @@
           {{ product.price | money_without_trailing_zeros }}
         </div>
         <div class="wishlist-container col-3 d-flex justify-content-end">
-          <img alt="wishlist-icon" src={{ "product-img-icon-heart.svg" | asset_url }} />
+          {% comment %} <img alt="wishlist-icon" src={{ "product-img-icon-heart.svg" | asset_url }} /> {% endcomment %}
+          <!-- include 'wishlist-button-collection' with '{{ product.id }}' -->
         </div>
       </div>
     </div>
