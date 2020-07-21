@@ -1,0 +1,83 @@
+{% assign first_variant = product.first_available_variant %}
+
+{% if product.variants.size == 1 %}
+    {% assign img_src = product | img_url: 'master' %}
+{% else %}
+    {% assign img_src = first_variant | img_url: 'master' %}
+    {% assign has_variant = true %}
+{% endif %}
+
+<div class="product p-0 m-0 mb-5 d-flex flex-column align-items-md-start align-items-center" id="product-{{product.title}}">
+    <div class="product-inner-wrapper">
+        <div class="product-img mb-3">
+            <img id="subpage-product-img-{{product.title}}" src={{ img_src }}/>
+            {% if has_variant %}
+                <div class="arrow-left-container" id="arrow-left-container-{{product.title}}">
+                    <img src={{ "collection-img-product-arrow-right.svg" | asset_url }} id="arrow-left-{{product.title}}">
+                </div>
+                <div class="arrow-right-container" id="arrow-right-container-{{product.title}}">
+                    <img src={{ "collection-img-product-arrow-right.svg" | asset_url }} id="arrow-right-{{product.title}}">
+                </div>
+            {% endif %}
+            
+            <div class="product-add-to-cart-popup">
+                <a href="{{ product.url }}">
+                    <div class="product-add-to-cart-popup-text text-uppercase">
+                        quick look
+                    </div>
+                </a>
+                <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+                    <input type="hidden" name="id" value="{{ first_variant.id }}" />
+                    <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+                    <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+                </form>
+            </div>
+        </div>
+        <div class="product-text-wrapper mx-1">
+            <div class="row pb-3 product-name-wrapper">
+                <div class="col-12 product-name text-capitalize">
+                    {{ product.title }}
+                </div>
+            </div>
+            <div class="row product-meta mb-4 d-flex align-items-center">
+                <div class="product-id col-4">
+                    {{ first_variant.sku }}
+                </div>
+                <div class="product-price col-5 text-right">
+                    {{ product.price | money_without_trailing_zeros }}
+                </div>
+                <div class="wishlist-container col-3 d-flex justify-content-end">
+                    <img src={{ "product-img-icon-heart.svg" | asset_url}}/>
+                </div>
+            </div>
+        </div>
+        <div class="product-color-picker-wrapper d-flex" id="product-color-picker-wrapper-{{product.title}}">
+            {% if has_variant %}
+                {% for option in product.options %}
+                    {% if option == 'Color' %}
+                        {% assign index = forloop.index0 %}
+                        {% assign colorlist = '' %}
+                        {% assign color = '' %}
+                        {% assign color_count = 0 %}
+                        {% for variant in product.variants %}
+                            {% capture color %}
+                                {{ variant.options[index] }}
+                            {% endcapture %}
+                            {% unless colorlist contains color %}
+                                {% comment %} INSERT PRODUCT LOOP {% endcomment %}
+                                <div class="product-color-picker{% if color_count == 0 %} current{% endif %}" id="product-color-picker-{{product.title}}-{{ color | strip }}">
+                                    <div class="product-color-picker-inner-{{ color | strip }}" id="product-color-picker-inner-{{product.title}}-{{ color | strip }}"></div>
+                                </div>
+                                {% capture tempList %}
+                                    {{ colorlist | append: color | append: " " }}
+                                {% endcapture %}
+                                {% assign colorlist = tempList %}
+                                {% assign color_count = color_count | plus: 1 %}
+                            {% endunless %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
