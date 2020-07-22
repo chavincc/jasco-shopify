@@ -47,7 +47,24 @@
     {% endif %}
 {% endfor %}
 {% if have_color %}
-    {% assign color_iterate = colorlist | split: ',' %}
+    {% assign color_iterate = "" %}
+    {% assign raw_colorlist = colorlist | split: ',' %}
+    {% for raw_color in raw_colorlist %}
+        {% if forloop.index != forloop.length %}
+            {% capture processed_color %}{{ raw_color | strip }}{% endcapture %}
+            {% assign last_relevant_index = forloop.length | minus: 1 %}
+            {% if forloop.index == last_relevant_index %}
+                {% assign delimiter = "" %}
+            {% else %}
+                {% assign delimiter = "," %}
+            {% endif %}
+            {% capture temp_color_iterate %}
+                {{ color_iterate | append: processed_color | append: delimiter }}
+            {% endcapture %}
+            {% assign color_iterate = temp_color_iterate %}
+        {% endif %}
+    {% endfor %}
+    {% assign color_iterate = color_iterate | split: ',' %}
 {% else %}
     {% assign color_iterate = nil %}
 {% endif %}
@@ -99,11 +116,9 @@
         <div class="product-color-picker-wrapper d-flex" id="product-color-picker-wrapper-{{product.title}}">
             {% for raw_color in color_iterate %}
                 {% assign color = raw_color | strip %}
-                {% if color.size > 0 %}
-                    <div class="product-color-picker{% if forloop.index0 == 0 %} current{% endif %}" id="product-color-picker-{{product.title}}-{{ color }}">
-                        <div class="product-color-picker-inner-{{ color }}" id="product-color-picker-inner-{{product.title}}-{{ color }}"></div>
-                    </div>
-                {% endif %}
+                <div class="product-color-picker{% if forloop.index0 == 0 %} current{% endif %}" id="product-color-picker-{{product.title}}-{{ color }}">
+                    <div class="product-color-picker-inner-{{ color }}" id="product-color-picker-inner-{{product.title}}-{{ color }}"></div>
+                </div>
             {% endfor %}
         </div>
     </div>
