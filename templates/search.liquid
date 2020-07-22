@@ -63,7 +63,7 @@
 
   <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
 
-  <ul data-sectionId="{% if section.id %}{{section.id}}{% endif %}" data-settings='{% if section.settings %}{{section.settings | json}}{% endif %}' id="gf-products" class="page-width list-view-items">
+  <ul class="page-width list-view-items">
     {% for item in search.results %}
       <li class="list-view-item">
         {% if item.object_type == 'product' %}
