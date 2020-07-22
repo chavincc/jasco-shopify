@@ -50,9 +50,16 @@
   border: #e6e6ea 1px solid;
 }
 
-option:hover {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  background-color: transparent;
-  color: #97c7ff;
+// option:hover {
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   background-color: transparent;
+//   color: #97c7ff;
+// }
+
+option:focus {
+  background-color: #fff;
+  outline: none;
+  border: none;
+  box-shadow: none;
 }

@@ -34,12 +34,13 @@
               <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
             </div>
             <div class="d-flex justify-content-end align-items-center filters-toolbar__item-wrapper">
-              {% if section.settings.tags_enable %}
+              {% comment %} {% if section.settings.tags_enable %}
                 {% unless collection.all_tags.size == 0 %}
                   <div class="filters-toolbar__item-child">
                     <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
                     <div class="filters-toolbar__input-wrapper select-group">
-                      <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message">
+                      <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" style="width:auto;height: auto;
+                        border: 1px solid #e6e6e6;">
                         <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
                         {% for tag in collection.all_tags %}
                           {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
@@ -50,20 +51,21 @@
                     </div>
                   </div>
                 {% endunless %}
-              {% endif %}
+              {% endif %} {% endcomment %}
 
               {% if section.settings.sort_enable %}
-                <div class="filters-toolbar__item-child"style="margin-right:3em">
+                <div class="filters-toolbar__item-child"style="margin-right:40px">
                   {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                  <label class="filters-toolbar__label select-label" for="SortBy">{{ 'collections.sorting.title' | t | append: ': ' }} </label>
+                  <label class="filters-toolbar__label select-label" for="SortBy" style="padding-right:10px">{{ 'collections.sorting.title' | t | append: ': ' }} </label>
                   <div class="filters-toolbar__input-wrapper select-group" >
                     <select name="sort_by" id="SortBy"
                       class="filters-toolbar__input hidden"
                       aria-describedby="a11y-refresh-page-message a11y-selection-message"
                       data-default-sortby="{{ collection.default_sort_by }}"
+                      style="font-size:14px; height: auto; border: 1px solid #e6e6e6;"
                     >
                       {%- for option in collection.sort_options -%}
-                        <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %} style="background:#004B83; color:white">{{ option.name }}</option>
+                        <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %} style="background:#004B83; color:white;">{{ option.name }}</option>
                       {%- endfor -%}
                     </select>
                     {% include 'icon-chevron-down' %}
@@ -74,7 +76,7 @@
               <div class="filters-toolbar__item-child">
                 
                 {% assign limit_product = "6,8,12,16" | split: ',' %}
-                <label class="filters-toolbar__label select-label" for="limit_product">Show :</label>
+                <label class="filters-toolbar__label select-label" for="limit_product" style="padding-right:10px">Show :</label>
                  <div class="filters-toolbar__input-wrapper select-group" >
                   <select name="paginateBy" id="paginateBy" 
                    aria-describedby="a11y-refresh-page-message"
@@ -85,7 +87,7 @@
                         {% if cart.attributes.pagination != blank and cart.attributes.pagination %}
                           {% if cart.attributes.pagination == v %} selected
                           {% endif %}
-                      {% endif %}>
+                      {% endif %} style="background:#004B83; color:white">
                         {{ i }}</option> 
                     {% endfor %} 
                 </select>
@@ -137,7 +139,7 @@
                       <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
                       <div class="grid-view-item__meta">
                         <span class="product-price__price">$19.99</span>
-                          <!-- include 'wishlist-button-collection' with '{{product.id}}' -->
+                          
                       </div>
                     </a>
                   </div>
