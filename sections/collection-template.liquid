@@ -3,6 +3,10 @@
 
 {% paginate collection.products by limit %}
 
+<script>
+  var PRODUCT_COLOR_MAP = {}
+</script>
+
 <div data-section-id="{{ section.id }}" data-section-type="collection-template">
   <header class="collection-header">
     {%- assign is_filter_by_available = false -%}
@@ -79,59 +83,22 @@
     {% endif %}
   </header>
 
-  <div class="page-width" id="Collection">
-    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
-
-    <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-      {% for product in collection.products %}
-        <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-          {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: false %}
-        </li>
-      {% else %}
-        {% comment %}
-        Add default products to help with onboarding for collections/all only.
-
-        The onboarding styles and products are only loaded if the
-        store has no products.
-        {% endcomment %}
-        {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-          <li class="grid__item">
-            <div class="grid grid--uniform">
-              {% for i in (1..limit) %}
-                <div class="grid__item {{ grid_item_width }}">
-                  <div class="grid-view-item">
-                    <a href="#" class="grid-view-item__link">
-                      <div class="grid-view-item__image">
-                        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                      </div>
-                      <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                      <div class="grid-view-item__meta">
-                        <span class="product-price__price">$19.99</span>
-                          <!-- include 'wishlist-button-collection' with '{{product.id}}' -->
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </li>
-        {% else %}
-          {%- assign is_empty_collection = true -%}
-        {% endif %}
-      {% endfor %}
-    </ul>
+  <section class="subpage-product-showcase row mt-5 ml-1 mock-row" id="subpage-product-showcase">
+    {% for product in collection.products %}
+      {% include 'collection-page-product', product: product %}
+    {% else %}
+      {% assign is_empty_collection = true %}
+    {% endfor %}
 
     {% if is_empty_collection %}
       <div class="grid__item small--text-center">
         <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
       </div>
     {% endif %}
-
-    {%- if paginate.pages > 1 -%}
-      {% include 'pagination', paginate: paginate %}
-    {%- endif -%}
-  </div>
+  </section>
+  {%- if paginate.pages > 1 -%}
+    {% include 'pagination', paginate: paginate %}
+  {%- endif -%}
 </div>
 
 {% endpaginate %}
