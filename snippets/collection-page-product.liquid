@@ -16,7 +16,8 @@
 {% comment %}
     GET ITERABLE COLOR OBJECT
     OUTPUT INTERFACE:
-        STRING[..., " "] color_iterate,
+        STRING[] color_iterate,
+            ** note that color contains white space around it... always strip before use
         INTEGER color_count,
         BOOLEAN have_color,
 {% endcomment %}
