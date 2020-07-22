@@ -50,16 +50,29 @@
   border: #e6e6ea 1px solid;
 }
 
-// option:hover {
-//   -webkit-user-select: none;
-//   -moz-user-select: none;
-//   background-color: transparent;
-//   color: #97c7ff;
-// }
+#SortBy {
+  font-size: 14px;
+  height: auto;
+  border: 1px solid #e6e6e6;
+}
 
-option:focus {
-  background-color: #fff;
-  outline: none;
-  border: none;
-  box-shadow: none;
+#SortBy,
+#paginateBy {
+  option {
+    background: #004b83;
+    color: white;
+  }
+  option:focus {
+    background-color: #fff;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.select-label {
+  padding-right: 10px;
+}
+#margin-sort-by {
+  margin-right: 40px;
 }
