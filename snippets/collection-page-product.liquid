@@ -49,7 +49,6 @@
                         filterId: "product-color-picker-{{ product_name }}-{{ stripped_color }}"
                     };
                 </script>
-                {% comment %} <h1>{{ variant | img_url: 'master' }}</h1> {% endcomment %}
                 {% capture tempList %}
                     {{ colorlist | append: color | append: "," }}
                 {% endcapture %}
@@ -129,6 +128,7 @@
         <div class="product-color-picker-wrapper d-flex" id="product-color-picker-wrapper-{{ product_name }}">
             {% for raw_color in color_iterate %}
                 {% assign color = raw_color | strip %}
+                {% if forloop.index0 == 0 %}<script>PRODUCT_COLOR_MAP["{{ product_name }}"].currentColor = "{{ color }}"</script>{% endif %}
                 <div class="product-color-picker{% if forloop.index0 == 0 %} current{% endif %}" id="product-color-picker-{{ product_name }}-{{ color }}">
                     <div class="product-color-picker-inner-{{ color }}" id="product-color-picker-inner-{{ product_name }}-{{ color }}"></div>
                 </div>
@@ -140,6 +140,7 @@
 <script>
     var switchCollectionProductCurrentColor = (productName = '', newCurrentColor = '') => {
         const productObject = PRODUCT_COLOR_MAP[productName]
+        productObject.currentColor = newCurrentColor
         Object.keys(productObject).forEach(color => {
             if (color === newCurrentColor) {
                 $(`#${productObject[color].filterId}`).addClass("current");
@@ -167,10 +168,48 @@
 {% endfor %}
 
 <script>
+    var ITERATE_DIRECTION = {
+        FORWARD: 'FORWARD',
+        BACKWARD: 'BACKWARD'
+    }
+    var iterateColorPicker = (productName = '', direction = '', {
+        cart = '',
+        link = '',
+        image = ''
+    }) => {
+        const allColor = Object.keys(PRODUCT_COLOR_MAP[productName])
+        const currentColor = PRODUCT_COLOR_MAP[productName].currentColor
+
+        const index = allColor.indexOf("currentColor")
+        if (index > -1) {
+            allColor.splice(index, 1)
+        }
+
+        const currentColorIndex = allColor.findIndex(
+            (item) => item === currentColor
+        );
+        const colorIndex = (direction === ITERATE_DIRECTION.FORWARD) ? 1 : allColor.length - 1;
+        const newColor = allColor[(currentColorIndex + colorIndex) % allColor.length];
+
+        PRODUCT_COLOR_MAP[productName].currentColor = newColor;
+        switchCollectionProductCurrentColor(productName, newColor)
+        $(`#${cart}`).val(PRODUCT_COLOR_MAP[productName][newColor].id);
+        $(`#${link}`).attr("href", PRODUCT_COLOR_MAP[productName][newColor].link);
+        $(`#${image}`).attr("src", PRODUCT_COLOR_MAP[productName][newColor].src);
+    }
+
     $("#{{ arrow_right_container_id }}").click(() => {
-        console.log('right')
+        iterateColorPicker("{{ product_name }}", ITERATE_DIRECTION.FORWARD, {
+            cart: "{{ cart_data_id }}",
+            link: "{{ product_link_id }}",
+            image: "{{ image_id }}"
+        })
     })
     $("#{{ arrow_left_container_id }}").click(() => {
-        console.log('left')
+        iterateColorPicker("{{ product_name }}", ITERATE_DIRECTION.BACKWARD, {
+            cart: "{{ cart_data_id }}",
+            link: "{{ product_link_id }}",
+            image: "{{ image_id }}"
+        })
     })
 </script>
