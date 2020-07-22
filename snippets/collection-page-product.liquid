@@ -108,19 +108,19 @@
             </div>
         </div>
         <div class="product-text-wrapper mx-1">
-            <div class="row pb-3 product-name-wrapper">
-                <div class="col-12 product-name text-capitalize">
+            <div class="row px-0 pb-1 product-name-wrapper">
+                <div class="col-12 px-0 product-name text-capitalize">
                     {{ product.title }}
                 </div>
             </div>
-            <div class="row product-meta mb-4 d-flex align-items-center">
-                <div class="product-id col-4">
+            <div class="row px-0 product-meta mb-4 d-flex align-items-center">
+                <div class="product-id px-0 col-4">
                     {{ first_variant.sku }}
                 </div>
-                <div class="product-price col-5 text-right">
+                <div class="product-price px-0 col-5 text-right">
                     {{ product.price | money_without_trailing_zeros }}
                 </div>
-                <div class="wishlist-container col-3 d-flex justify-content-end">
+                <div class="wishlist-container pl-0 col-3 d-flex justify-content-end">
                     <img src={{ "product-img-icon-heart.svg" | asset_url}}/>
                 </div>
             </div>
