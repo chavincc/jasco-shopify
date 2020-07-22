@@ -144,9 +144,17 @@
     {% assign color = raw_color | strip %}
     <script>
         $("#product-color-picker-{{ product_name }}-{{ color }}").click(() => {
-            $("#{{ cart_data_id }}").val(PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].id)
-            $("#{{ product_link_id }}").attr("href", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].link)
-            $("#{{ image_id }}").attr("src", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].src)
+            $("#{{ cart_data_id }}").val(PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].id);
+            $("#{{ product_link_id }}").attr("href", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].link);
+            $("#{{ image_id }}").attr("src", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].src);
+
+            Object.keys(PRODUCT_COLOR_MAP["{{ product_name }}"]).forEach(color => {
+                if (color === "{{ color }}") {
+                    $(`#${PRODUCT_COLOR_MAP["{{ product_name }}"][color].filterId}`).addClass("current");
+                } else {
+                    $(`#${PRODUCT_COLOR_MAP["{{ product_name }}"][color].filterId}`).removeClass("current");
+                }
+            })
         })
     </script>    
 {% endfor %}
