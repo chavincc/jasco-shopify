@@ -24,7 +24,7 @@
 {% if product.options contains 'Color' %}
     {% assign have_color = true %}
     <script>
-        PRODUCT_COLOR_MAP["{{ product_name }}"] = {}
+        PRODUCT_COLOR_MAP["{{ product_name }}"] = {variant: {}}
     </script>
 {% else %}
     {% assign have_color = false %}
@@ -42,7 +42,7 @@
             {% unless colorlist contains color %}
                 {% capture stripped_color %}{{ color | strip }}{% endcapture %}
                 <script>
-                    PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ stripped_color }}"] = {
+                    PRODUCT_COLOR_MAP["{{ product_name }}"]["variant"]["{{ stripped_color }}"] = {
                         src: "{{ variant | img_url: 'master' }}",
                         link: "{{ variant.url }}",
                         id: "{{ variant.id }}",
@@ -138,16 +138,23 @@
 </div>
 
 <script>
-    var switchCollectionProductCurrentColor = (productName = '', newCurrentColor = '') => {
+    var switchCollectionProductCurrentColor = (productName = '', newCurrentColor = '', {
+        cart = '',
+        link = '',
+        image = ''
+    }) => {
         const productObject = PRODUCT_COLOR_MAP[productName]
         productObject.currentColor = newCurrentColor
-        Object.keys(productObject).forEach(color => {
+        Object.keys(productObject["variant"]).forEach(color => {
             if (color === newCurrentColor) {
-                $(`#${productObject[color].filterId}`).addClass("current");
+                $(`#${productObject["variant"][color].filterId}`).addClass("current");
             } else {
-                $(`#${productObject[color].filterId}`).removeClass("current");
+                $(`#${productObject["variant"][color].filterId}`).removeClass("current");
             }
         })
+        $(`#${cart}`).val(productObject["variant"][newCurrentColor].id);
+        $(`#${link}`).attr("href", productObject["variant"][newCurrentColor].link);
+        $(`#${image}`).attr("src", productObject["variant"][newCurrentColor].src);
     }
 </script>
 
@@ -158,11 +165,11 @@
     {% assign color = raw_color | strip %}
     <script>
         $("#product-color-picker-{{ product_name }}-{{ color }}").click(() => {
-            $("#{{ cart_data_id }}").val(PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].id);
-            $("#{{ product_link_id }}").attr("href", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].link);
-            $("#{{ image_id }}").attr("src", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].src);
-
-            switchCollectionProductCurrentColor("{{ product_name }}", "{{ color }}")
+            switchCollectionProductCurrentColor("{{ product_name }}", "{{ color }}", {
+                cart: '{{ cart_data_id }}',
+                link: '{{ product_link_id }}',
+                image: '{{ image_id }}'
+            })
         })
     </script>    
 {% endfor %}
@@ -177,13 +184,8 @@
         link = '',
         image = ''
     }) => {
-        const allColor = Object.keys(PRODUCT_COLOR_MAP[productName])
+        const allColor = Object.keys(PRODUCT_COLOR_MAP[productName]["variant"])
         const currentColor = PRODUCT_COLOR_MAP[productName].currentColor
-
-        const index = allColor.indexOf("currentColor")
-        if (index > -1) {
-            allColor.splice(index, 1)
-        }
 
         const currentColorIndex = allColor.findIndex(
             (item) => item === currentColor
@@ -192,10 +194,7 @@
         const newColor = allColor[(currentColorIndex + colorIndex) % allColor.length];
 
         PRODUCT_COLOR_MAP[productName].currentColor = newColor;
-        switchCollectionProductCurrentColor(productName, newColor)
-        $(`#${cart}`).val(PRODUCT_COLOR_MAP[productName][newColor].id);
-        $(`#${link}`).attr("href", PRODUCT_COLOR_MAP[productName][newColor].link);
-        $(`#${image}`).attr("src", PRODUCT_COLOR_MAP[productName][newColor].src);
+        switchCollectionProductCurrentColor(productName, newColor, { cart, link, image })
     }
 
     $("#{{ arrow_right_container_id }}").click(() => {
