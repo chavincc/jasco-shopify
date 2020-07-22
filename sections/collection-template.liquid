@@ -79,7 +79,7 @@
                   </div>
                 </div>
               {% endif %}
-              
+
               <div class="filters-toolbar__item filters-toolbar__item--count">
                 {% assign limit_product = "6,8,12,16" | split: ',' %}
                 <label class="filters-toolbar__label select-label" for="limit_product" >Show :</label>
@@ -226,7 +226,7 @@ const backToFirstPage = (queryStringVars = {page: "1"}) => {
   let currentUrl = location.search
     ? location.href.replace(location.search, "")
     : location.href;
-  let newQueryVars = {};
+  let newQueryVars = { };
   let newUrl = currentUrl + "?";
   if (existingQueryVars.length > 0) {
     for (let i = 0; i < existingQueryVars.length; i++) {
@@ -250,9 +250,9 @@ const backToFirstPage = (queryStringVars = {page: "1"}) => {
   }
 };
 
-$('#paginateBy').on('change', function(){
+$('#paginateBy').on('change', async function(){
   var val = $(this).val();
-  $.ajax({
+  await $.ajax({
   type: "POST",
   url: '/cart.js',
   data: {"attributes[pagination]": val}, 
@@ -261,7 +261,6 @@ $('#paginateBy').on('change', function(){
   },
   dataType: 'json'
   });
-  
   backToFirstPage();
 });
 {% endjavascript %}
