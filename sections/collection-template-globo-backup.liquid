@@ -1,0 +1,294 @@
+{% comment %}Copy following content and paste to sections/collection-template.liquid file{% endcomment %}
+
+{%- assign max_height = 250 -%}
+
+
+{% if section.settings.layout == 'grid' %}
+  {%- assign limit = cart.attributes.pagination -%}
+  {% else %}
+  {%- assign limit = cart.attributes.pagination -%}
+{% endif %}
+
+{% paginate collection.products by limit %} 
+  
+<div data-section-id="{{ section.id }}" data-section-type="collection-template">
+  <header class="collection-header">
+    {%- assign is_filter_by_available = false -%}
+    {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
+      {%- assign is_filter_by_available = true -%}
+    {%- endif -%}
+    
+    <div class="page-width">
+      <div class="section-header text-center">
+        <h1>
+            <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
+            {{ collection.title }}
+        </h1>
+        {% if collection.description != blank %}
+          <div class="rte">
+            {{ collection.description }}
+          </div>
+        {% endif %}
+        {% if is_filter_by_available == false and section.settings.sort_enable == false %}
+          <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class= "row m-sm-5 m-1 pl-lg-0 pl-md-5 pl-0 pt-4" id="subpage-product-wrapper" style="margin:0px;">
+      <div class="col-lg-3 col-6 d-lg-block d-md-none d-sm-block d-none" id="mock-sidebar">
+      </div>  
+      <div class="col-lg-9 col-md-12 col-sm-6 col-12" id="mock-body">
+        {% if is_filter_by_available or section.settings.sort_enable %}
+          <div class="rm-border-bottom filters-toolbar-wrapper{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
+            <div class="page-width" style="padding-left:0px; padding-right:0px;">
+              <div class="row filters-toolbar" id ="mock-meta">
+                <div class="d-flex justify-content-start col-xl-7 col-12 mb-xl-0 mb-5" id="mock-meta-1">
+                  <div class="tab-component d-flex flex-md-row flex-column justify-content-start align-items-center"style="margin-right:40px;">   
+                    <button class="btn-in-tab-component text-uppercase mb-md-0 mb-4 mr-md-4 md-0 {% if collection.url contains "front-of-house" %}current{% endif %}" id="front-of-house-btn">front of house</button>
+                    <button class="btn-in-tab-component text-uppercase {% if collection.url contains "back-of-house" %}current{% endif %} " id="back-of-house-btn">back of house</button> 
+                  </div>
+                </div>
+
+                {% comment %} <div class="filters-toolbar__item filters-toolbar__item--count">
+                  <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
+                </div> {% endcomment %}
+                <div class="col-xl-5 col-12 d-flex align-items-center justify-content-xl-center justify-content-md-start justify-content-center" id="mock-meta-2">
+                  <div class="d-flex justify-content-start align-items-center filters-toolbar__item-wrapper">
+                    {% comment %} {% if section.settings.tags_enable %}
+                      {% unless collection.all_tags.size == 0 %}
+                        <div class="filters-toolbar__item-child">
+                          <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
+                          <div class="filters-toolbar__input-wrapper select-group">
+                            <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" style="width:auto;height: auto;
+                              border: 1px solid #e6e6e6;">
+                              <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
+                              {% for tag in collection.all_tags %}
+                                {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
+                                <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+                              {% endfor %}
+                            </select>
+                            {% include 'icon-chevron-down' %}
+                          </div>
+                        </div>
+                      {% endunless %}
+                    {% endif %} {% endcomment %}
+
+                    {% comment %} <div class="tab-component d-flex flex-md-row flex-column justify-content-start align-items-center"> {% endcomment %}
+                    
+
+                    {% if section.settings.sort_enable %}
+                      <div class="filters-toolbar__item-child" id="margin-sort-by">
+                        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                        <label class="filters-toolbar__label select-label" for="SortBy" >{{ 'collections.sorting.title' | t | append: ': ' }} </label>
+                        <div class="filters-toolbar__input-wrapper select-group" >
+                          <select name="sort_by" id="SortBy"
+                            class="filters-toolbar__input hidden"
+                            aria-describedby="a11y-refresh-page-message a11y-selection-message"
+                            data-default-sortby="{{ collection.default_sort_by }}"
+                          >
+                            {%- for option in collection.sort_options -%}
+                              <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>{{ option.name }}</option>
+                            {%- endfor -%}
+                          </select>
+                          {% include 'icon-chevron-down' %}
+                        </div>
+                      </div>
+                    {% endif %}
+
+                    <div class="filters-toolbar__item-child" id = "paginate-by-class">
+                      {% assign limit_product = "6,8,12,16" | split: ',' %}
+                      <label class="filters-toolbar__label select-label" for="limit_product" >Show :</label>
+                      <div class="filters-toolbar__input-wrapper select-group" >
+                        <select name="paginateBy" id="paginateBy" 
+                        aria-describedby="a11y-refresh-page-message"
+                        class="collection-sort__input"> 
+                          {% for i in limit_product %} 
+                            {% assign v = i | append:'' %} 
+                            <option value="{{ v }}"
+                              {% if cart.attributes.pagination != blank and cart.attributes.pagination %}
+                                {% if cart.attributes.pagination == v %} selected
+                                {% endif %}
+                            {% endif %} >
+                              {{ i }}</option> 
+                          {% endfor %} 
+                      </select>
+                        {% include 'icon-chevron-down' %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      
+      </div>
+    </div>
+
+  </header>
+  <div class="page-width" id="Collection">
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+
+    <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+      {% for product in collection.products %}
+        <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+          {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: false %}
+        </li>
+      {% else %}
+        {% comment %}
+        Add default products to help with onboarding for collections/all only.
+
+        The onboarding styles and products are only loaded if the
+        store has no products.
+        {% endcomment %}
+        {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+          <li class="grid__item">
+            <div class="grid grid--uniform">
+              {% for i in (1..limit) %}
+                <div class="grid__item {{ grid_item_width }}">
+                  <div class="grid-view-item">
+                    <a href="#" class="grid-view-item__link">
+                      <div class="grid-view-item__image">
+                        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                      </div>
+                      <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
+                      <div class="grid-view-item__meta">
+                        <span class="product-price__price">$19.99</span>
+                          
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </li>
+        {% else %}
+          {%- assign is_empty_collection = true -%}
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    {% if is_empty_collection %}
+      <div class="grid__item small--text-center">
+        <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% endif %}
+
+    {%- if paginate.pages > 1 -%}
+      {% include 'pagination', paginate: paginate %}
+    {%- endif -%}
+  </div>
+  </div>
+{% endpaginate %}
+
+<script> 
+  var collectionURL= {{collection.url}};
+</script>
+{% schema %}
+{
+  "name": {
+    "en": "Collection pages",
+    "th": "หน้าคอลเลกชัน"
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "grid",
+      "label": {
+        "en": "Products per row (grid only)",
+        "th": "สินค้าต่อแถว (กริดเท่านั้น)"
+      },
+      "default": 4,
+      "min": 2,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": {
+        "en": "Rows per page (grid only)",
+        "th": "แถวต่อหน้า (กริดเท่านั้น)"
+      },
+      "default": 2,
+      "min": 2,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "sort_enable",
+      "label": {
+        "en": "Enable sorting",
+        "th": "เปิดใช้งานการจัดเรียง"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tags_enable",
+      "label": {
+        "en": "Enable tag filtering",
+        "th": "เปิดใช้การกรองแท็ก"
+      },
+      "default": true
+    }
+  ]
+}
+{% endschema %}
+
+
+{% javascript %}
+const backToFirstPage = (queryStringVars = {page: "1"}) => {
+  let existingQueryVars = location.search
+    ? location.search.substring(1).split("&")
+    : [];
+  let currentUrl = location.search
+    ? location.href.replace(location.search, "")
+    : location.href;
+  let newQueryVars = { };
+  let newUrl = currentUrl + "?";
+  if (existingQueryVars.length > 0) {
+    for (let i = 0; i < existingQueryVars.length; i++) {
+      let pair = existingQueryVars[i].split("=");
+      newQueryVars[pair[0]] = pair[1];
+    }
+  }
+  if (queryStringVars) {
+    for (let queryStringVar in queryStringVars) {
+      newQueryVars[queryStringVar] = queryStringVars[queryStringVar];
+    }
+  }
+  if (newQueryVars) {
+    for (let newQueryVar in newQueryVars) {
+      newUrl += newQueryVar + "=" + newQueryVars[newQueryVar] + "&";
+    }
+    newUrl = newUrl.substring(0, newUrl.length - 1);
+    window.location.href = newUrl;
+  } else {
+    window.location.href = location.href;
+  }
+};
+
+$('#paginateBy').on('change', async function(){
+  var val = $(this).val();
+  await $.ajax({
+  type: "POST",
+  url: '/cart.js',
+  data: {"attributes[pagination]": val}, 
+  success: function(d){
+    window.location.reload();
+  },
+  dataType: 'json'
+  });
+  backToFirstPage();
+});
+{% endjavascript %}
+
+<script> 
+  var collectionURL = {{collection.url | json}};
+  var allPathURL = {{canonical_url | json}};
+</script>
+<script src="{{ 'tab-component.js' | asset_url }}" > </script>
