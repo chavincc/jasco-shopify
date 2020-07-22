@@ -137,6 +137,19 @@
     </div>
 </div>
 
+<script>
+    var switchCollectionProductCurrentColor = (productName = '', newCurrentColor = '') => {
+        const productObject = PRODUCT_COLOR_MAP[productName]
+        Object.keys(productObject).forEach(color => {
+            if (color === newCurrentColor) {
+                $(`#${productObject[color].filterId}`).addClass("current");
+            } else {
+                $(`#${productObject[color].filterId}`).removeClass("current");
+            }
+        })
+    }
+</script>
+
 {% comment %}
     var PRODUCT_COLOR_MAP = {} should passed down from sections/collection-template.liquid
 {% endcomment %}
@@ -148,19 +161,12 @@
             $("#{{ product_link_id }}").attr("href", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].link);
             $("#{{ image_id }}").attr("src", PRODUCT_COLOR_MAP["{{ product_name }}"]["{{ color }}"].src);
 
-            Object.keys(PRODUCT_COLOR_MAP["{{ product_name }}"]).forEach(color => {
-                if (color === "{{ color }}") {
-                    $(`#${PRODUCT_COLOR_MAP["{{ product_name }}"][color].filterId}`).addClass("current");
-                } else {
-                    $(`#${PRODUCT_COLOR_MAP["{{ product_name }}"][color].filterId}`).removeClass("current");
-                }
-            })
+            switchCollectionProductCurrentColor("{{ product_name }}", "{{ color }}")
         })
     </script>    
 {% endfor %}
 
 <script>
-    console.log(PRODUCT_COLOR_MAP)
     $("#{{ arrow_right_container_id }}").click(() => {
         console.log('right')
     })
