@@ -1,0 +1,11 @@
+#reset-globo-filter-tree {
+  display: flex;
+  align-items: center;
+
+  &-text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    margin-left: 15px;
+  }
+}
