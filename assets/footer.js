@@ -6,6 +6,7 @@ const FORM_INPUT_ID = {
   FIRST_NAME: `${FOOTER_FORM_ID}-first-name`,
 };
 
+console.log($);
 // intercept form submit and validate
 $(FOOTER_FORM_ID).submit((e) => {
   e.preventDefault();

@@ -55,9 +55,6 @@
     {{ "theme.scss.css" | asset_url | stylesheet_tag }}
     {{ "index.css" | asset_url | stylesheet_tag }}
     {{ "index.css.map" | asset_url | stylesheet_tag }}
-
-    {{ "jquery-3.5.1.slim.min.js" | asset_url | script_tag }}
-
     
     <script>
       var theme = {
@@ -136,6 +133,9 @@
     {% if settings.app_wk_enabled %}
       {% include 'appmate-wishlist-king' %}
     {% endif %}
+    {% include 'globo.filter.script' %}
+
+    {{ "jquery-3.5.1.slim.min.js" | asset_url | script_tag }}
   </head>
 
   <body class="template-{{ request.page_type | handle }}">
@@ -183,5 +183,6 @@
     <!-- **END** Hextom TMS Integration // Main Include - DO NOT MODIFY -->
     {{ 'ndnapps-sociallogin.css' | asset_url | stylesheet_tag }}
     {% if shop.customer_accounts_enabled %}{% unless customer  %}{{ 'ndnapps-sociallogin-script.js' | asset_url | script_tag }}{% endunless %}{% endif %}
-</body>
+{% include 'globo.filter.action' %}
+	</body>
 </html>
