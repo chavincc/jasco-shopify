@@ -1,34 +1,45 @@
-const PRODUCT_BUTTONS = document.querySelectorAll(".tab-component>button");
+const PRODUCT_BUTTONS = $(".btn-in-tab-component");
+const SEARCH_WORD = "collections/";
+let currentTextButton, replacePath, selectPage, j, k;
+let allPath = url_current_path; //url_current_path is the current url that get from liquid file.
+let indexOfWord = allPath.indexOf(SEARCH_WORD);
 
-// var position = {{collection.url}};
+String.prototype.replaceAt = function (index, replacement) {
+  if (index >= this.length) {
+    return this.valueOf();
+  }
+  return this.substring(0, index) + replacement;
+};
 
-let currentCollectionURL = collectionURL;
-let allPath = allPathURL;
+removeUnselectedTab = (selectedTabId) => {
+  for (k = 0; k < PRODUCT_BUTTONS.length; k++) {
+    if (selectedTabId !== PRODUCT_BUTTONS[k].id) {
+      PRODUCT_BUTTONS[k].classList.remove("current");
+    }
+  }
+};
 
-let currentTextButton;
-const COLLECTION_TXT = "https://jasco-kos.myshopify.com/collections/";
+gotoAllCollectionPage = () => {
+  replacePath = SEARCH_WORD.concat("all");
+  allPath = allPath.replaceAt(indexOfWord, replacePath);
+  window.location.href = allPath;
+};
+gotoSelectCollectionPage = (currentTextButton) => {
+  selectPage = currentTextButton.replace(/\s/g, "-");
+  replacePath = SEARCH_WORD.concat(selectPage);
+  allPath = allPath.replaceAt(indexOfWord, replacePath);
+  window.location.href = allPath;
+};
 
-PRODUCT_BUTTONS.forEach((button) => {
-  button.addEventListener("click", function (e) {
-    clickedButtonId = button.id;
-    PRODUCT_BUTTONS.forEach((button) => {
-      if (button.id !== clickedButtonId) {
-        button.classList.remove("current");
-      } else {
-        if ($(".btn-in-tab-component").hasClass("current")) {
-          button.classList.remove("current");
-          collectionURL = COLLECTION_TXT.concat("all");
-          window.location.href = collectionURL;
-        } else {
-          button.classList.add("current");
-          currentTextButton = $(button)[0].textContent;
-          currentTextButton = currentTextButton.replace(/(\r\n|\n|\r)/gm, "");
-          var replaced = currentTextButton.split(" ").join("-");
-          replaced = COLLECTION_TXT.concat(replaced);
-          collectionURL = replaced;
-          window.location.href = replaced;
-        }
-      }
-    });
+for (j = 0; j < PRODUCT_BUTTONS.length; j++) {
+  PRODUCT_BUTTONS[j].addEventListener("click", function (e) {
+    removeUnselectedTab(this.id);
+    if ($(this).hasClass("current")) {
+      $(this).removeClass("current");
+      gotoAllCollectionPage();
+    } else {
+      $(this).addClass("current");
+      gotoSelectCollectionPage($(this).text());
+    }
   });
-});
+}

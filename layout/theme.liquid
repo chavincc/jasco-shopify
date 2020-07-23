@@ -165,7 +165,6 @@
       </div>
     </div> {% endcomment %}
 
-
     <ul hidden>
       <li id="a11y-refresh-page-message">
         {{ "general.accessibility.refresh_page" | t }}
@@ -182,6 +181,5 @@
     <!-- **END** Hextom TMS Integration // Main Include - DO NOT MODIFY -->
     {{ 'ndnapps-sociallogin.css' | asset_url | stylesheet_tag }}
     {% if shop.customer_accounts_enabled %}{% unless customer  %}{{ 'ndnapps-sociallogin-script.js' | asset_url | script_tag }}{% endunless %}{% endif %}
-
 	</body>
 </html>
