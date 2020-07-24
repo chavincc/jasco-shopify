@@ -49,9 +49,9 @@
         <span class="gf-tooltip-trigger" aria-hidden="true">?</span>
         <div class="gf-tooltip"><div class="gf-tooltip-content" translatable>{{filter.help | newline_to_br}}</div></div>
         {% endif %}
-        {% if filter.is_selected %}
+        {% comment %} {% if filter.is_selected %}
         <a translatable href="javascript:;" class="gf-clear" onclick="removeFilter({{filter.id}})">Clear</a>
-        {% endif %}
+        {% endif %} {% endcomment %}
       </div>
       <div class="gf-block-content">
         {% if filter.searchable and filter.style != 'Slider' %}<input type="text" value="" onkeyup="GloboFilter.searchValues(this);" class="gf-search">{% endif %}
@@ -70,11 +70,14 @@
             {% if filter.attribute == 'Collection' %}
               {% assign collection_id = {% endraw %}{{collection.id | default: 0}}{% raw %} %}
               {% if filter.tree %}
+                {% assign arrayCollection =  %}
                 {% for node in filter.tree %}
+                  {% assign nodeLabel = node.label %}
+                  {% assign nodeLabel = nodeLabel | downcase | replace: ' ', '-'  %}
                   <li>
                     <div>
                     {% if filter.style == 'Checkbox' %}
-                      <a translatable{% if node.selected or node.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id}},'{{node.value}}')" href="javascript:;" title="{{node.label | escape_once}}">{{node.label}} ({{node.count}})</a>
+                      <a translatable{% if node.selected or node.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id}},'{{node.value}}')" href="javascript:;" title="{{node.label | escape_once}}">{{node.label}}{% comment %} ({{node.count}}) {% endcomment %}</a>
                     {% elsif filter.style == 'Radio' %}
                       <a translatable{% if node.selected or node.value == collection_id %} class="checked"{% endif %} onclick="toggleRadioFilter({{filter.id}},'{{node.value}}')" href="javascript:;" title="{{node.label | escape_once}}">{{node.label}} ({{node.count}})</a>
                     {% endif %}
