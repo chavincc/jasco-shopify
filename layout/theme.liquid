@@ -183,6 +183,6 @@
     <!-- **END** Hextom TMS Integration // Main Include - DO NOT MODIFY -->
     {{ 'ndnapps-sociallogin.css' | asset_url | stylesheet_tag }}
     {% if shop.customer_accounts_enabled %}{% unless customer  %}{{ 'ndnapps-sociallogin-script.js' | asset_url | script_tag }}{% endunless %}{% endif %}
-{% include 'globo.filter.action' %}
+  {% include 'globo.filter.action' %}
 	</body>
 </html>
