@@ -5,7 +5,6 @@
   <div class="gf-selection-wrapper">
     <div class="gf-block-title">
       <h3><span translatable>Filter By</span></h3>
-      <a translatable href="javascript:;" onclick="clearAllFilter()" class="gf-refine-toggle">Clear All</a>
     </div>
     <div class="gf-block-content globo-selected-items">
       {% for filter in filters %}
@@ -170,6 +169,12 @@
       </div>
     </div>
     {% endfor %}
+    <div class="py-3">
+      <a id="reset-globo-filter-tree" translatable href="javascript:;" onclick="clearAllFilter()">
+        <img id="reset-globo-filter-tree-img" src={{ "collection-img-icon-refresh.svg" | asset_url }}>
+        <div id="reset-globo-filter-tree-text">Reset filters</div>
+      </a>
+    </div>
   {% endif %}
 </div>
 {% endraw %}
