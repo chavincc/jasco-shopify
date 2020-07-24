@@ -188,7 +188,16 @@
                       {% endif %}
                     </a>
                   </li>
-                  
+                  {% if forloop.last %}
+                    <li>
+                      <a translatable class="checked" title="{{value.label | escape_once}}">
+                        <div class="rainbow-button-wrapper pl-2">
+                          <img src="{{ 'collection-img-rainbow-button.svg' | asset_url }}" class="gf-option-one-color rainbow d-flex align-items-center justify-content-center">
+                          <img class="filter-check-icon" src="{{ 'collection-img-icon-check.svg' | asset_url }}">
+                        </div>
+                      </a>
+                    </li>
+                  {% endif %}
                 {% endif %}
               {% endfor %}
             {% endif %}
