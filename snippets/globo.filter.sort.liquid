@@ -1,18 +1,73 @@
 {% raw %}
 <div class="gf-sort-wrap">
+  <div class="tab-component d-flex flex-md-row flex-column justify-content-start align-items-center">   
+    <button class="btn-in-tab-component text-uppercase mb-md-0 mb-4 mr-md-4 md-0 {% endraw %}{% if collection.url contains "front-of-house" %}current{% endif %}{% raw %}" id="front-of-house-btn">front of house</button>
+    <button class="btn-in-tab-component text-uppercase {% endraw %}{% if collection.url contains "back-of-house" %}current{% endif %}{% raw %}" id="back-of-house-btn">back of house</button> 
+  </div>
+  <div id="grouping-sort-by">
+    <div class="sort-by" >
+      <label for="changeSortBy" class="sort-by-toggle" role="button" tabindex="0" aria-expanded="false">Sort By : </label>
+      <select id="changeSortBy" class="sortby-select" onchange="changeSortBy(this.value); return false;">
+      <option value="best-selling">Best Selling</option> <option value="title-ascending">Alphabetically, A-Z</option>      <option value="title-descending">Alphabetically, Z-A</option>      <option value="price-ascending">Price, low to high</option>      <option value="price-descending">Price, high to low</option>      <option value="created-descending">Date, new to old</option>      <option value="created-ascending">Date, old to new</option>      <option value="sale-descending">% Sale off</option>    </select>
+    </div>
+    <div class="sort-by limit-by" >
+      <label for="setLimit" class="sort-by-toggle" role="button" tabindex="0" aria-expanded="false">Show :</label>
+      <select id="setLimit" class="sortby-select" onchange="setLimit(this.value); return false;">
+        <option  value="8">8</option><option selected value="12">12</option><option  value="16">16</option><option  value="24">24</option>    </select>
+    </div>
+  </div>
   <h3 href="javascript:void(0)" class="gf-refine-toggle-mobile" tabindex="0" aria-label="Filter By">
     <span onclick="globofilter.toggleCanvas()"><i class="fa fa-tasks" aria-hidden="true"></i> Filter By</span>
     <a onclick="clearAllFilter()" href="javascript:;" class="gf-refine-toggle visible-xs">Clear All</a>
   </h3>
-    <div class="sort-by">
-    <label for="changeSortBy" class="sort-by-toggle" role="button" tabindex="0" aria-expanded="false">Sort By</label>
-    <select id="changeSortBy" class="sortby-select" onchange="changeSortBy(this.value); return false;">
-            <option value="best-selling">Best Selling</option>                  <option value="title-ascending">Alphabetically, A-Z</option>      <option value="title-descending">Alphabetically, Z-A</option>      <option value="price-ascending">Price, low to high</option>      <option value="price-descending">Price, high to low</option>      <option value="created-descending">Date, new to old</option>      <option value="created-ascending">Date, old to new</option>      <option value="sale-descending">% Sale off</option>    </select>
-  </div>
-          <div class="sort-by limit-by">
-    <label for="setLimit" class="sort-by-toggle" role="button" tabindex="0" aria-expanded="false">Show</label>
-    <select id="setLimit" class="sortby-select" onchange="setLimit(this.value); return false;">
-      <option  value="8">8</option><option selected value="12">12</option><option  value="16">16</option><option  value="24">24</option>    </select>
-  </div>
-    </div>
+  
+</div>
 {% endraw %}
+
+<script> 
+  const PRODUCT_BUTTONS = $(".btn-in-tab-component");
+  const SEARCH_WORD = "collections/";
+   let allPath = {{canonical_url | json}}; 
+  let currentTextButton, replacePath, selectPage, j, k;
+  let indexOfWord = allPath.indexOf(SEARCH_WORD);
+
+  String.prototype.replaceAt = function (index, replacement) {
+    if (index >= this.length) {
+      return this.valueOf();
+    }
+    return this.substring(0, index) + replacement;
+  };
+
+  removeUnselectedTab = (selectedTabId) => {
+    for (k = 0; k < PRODUCT_BUTTONS.length; k++) {
+      if (selectedTabId !== PRODUCT_BUTTONS[k].id) {
+        PRODUCT_BUTTONS[k].classList.remove("current");
+      }
+    }
+  };
+
+  gotoAllCollectionPage = () => {
+    replacePath = SEARCH_WORD.concat("all");
+    allPath = allPath.replaceAt(indexOfWord, replacePath);
+    window.location.href = allPath;
+  };
+  gotoSelectCollectionPage = (currentTextButton) => {
+    selectPage = currentTextButton.replace(/\s/g, "-");
+    replacePath = SEARCH_WORD.concat(selectPage);
+    allPath = allPath.replaceAt(indexOfWord, replacePath);
+    window.location.href = allPath;
+  };
+
+  for (j = 0; j < PRODUCT_BUTTONS.length; j++) {
+    PRODUCT_BUTTONS[j].addEventListener("click", function (e) {
+      removeUnselectedTab(this.id);
+      if ($(this).hasClass("current")) {
+        $(this).removeClass("current");
+        gotoAllCollectionPage();
+      } else {
+        $(this).addClass("current");
+        gotoSelectCollectionPage($(this).text());
+      }
+    });
+  }
+</script>
