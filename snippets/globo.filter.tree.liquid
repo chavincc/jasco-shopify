@@ -51,6 +51,7 @@
                       {% endfor %}
                     </ul> 
                   {% endif %}
+
                 </div>
               </div>
             </div>
@@ -79,29 +80,66 @@
                         <a translatable{% if value.selected %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id}},'{{value.value | replace:"'", "\'" | escape_once}}')" href="javascript:;" title="{{value.label | escape_once}}">
                           {% if swatches[attribute] and swatches[attribute][value_handle] %}
                             {% if swatches[attribute][value_handle].mode == 1 %}
-                              <span class="gf-option-one-color" style="background-color:{{ swatches[attribute][value_handle].color_1 }}"></span>{% if filter.style contains 'Swatch - Text' %} {{value.label}}{% endif %}
+                              <span
+                                class="gf-option-one-color{% if value.value == "white" %}-white{% endif %} d-flex align-items-center justify-content-center ml-2"
+                                style="background-color:{{ swatches[attribute][value_handle].color_1 }}"
+                              >
+                                {% if value.value == "white" %}
+                                  <img class="filter-check-icon" src="{{ 'collection-img-icon-check-black.svg' | asset_url }}">
+                                {% else %}
+                                  <img class="filter-check-icon" src="{{ 'collection-img-icon-check.svg' | asset_url }}">
+                                {% endif %}
+                              </span>
+                              {% if filter.style contains 'Swatch - Text' %}
+                                {{value.label}}
+                              {% endif %}
                             {% elsif swatches[attribute][value_handle].mode == 2 %}
                               <span class="gf-option-two-color" style="background-color:{{ swatches[attribute][value_handle].color_1 }}"><span class="bottom-color" style="border-bottom-color:{{ swatches[attribute][value_handle].color_2 }}"></span></span>{% if filter.style contains 'Swatch - Text' %} {{value.label}}{% endif %}
                             {% elsif swatches[attribute][value_handle].mode == 3 %}
-                              <span class="gf-swatch-image" style="background-color: {{ value.value | replace:"'", "\'" | escape_once }}; background-image: url('{{ swatches[attribute][value_handle].image }}')"></span>{% if filter.style contains 'Swatch - Text' %} {{value.label}}{% endif %}
+                              <span
+                                class="gf-swatch-image"
+                                style="
+                                  background-color: {{ value.value | replace:"'", "\'" | escape_once }};
+                                  background-image: url('{{ swatches[attribute][value_handle].image }}');
+                                "
+                              >
+                              </span>
+                              {% if filter.style contains 'Swatch - Text' %}
+                                {{value.label}}
+                              {% endif %}
                             {% endif %}
                           {% else %}
                             {% assign value_handle = value.value | handle %}
                             {% assign value_jpg    = value_handle | append: '.jpg' %}
                             {% assign value_png    = value_handle | append: '.png' %}
                             {% assign value_jpeg   = value_handle | append: '.jpeg' %}
-                            <span class="gf-swatch-image" style="background-color: {{ value.value | replace:"'", "\'" | escape_once }};
+                            <span
+                              class="gf-swatch-image"
+                              style="background-color: {{ value.value | replace:"'", "\'" | escape_once }};
                               {% if images contains value_jpg %}
-                              background-image: url('{{ value_jpg | asset_img_url: '50x' | prepend: 'https:' }}')
+                                background-image: url('{{ value_jpg | asset_img_url: '50x' | prepend: 'https:' }}')
                               {% elsif images contains value_png %}
-                              background-image: url('{{ value_png | asset_img_url: '50x' | prepend: 'https:' }}')
+                                background-image: url('{{ value_png | asset_img_url: '50x' | prepend: 'https:' }}')
                               {% elsif images contains value_jpeg %}
-                              background-image: url('{{ value_jpeg | asset_img_url: '50x' | prepend: 'https:' }}')
+                                background-image: url('{{ value_jpeg | asset_img_url: '50x' | prepend: 'https:' }}')
                               {% endif %}
-                              "></span>{% if filter.style contains 'Swatch - Text' %} {{value.label}}{% endif %}
+                              ">
+                            </span>
+                            {% if filter.style contains 'Swatch - Text' %}
+                              {{value.label}}
+                            {% endif %}
                           {% endif %}
                         </a>
                       </li>
+                      {% if forloop.last %}
+                        <li>
+                          <a translatable href="javascript:;" onclick="removeFilter({{filter.id}})">
+                            <div class="rainbow-button-wrapper pl-2">
+                              <img src="{{ 'collection-img-rainbow-button.svg' | asset_url }}" class="gf-option-one-color rainbow d-flex align-items-center justify-content-center">
+                            </div>
+                          </a>
+                        </li>
+                      {% endif %}
                     {% endif %}
                   {% endfor %}
                 {% endunless %}

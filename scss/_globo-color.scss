@@ -1,0 +1,43 @@
+.gf-filter-contents {
+  .gf-option-one-color {
+    border-radius: 50%;
+    width: 27px !important;
+    height: 27px !important;
+    border: none;
+    border: 1px solid transparent !important;
+
+    &-white {
+      border-radius: 50%;
+      width: 27px !important;
+      height: 27px !important;
+      border: none;
+      border: 1px solid #ededed !important;
+    }
+  }
+
+  .rainbow-button-wrapper {
+    height: 27px;
+    width: 27px;
+
+    .gf-option-one-color.rainbow {
+      position: absolute;
+    }
+  }
+
+  .gf-option-one-color:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.290893);
+    border: 1px solid transparent !important;
+  }
+  .gf-option-one-color-white:hover {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.290893);
+    border: 1px solid #ededed !important;
+  }
+
+  .filter-check-icon {
+    display: none;
+  }
+
+  a.checked .filter-check-icon {
+    display: block;
+  }
+}
