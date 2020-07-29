@@ -89,9 +89,13 @@
   }
 
   &-color {
-    width: 22px !important;
-    height: 22px !important;
-    border: 3.5px solid white;
+    width: 14px !important;
+    height: 14px !important;
+    margin: 3px;
+    border: 1px solid transparent;
     border-radius: 50%;
+  }
+  &-color[style="background-color: #fff"] {
+    border: 1px solid black;
   }
 }
