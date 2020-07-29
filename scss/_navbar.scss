@@ -4,10 +4,6 @@ header {
   font-family: "Poppins", sans-serif;
 }
 
-.insert-padding{
-  margin: 80px 0;
-}
-
 .header-first-row {
   padding: 0 0 0px;
   @include responsive-x-padding();
