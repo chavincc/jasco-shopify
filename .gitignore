@@ -28,3 +28,9 @@ Icon?
 # compiled deployment file
 /assets/index.css
 /assets/index.css.map
+
+# node environment
+node_modules
+
+# default test file
+cypress/integration/examples

@@ -1,0 +1,147 @@
+<section class="get-in-touch pb-lg-5 pb-3" id="get-in-touch">
+  <div
+    class="responsive-img-wrapper row d-flex justify-content-end d-lg-none pb-5 px-0"
+  >
+    <div class="col-12 px-0 row d-flex justify-content-end m-0">
+      <img class="responsive-img" src={{ section.settings.get_in_touch_header_image | img_url: 'master' }}/>
+    </div>
+  </div>
+  <div class="row pb-5">
+    {% form 'contact', id: 'get-in-touch-inquiry-form', class: 'col-lg-6 col-12' %}
+      <div class="row">
+        <div class="get-in-touch-header text-uppercase py-lg-5 pb-3">
+          {{ section.settings.get_in_touch_header }}
+        </div>
+      </div>
+      <div class="row pb-4">
+        <div class="col-12 get-in-touch-subheader-wrapper">
+          <div class="get-in-touch-subheader">
+            {{ section.settings.get_in_touch_subheader }}
+          </div>
+        </div>
+      </div>
+      <div class="row pb-4 pl-0">
+        <div class="col-xl-6 col-12 pl-0 mb-xl-0 mb-4">
+          <div
+            class="get-in-touch-inquiry-form-input-wrapper"
+            id="get-in-touch-inquiry-form-input-wrapper-name"
+          >
+            <input
+              class="get-in-touch-inquiry-form-input"
+              id="get-in-touch-inquiry-form-name"
+              placeholder="{{ section.settings.get_in_touch_name_placeholder }}"
+              type="text"
+              name="contact[name]"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-required="true"
+            />
+            <div
+              class="get-in-touch-inquiry-form-error-message"
+              id="get-in-touch-inquiry-form-error-message-name"
+            ></div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-12 pl-0 pl-xl-3">
+          <div
+            class="get-in-touch-inquiry-form-input-wrapper"
+            id="get-in-touch-inquiry-form-input-wrapper-email"
+          >
+            <input
+              class="get-in-touch-inquiry-form-input"
+              id="get-in-touch-inquiry-form-email"
+              placeholder="{{ section.settings.get_in_touch_email_placeholder }}"
+              type="text"
+              name="contact[email]"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-required="true"
+            />
+            <div
+              class="get-in-touch-inquiry-form-error-message"
+              id="get-in-touch-inquiry-form-error-message-email"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row pb-5 pl-0">
+        <div class="col-12 pl-0">
+          <div
+            class="get-in-touch-inquiry-form-input-wrapper"
+            id="get-in-touch-inquiry-form-input-wrapper-message"
+          >
+            <input
+              class="get-in-touch-inquiry-form-input"
+              id="get-in-touch-inquiry-form-message"
+              placeholder="{{ section.settings.get_in_touch_message_placeholder }}"
+              type="text"
+              name="contact[message]"
+              autocorrect="off"
+              autocapitalize="off"
+              aria-required="true"
+            />
+            <div
+              class="get-in-touch-inquiry-form-error-message"
+              id="get-in-touch-inquiry-form-error-message-message"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-end">
+        <div class="col-sm-6 col-9 pl-0 d-flex justify-content-end">
+          <button class="text-uppercase">{{ section.settings.get_in_touch_form_button_text }}</button>
+        </div>
+      </div>
+    {% endform %}
+    <div class="col-1 d-lg-block d-none"></div>
+    <div class="col-5 get-in-touch-img-wrapper d-lg-block d-none">
+      <img class="get-in-touch-img" src={{ section.settings.get_in_touch_header_image | img_url: 'master' }}
+      />
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Get In Touch",
+    "settings": [
+      {
+        "type": "text",
+        "id": "get_in_touch_header",
+        "label": "header"
+      },
+      {
+        "type": "richtext",
+        "id": "get_in_touch_subheader",
+        "label": "subheader"
+      },
+      {
+        "type": "image_picker",
+        "id": "get_in_touch_header_image",
+        "label": "header image"
+      },
+      {
+        "type": "text",
+        "id": "get_in_touch_name_placeholder",
+        "label": "name placeholder"
+      },
+      {
+        "type": "text",
+        "id": "get_in_touch_email_placeholder",
+        "label": "email placeholder"
+      },
+      {
+        "type": "text",
+        "id": "get_in_touch_message_placeholder",
+        "label": "message placeholder"
+      },
+      {
+        "type": "text",
+        "id": "get_in_touch_form_button_text",
+        "label": "button text"
+      }
+    ]
+  }
+{% endschema %}
+
+{{ 'get-in-touch-form.js' | asset_url | script_tag }}

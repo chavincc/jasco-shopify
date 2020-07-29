@@ -1,0 +1,49 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="product p-0 m-0 mb-5 flex-column
+    {% if spare %} d-xl-none d-md-flex d-none {% else %} d-flex {% endif %}
+    {{ direction }}
+    "
+  >
+  <div class="product-inner-wrapper">
+    <div class="product-img mb-3 less-shadow">
+      <img src={{ product | img_url: "master" }} />
+      <div class="product-add-to-cart-popup">
+        <a
+          href="{{ product.url }}"             
+          {% if test %} id="related-product-test-quick-look" {% endif %}
+        >  
+          <div class="product-add-to-cart-popup-text text-uppercase">
+            quick look
+          </div>
+        </a>
+        <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ current_variant.id }}" />
+          <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+          <button type="submit" {% if test %} id="related-product-test-cart" {% endif %}><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+        </form>
+      </div>
+    </div>
+    <div class="product-text-wrapper mx-1">
+      <div class="row pb-3 product-name-wrapper">
+        <div
+          {% if test %} id="related-product-test-name" {% endif %}
+          class="col-12 product-name text-capitalize"
+        >
+          {{ product.title }}
+        </div>
+      </div>
+      <div class="row product-meta mb-4 d-flex align-items-center">
+        <div class="product-id col-4">
+          {{ product.selected_or_first_available_variant.sku }}
+        </div>
+        <div class="product-price-no_interference col-5 text-right">
+          {{ product.price | money_without_trailing_zeros }}
+        </div>
+        <div class="wishlist-container col-3 d-flex justify-content-end">
+          <img alt="wishlist-icon" src={{ "product-img-icon-heart.svg" | asset_url }} />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,11 +3,23 @@
 @import "instagram";
 @import "footer";
 @import "best-sellers";
-
 @import "product_section";
-
+@import "get-in-touch";
 @import "news-events";
-
+@import "product-detail";
+@import "about-us";
+@import "shop-by-brands";
+@import "bcpo-custom";
+@import "whats-new";
+@import "register";
+@import "wishlist";
+@import "collection";
+@import "globo-custom";
+@import "globo_filter-tree-colleciton";
+@import "globo-color";
+@import "globo-product";
+@import "globo-filter-product-detail";
+@import "loading";
 
 html {
   margin: 0 !important;
@@ -22,4 +34,8 @@ img {
 
 div * {
   font-family: "Poppins", sans-serif !important;
+}
+
+.insert-padding{
+  margin: 80px 0;
 }

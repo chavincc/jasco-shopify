@@ -1,0 +1,256 @@
+@import "spacing";
+
+#col-remove-padding {
+  padding: 0px;
+}
+.about-us-page {
+  .plain-text {
+    h1 {
+      font-weight: bold;
+      font-size: 48px;
+      padding: 80px 0 32px 0;
+    }
+    p {
+      font-size: 22px;
+      font-weight: normal;
+      color: #878a9d;
+      letter-spacing: -0.676923px;
+    }
+  }
+  #our-story-txt {
+    @include responsive-x-padding();
+    padding-bottom: 80px;
+    p {
+      font-weight: normal;
+      color: #878a9d;
+      strong {
+        color: black;
+      }
+    }
+  }
+  .images-and-scroll {
+    @include responsive-x-padding();
+    margin-top: 0px;
+    .row {
+      margin: 0px;
+      padding: 0px;
+    }
+    #image1 {
+      padding: 0px;
+      height: auto;
+    }
+
+    #scroll-down {
+      margin-top: 50px;
+      font-weight: bold;
+      font-size: 12px;
+      width: 100px;
+      height: 13px;
+      background-color: none;
+      color: black;
+      transform: rotate(90deg);
+      margin-left: -40px;
+    }
+
+    #long-line {
+      margin: 50px 0px 0px;
+    }
+
+    #text-img1 {
+      width: 400px;
+      height: 12px;
+      position: absolute;
+      bottom: 48%;
+      right: 260px;
+      color: #878a9d;
+      transform: rotate(-90deg);
+    }
+    .padding-row {
+      padding-top: 90px;
+    }
+  }
+  #image3 {
+    position: relative;
+    height: auto;
+  }
+  #image2 {
+    position: absolute;
+    height: auto;
+    top: -55%;
+    left: -120%;
+  }
+  #locations {
+    @include responsive-x-padding();
+    padding-bottom: 0px;
+    h1 {
+      padding-top: 0px;
+    }
+    p {
+      padding-right: 100px;
+      margin: 0px;
+    }
+  }
+  .our-promise-row {
+    @include responsive-x-padding();
+    padding-top: 130px;
+    padding-bottom: 100px;
+  }
+
+  @media only screen and (max-width: 992px) {
+    #our-story-txt {
+      h1 {
+        padding: 30px 0 20px 0;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 2755px) and (min-width: 2356px) {
+    .images-and-scroll {
+      #scroll-down {
+        margin-top: 250px;
+        font-size: 25px;
+        width: 400px;
+        height: 20px;
+        margin-left: -185px;
+      }
+      #long-line {
+        margin: 0px 0px 0px 7px;
+      }
+      #text-img1 {
+        right: 480px;
+        bottom: 30%;
+        font-size: 20px;
+      }
+      #image2 {
+        left: -140%;
+      }
+      .image-change-img {
+        img {
+          width: 633px;
+          height: 670px;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 2355px) and (min-width: 1750px) {
+    .images-and-scroll {
+      #text-img1 {
+        right: 450px;
+        bottom: 35%;
+        font-size: 20px;
+      }
+      #scroll-down {
+        margin-top: 250px;
+        font-size: 20px;
+        width: 400px;
+        height: 20px;
+        margin-left: -190px;
+      }
+      #long-line {
+        margin: -20px 0px 0px 7px;
+      }
+      #image2 {
+        left: -160%;
+      }
+      .image-change-img {
+        img {
+          width: 490px;
+          height: 470px;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 2755px) and (min-width: 1877px) {
+    #our-story-txt {
+      p {
+        font-size: 1.3vw;
+      }
+      p::before,
+      p::after {
+        font-size: 1.3vw;
+      }
+    }
+    .plain-text {
+      h1 {
+        font-size: 2.7vw;
+      }
+      p {
+        font-size: 1.3vw;
+      }
+    }
+  }
+  @media only screen and (max-width: 2755px) and (min-width: 1700px) {
+    .our-promise-row {
+      img {
+        width: 538px;
+        height: 607px;
+      }
+    }
+  }
+  @media only screen and (max-width: 2250px) {
+    #locations {
+      padding-top: 100px;
+    }
+  }
+  @media only screen and (max-width: 1749px) {
+    .image-change-img {
+      img {
+        max-width: 418px;
+        max-height: 480px;
+      }
+    }
+  }
+  @media only screen and (max-width: 648px) {
+    .images-and-scroll {
+      #image1 {
+        position: relative;
+      }
+      #text-img1 {
+        position: absolute;
+        bottom: -6%;
+        left: 0%;
+        width: 280px;
+        font-size: 14px;
+        transform: rotate(0);
+      }
+      .our-story-images {
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 660px) {
+    .plain-text {
+      h1 {
+        font-size: 30px;
+      }
+      p {
+        font-size: 15px;
+      }
+    }
+    #our-story-txt {
+      p {
+        font-size: 15px;
+      }
+    }
+    .our-promise-row {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    #locations {
+      p {
+        padding-right: 0px;
+      }
+    }
+  }
+}
+
+#our-story-padding {
+  img {
+    padding-bottom: 80px;
+  }
+}
