@@ -133,7 +133,7 @@
                   <img id= "xs-icon" src= {{ iconTitle | asset_url }}/> 
                     {% if shop.customer_accounts_enabled %}
                       {% if customer %}
-                        <a href="{{ routes.account_url }}">{{ head_menu }} </a>
+                        <a href="{{routes.account_logout_url}}">{{ "LOGOUT" }} </a>
                       {% else %}
                         <a href="{{ routes.account_login_url }}">{{ head_menu }}</a>
                       {% endif %}
