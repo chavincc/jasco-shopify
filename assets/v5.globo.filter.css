@@ -5987,7 +5987,7 @@ span.spf-product__swatch {
   margin: 3px;
   position: relative;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
 }
 .spf-product__swatchs.round span.spf-product__swatch-inner {
   overflow: hidden;
