@@ -16,7 +16,7 @@
       name: "{{ shop.name | escape }}",
       url: "{{ shop.url }}",
       domain: "{{ shop.permanent_domain }}",
-      product_image: {width: 332, height: 348},
+      product_image: {width: 300, height: 300},
       no_image_url: "https://cdn.shopify.com/s/images/themes/product-1.png",
       themeStoreId: 796,
       swatches: {{ shop.metafields.globo.swatches | json }},
@@ -45,8 +45,7 @@
     }
   };
 </script>
-<script id="gspfSearchResult" type="template/html">{% include 'globo.filter.search' %}</script>
-<script id="gspfFilterTree"   type="template/html">{% include 'globo.filter.tree' %}</script>
+<script id="gspfSearchResult" type="template/html">{% include 'globo.filter.search' %}</script><script id="gspfFilterTree"   type="template/html">{% include 'globo.filter.tree' %}</script>
 <script id="gspfFilterSort"   type="template/html">{% include 'globo.filter.sort' %}</script>
 <script id="gspfProduct"      type="template/html">{% include 'globo.filter.product' %}</script>
 <script id="gspfPagination"   type="template/html">{% include 'globo.filter.pagination' %}</script>
