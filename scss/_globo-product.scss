@@ -1,0 +1,108 @@
+.spf-product-card {
+  .spf-product-card__images-navigation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%) !important;
+    opacity: 1 !important;
+
+    .image-navigation {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      &.prev {
+        left: 0;
+      }
+      &.next {
+        right: 0;
+      }
+    }
+  }
+
+  .spf-product-card__overlay-wrapper {
+    overflow: hidden;
+
+    .product-overlay-action {
+      &-wrapper {
+        height: 18.75%;
+        width: 75%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 101%);
+        display: flex;
+        transition: 0.1s ease-in;
+      }
+
+      &-quicklook {
+        width: 75%;
+        height: 100%;
+        color: white !important;
+        text-decoration: none !important;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.7px;
+      }
+
+      &-form {
+        width: 25%;
+        height: 100%;
+        &-button {
+          border: none;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .spf-product-card__overlay-wrapper:hover,
+  .product-overlay-action-wrapper:hover,
+  .spf-product-card__images-navigation:hover {
+    .product-overlay-action-wrapper {
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+.page-width#Collection {
+  max-width: none;
+}
+
+.spf-product__swatch {
+  border-radius: 50%;
+
+  &.is-selected {
+    border: 1px solid #979797 !important;
+  }
+
+  &-inner {
+    border: none;
+    border-radius: 50%;
+  }
+
+  &-color {
+    width: 14px !important;
+    height: 14px !important;
+    margin: 3px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+  }
+  &-color[style="background-color: #fff"] {
+    border: 1px solid black;
+  }
+}
+
+.collection-product-wrapper {
+  @media only screen and (max-width: "576px") {
+    max-width: 300px !important;
+    margin: auto !important;
+  }
+}
