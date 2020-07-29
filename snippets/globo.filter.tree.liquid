@@ -45,6 +45,8 @@
                           <div>
                           {% if filter.style == 'Checkbox' %}
                             <a translatable{% if child.selected or child.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id}},'{{child.value | replace:"'", "\'" | escape_once}}')" href="javascript:;" title="{{child.label | escape_once}}">{{child.label}}</a>
+                          {% elsif filter.style == 'Radio' %}
+                            <a translatable{% if child.selected or child.value == collection_id %} class="checked"{% endif %} onclick="toggleCheckboxFilter({{filter.id}},'{{child.value | replace:"'", "\'" | escape_once}}')" href="javascript:;" title="{{child.label | escape_once}}">{{child.label}}</a>
                           {% endif %}
                           </div
                         </li>
