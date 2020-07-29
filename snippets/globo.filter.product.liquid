@@ -96,10 +96,10 @@
             </div>
             <div class="spf-product-card__price-wrapper">
               {% if product_compare_at_price > product_price %}
-                <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money }}</span>
-                <span class="spf-product-card__saleprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
+                <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money_without_trailing_zeros }}</span>
+                <span class="spf-product-card__saleprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money_without_trailing_zeros }}</span>
               {% else %}
-                <span class="spf-product-card__price{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
+                <span class="spf-product-card__price{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money_without_trailing_zeros }}</span>
               {% endif %}
             </div>
             
