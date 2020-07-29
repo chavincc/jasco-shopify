@@ -146,7 +146,10 @@
     {%- if settings.enable_ajax -%} {% include 'cart-popup' %} {%- endif -%} {%
     section 'header' %}
 
-    {{ content_for_layout }}
+    <div class= {% if request.path == '/challenge' %} "insert-padding" {%endif%}>
+      {{ content_for_layout }}
+    </div>
+
     {% section 'footer' %}
 
     {% comment %} <div class="page-container drawer-page-content" id="PageContainer">
