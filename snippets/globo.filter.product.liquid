@@ -87,81 +87,82 @@
             </div>
           {% endif %}
         </div>
-          
-          <div class="spf-product__info">
-            <div class="h4 spf-product-card__title">
-              <a translatable href="{{root_url}}{{product.url}}">{{product.title}}</a>
-            </div>
-            
-            <div class="grouping-product-detail">
-              <div class= "sku-product-detail">
-                  <span>{{product.selected_or_first_available_variant.sku}}</span>
-              </div>
-              <div class="grouping-price-wishlist">
-                <div class="spf-product-card__price-wrapper">
-                  {% if product_compare_at_price > product_price %}
-                    <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money }}</span>
-                    <span class="spf-product-card__saleprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
-                  {% else %}
-                    <span class="spf-product-card__price{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
-                  {% endif %}
-                </div>
-                <div class="wishlist-filter-product"> <span >  <!-- include 'wishlist-button-product' with '{{product.id}}' --> </span> </div>
-              </div>
-            </div>
-            {% for option in product.options %}
-              {% assign option_index = 'option' | append: forloop.index %}
-              {% assign option_index_number = forloop.index %}
-              {% assign option_name  = option.name | downcase %}
-              {% if swatch_options contains option_name or text_options contains option_name or image_options contains option_name %}
-              <div class="spf-product__swatchs round">
-                {% for value in option.values %}
-                  {% assign available = false %}
-                  {% assign swatch_image = false %}
-                  {% for variant in product.variants %}
-                    {% if variant[option_index] == value %}
-                      {% if swatch_image == false and variant.image %}
-                        {% assign swatch_image = variant.image.src %}
-                      {% endif %}
-                      {% if variant.available %}
-                        {% assign available = true %}
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                  {% assign option_value  = value | downcase %}
-                  <span data-option="{{option_index_number}}" class="spf-product__swatch{% if selected_or_first_available_variant[option_index] == value %} is-selected{% endif %}" title="{{value | escape}}">
-                    <span translatable class="spf-product__swatch-inner">
-                      {% if image_options contains option_name and swatch_image %}
-                        <span class="spf-product__swatch-image" style="background-image: url('{{ swatch_image | img_url: '24x' }}')"></span>
-                      {% elsif swatch_options contains option_name %}
-                        {% if swatches[option_name] and swatches[option_name][option_value] %}
-                          {% if swatches[option_name][option_value].mode == 1 %}
-                            <span class="spf-product__swatch-color" style="background-color: {{ swatches[option_name][option_value].color_1 }}"></span>
-                          {% elsif swatches[option_name][option_value].mode == 2 %}
-                            <span class="spf-product__swatch-color" style="background-color: {{ swatches[option_name][option_value].color_1 }}"></span>
-                            <span class="spf-product__swatch-color" style="border-right-color: {{ swatches[option_name][option_value].color_2 }}"></span>
-                          {% elsif swatches[option_name][option_value].mode == 3 %}
-                            <span class="spf-product__swatch-image" style="background-image: url('{{ swatches[option_name][option_value].image }}')"></span>
-                          {% endif %}
-                        {% elsif option_name contains 'colo' %}
-                          {% assign value_handle = option_value | handle %}
-                          {% assign value_jpg    = value_handle | append: '.jpg' %}
-                          {% assign value_png    = value_handle | append: '.png' %}
-                          {% assign value_jpeg   = value_handle | append: '.jpeg' %}
-                          <span class="spf-product__swatch-image" style="background-color: {{ option_value | replace:"'", "\'" | escape_once }};{% if images contains value_jpg %}background-image: url('{{ value_jpg | asset_img_url: '50x' | prepend: 'https:' }}'){% elsif images contains value_png %}background-image: url('{{ value_png | asset_img_url: '50x' | prepend: 'https:' }}'){% elsif images contains value_jpeg %}background-image: url('{{ value_jpeg | asset_img_url: '50x' | prepend: 'https:' }}'){% endif %}"></span>
-                        {% else %}
-                          <span class="spf-product__swatch-text">{{value}}</span>
-                        {% endif %}
-                      {% else %}
-                        <span class="spf-product__swatch-text">{{value}}</span>
-                      {% endif %}
-                    </span>
-                  </span>
-                {% endfor %}
-              </div>
+      </div>
+         
+      <div class="spf-product__info">
+        <div class="h4 spf-product-card__title">
+          <a translatable href="{{root_url}}{{product.url}}">{{product.title}}</a>
+        </div>
+        
+        <div class="grouping-product-detail">
+          <div class= "sku-product-detail">
+              <span>{{product.selected_or_first_available_variant.sku}}</span>
+          </div>
+          <div class="grouping-price-wishlist">
+            <div class="spf-product-card__price-wrapper">
+              {% if product_compare_at_price > product_price %}
+                <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money }}</span>
+                <span class="spf-product-card__saleprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
+              {% else %}
+                <span class="spf-product-card__price{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
               {% endif %}
-            {% endfor %}
+            </div>
+            <div class="wishlist-filter-product"> <span >  <!-- include 'wishlist-button-product' with '{{product.id}}' --> </span> </div>
           </div>
         </div>
+        {% for option in product.options %}
+          {% assign option_index = 'option' | append: forloop.index %}
+          {% assign option_index_number = forloop.index %}
+          {% assign option_name  = option.name | downcase %}
+          {% if swatch_options contains option_name or text_options contains option_name or image_options contains option_name %}
+          <div class="spf-product__swatchs round">
+            {% for value in option.values %}
+              {% assign available = false %}
+              {% assign swatch_image = false %}
+              {% for variant in product.variants %}
+                {% if variant[option_index] == value %}
+                  {% if swatch_image == false and variant.image %}
+                    {% assign swatch_image = variant.image.src %}
+                  {% endif %}
+                  {% if variant.available %}
+                    {% assign available = true %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% assign option_value  = value | downcase %}
+              <span data-option="{{option_index_number}}" class="spf-product__swatch{% if selected_or_first_available_variant[option_index] == value %} is-selected{% endif %}" title="{{value | escape}}">
+                <span translatable class="spf-product__swatch-inner">
+                  {% if image_options contains option_name and swatch_image %}
+                    <span class="spf-product__swatch-image" style="background-image: url('{{ swatch_image | img_url: '24x' }}')"></span>
+                  {% elsif swatch_options contains option_name %}
+                    {% if swatches[option_name] and swatches[option_name][option_value] %}
+                      {% if swatches[option_name][option_value].mode == 1 %}
+                        <span class="spf-product__swatch-color" style="background-color: {{ swatches[option_name][option_value].color_1 }}"></span>
+                      {% elsif swatches[option_name][option_value].mode == 2 %}
+                        <span class="spf-product__swatch-color" style="background-color: {{ swatches[option_name][option_value].color_1 }}"></span>
+                        <span class="spf-product__swatch-color" style="border-right-color: {{ swatches[option_name][option_value].color_2 }}"></span>
+                      {% elsif swatches[option_name][option_value].mode == 3 %}
+                        <span class="spf-product__swatch-image" style="background-image: url('{{ swatches[option_name][option_value].image }}')"></span>
+                      {% endif %}
+                    {% elsif option_name contains 'colo' %}
+                      {% assign value_handle = option_value | handle %}
+                      {% assign value_jpg    = value_handle | append: '.jpg' %}
+                      {% assign value_png    = value_handle | append: '.png' %}
+                      {% assign value_jpeg   = value_handle | append: '.jpeg' %}
+                      <span class="spf-product__swatch-image" style="background-color: {{ option_value | replace:"'", "\'" | escape_once }};{% if images contains value_jpg %}background-image: url('{{ value_jpg | asset_img_url: '50x' | prepend: 'https:' }}'){% elsif images contains value_png %}background-image: url('{{ value_png | asset_img_url: '50x' | prepend: 'https:' }}'){% elsif images contains value_jpeg %}background-image: url('{{ value_jpeg | asset_img_url: '50x' | prepend: 'https:' }}'){% endif %}"></span>
+                    {% else %}
+                      <span class="spf-product__swatch-text">{{value}}</span>
+                    {% endif %}
+                  {% else %}
+                    <span class="spf-product__swatch-text">{{value}}</span>
+                  {% endif %}
+                </span>
+              </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        {% endfor %}
       </div>
-    {% endraw %}
+    </div>
+  </div>
+{% endraw %}
