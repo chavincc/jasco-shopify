@@ -12,6 +12,7 @@
     width: 100%;
     display: inline-flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     .sku-product-detail{
         width: 120px;
         display:flex;
@@ -20,25 +21,32 @@
         letter-spacing: 0.84px;
         color: #000000;
     }
-    .spf-product-card__price-wrapper{
-        span{
-            font-family: Thonburi;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 18.9px;
-            line-height: 26px;
-            letter-spacing: 1.134px;
-            color: #000000;
+    .grouping-price-wishlist{
+        display: inline-flex;
+        .spf-product-card__price-wrapper{
+            span{
+                font-family: Thonburi;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 18.9px;
+                color: #000000;
+            }
+        }
+        .wishlist-filter-product{
+            display: flex;
+            #wishlist-product-detail {
+                border: none; 
+                height: 0; 
+                margin: 0px !important;
+                padding: 0 25px;
+            }
         }
     }
-    .wishlist-filter-product{
-        display: flex;
-        #wishlist-product-detail {
-            border: none; 
-            height: 0; 
-            margin: 0px !important;
-            padding: 0 25px;
-        }
-    }
+    
 }
 
+.collection-header{
+    .page-width{
+        padding-bottom: 0;
+    }
+}

@@ -78,20 +78,21 @@
             <div class="h4 spf-product-card__title">
               <a translatable href="{{root_url}}{{product.url}}">{{product.title}}</a>
             </div>
-            
             <div class="grouping-product-detail">
               <div class= "sku-product-detail">
                   <span>{{product.selected_or_first_available_variant.sku}}</span>
               </div>
-              <div class="spf-product-card__price-wrapper">
-                {% if product_compare_at_price > product_price %}
-                  <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money }}</span>
-                  <span class="spf-product-card__saleprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
-                {% else %}
-                  <span class="spf-product-card__price{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
-                {% endif %}
-              </div>
-              <div class="wishlist-filter-product"> <span >  <!-- include 'wishlist-button-product' with '{{product.id}}' --> </span> </div>
+              <div class="grouping-price-wishlist">
+                <div class="spf-product-card__price-wrapper">
+                  {% if product_compare_at_price > product_price %}
+                    <span class="spf-product-card__oldprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_compare_at_price | money }}</span>
+                    <span class="spf-product-card__saleprice{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
+                  {% else %}
+                    <span class="spf-product-card__price{% unless currencyFormat contains 'money' %} money{% endunless %}">{{ product_price | money }}</span>
+                  {% endif %}
+                </div>
+                <div class="wishlist-filter-product"> <span >  <!-- include 'wishlist-button-product' with '{{product.id}}' --> </span> </div>
+                </div>
             </div>
             {% for option in product.options %}
               {% assign option_index = 'option' | append: forloop.index %}
