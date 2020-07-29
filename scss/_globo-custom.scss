@@ -105,6 +105,7 @@
     }
   }
   .sort-by {
+    background-color: transparent !important;
     label {
       color: #878a9d;
       font-size: 14px;
@@ -117,12 +118,13 @@
     }
   }
   .sort-by:before {
-    background-color: none;
+    background: none !important;
   }
   #grouping-sort-by {
     width: 444px;
     display: flex;
     flex-wrap: wrap;
+    
   }
   .gf-refine-toggle-mobile {
     margin-top: 30px;
@@ -131,6 +133,13 @@
     span {
       color: black !important;
     }
+  }
+  .sortby-select{
+    border: 0.4px solid #000 !important;
+  }
+  .filter-icon::before{
+    content: "\2630" !important;
+    padding-right: 10px;
   }
 }
 @media only screen and (max-width: 1178px) {
