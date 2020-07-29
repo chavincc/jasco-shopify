@@ -37,7 +37,7 @@
     {% endfor %}
   {% endif %}
 
-  <div class="spf-col-xl-4 spf-col-lg-4 spf-col-md-6 spf-col-sm-6 spf-col-6">
+  <div class="collection-product-wrapper spf-col-xl-4 spf-col-lg-4 spf-col-md-6 spf-col-sm-6 spf-col-12">
     <div class="spf-product-card spf-product-card__template-2{% unless product.available %} spf-soldout{% endunless %}">
       <div class="spf-product-card__inner">
         {% unless product.available %}
@@ -47,37 +47,52 @@
           -{{ product_compare_at_price | minus: product_price | times: 100.0 | divided_by: product_compare_at_price | round }}%                          </span>
         {% endunless %}
 
-        <a class="spf-product-card__image-wrapper" href="{{root_url}}{{product.url}}" style="padding-top:100%; padding-top:100%;">
-          {% if images_count > 0 %}
-            {% for image in product.images %}
-              <img
-                data-variants="{{image.variant_ids | join: ','}}"
-                class="gflazyload spf-product-card__image spf-product-card__image-{% if featured_image.id == image.id %}main{% elsif forloop.index == second_image_index %}secondary{% else %}hidden{% endif %}"
-                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                src="{{image.src | img_url: image_size}}"
-                data-src="{{image.src | img_lazyload_url}}"
-                data-sizes="auto"
-                data-aspectratio="{{image.aspect_ratio}}"
-                data-parent-fit="contain"
-                alt="{{image.alt | escape}}"
-              />
-            {% endfor %}
-          {% else %}
-              <img data-variants="" class="spf-product-card__image spf-product-card__image-main" src="{{no_image}}" alt="{{product.title | escape}}">
-          {% endif %}
-        </a>
-            {% if images_count > 1 %}
+        <div class="spf-product-card__overlay-wrapper">
+          <div class="spf-product-card__image-wrapper" style="padding-top:100%; padding-top:100%;">
+            {% if images_count > 0 %}
+              {% for image in product.images %}
+                <img
+                  data-variants="{{image.variant_ids | join: ','}}"
+                  class="gflazyload spf-product-card__image spf-product-card__image-{% if featured_image.id == image.id %}main{% elsif forloop.index == second_image_index %}secondary{% else %}hidden{% endif %}"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  src="{{image.src | img_url: image_size}}"
+                  data-src="{{image.src | img_lazyload_url}}"
+                  data-sizes="auto"
+                  data-aspectratio="{{image.aspect_ratio}}"
+                  data-parent-fit="contain"
+                  alt="{{image.alt | escape}}"
+                />
+              {% endfor %}
+            {% else %}
+                <img data-variants="" class="spf-product-card__image spf-product-card__image-main" src="{{no_image}}" alt="{{product.title | escape}}">
+            {% endif %}
+          </div>
+          <div class="product-overlay-action-wrapper">
+            <a class="product-overlay-action-quicklook text-uppercase" href="{{root_url}}{{product.url}}">quick look</a>
+            <form class="product-overlay-action-form" action="/cart/add" method="post">
+              <select name="id" class="spf-product__variants">
+                {% for variant in product.variants %}
+                  <option data-option1="{{variant.option1 | escape}}" data-option2="{{variant.option2 | escape}}" data-option3="{{variant.option3 | escape}}" data-price="{{variant.price}}" data-compare_at_price="{{variant.compare_at_price}}" data-available="{{variant.available}}" data-image="{% if variant.image.src %}{{variant.image.src | img_url: image_size }}{% endif %}" {% if variant.id == selected_or_first_available_variant.id %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }}</option>
+                {% endfor %}
+              </select>
+              <button class="product-overlay-action-form-button" translatable {% unless product.available %}disabled{% endunless %} type="submit" data-available="ADD TO CART" data-soldout="Sold out" data-unavailable="Unavailable">
+                <img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}>
+              </button>
+            </form>
+          </div>
+          {% if images_count > 1 %}
             <div class="spf-product-card__images-navigation">
               <span class="image-navigation prev"><svg width="25" height="25" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg></span>
               <span class="image-navigation next"><svg width="25" height="25" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
             </div>
-            {% endif %}
-          </div>
+          {% endif %}
+        </div>
           
           <div class="spf-product__info">
             <div class="h4 spf-product-card__title">
               <a translatable href="{{root_url}}{{product.url}}">{{product.title}}</a>
             </div>
+            
             <div class="grouping-product-detail">
               <div class= "sku-product-detail">
                   <span>{{product.selected_or_first_available_variant.sku}}</span>
@@ -92,7 +107,7 @@
                   {% endif %}
                 </div>
                 <div class="wishlist-filter-product"> <span >  <!-- include 'wishlist-button-product' with '{{product.id}}' --> </span> </div>
-                </div>
+              </div>
             </div>
             {% for option in product.options %}
               {% assign option_index = 'option' | append: forloop.index %}
@@ -147,16 +162,6 @@
               {% endif %}
             {% endfor %}
           </div>
-          
-          <form class="spf-product__form" action="/cart/add" method="post">
-            <select name="id" class="spf-product__variants">
-              {% for variant in product.variants %}
-                <option data-option1="{{variant.option1 | escape}}" data-option2="{{variant.option2 | escape}}" data-option3="{{variant.option3 | escape}}" data-price="{{variant.price}}" data-compare_at_price="{{variant.compare_at_price}}" data-available="{{variant.available}}" data-image="{% if variant.image.src %}{{variant.image.src | img_url: image_size }}{% endif %}" {% if variant.id == selected_or_first_available_variant.id %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }}</option>
-              {% endfor %}
-            </select>
-            <button translatable {% unless product.available %}disabled{% endunless %} type="submit" class="spf-product__form-btn-addtocart" data-available="ADD TO CART" data-soldout="Sold out" data-unavailable="Unavailable"><i class="fa fa-shopping-bag" aria-hidden="true"></i><span>{% if product.available %}ADD TO CART{% else %}Sold out{% endif %}</span></button>
-          </form>
-
         </div>
       </div>
-      {% endraw %}
+    {% endraw %}
