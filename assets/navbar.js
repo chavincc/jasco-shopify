@@ -50,6 +50,9 @@ stickyMenu = () => {
 };
 
 setTabNavbar = (current_page) => {
+  if (current_page === "CONTACT US") {
+    current_page = "CONTACT  US";
+  }
   for (i = 0; i < PAGE.length; i++) {
     if (current_page === PAGE[i].text) {
       PAGE[i].style.fontWeight = "bold";

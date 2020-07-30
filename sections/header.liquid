@@ -28,10 +28,7 @@
                   {% elsif head_menu == 'CART'%}
                     <img id= "icon" src= {{ iconTitle | asset_url }}/> 
                     <a href="{{routes.cart_url }}" >{{ head_menu }}</a>
-                    {% if cart.item_count != 0 %}
-                      <div class="circle" data-cart-count ><p>{{ cart.item_count }}</p></div>
-                    {% endif %} 
-                     
+                    <div id="CartCount" class="circle {% if cart.item_count == 0 %} hide {%endif%}" data-cart-count-bubble><p data-cart-count>{{ cart.item_count }}</p></div>
                   {% elsif head_menu == 'WISHLIST' %}
                     <!-- include 'wishlist-link' -->
                   {% else %}
@@ -91,7 +88,7 @@
                       {% assign width_str = 100 | divided_by: number_menu  | append: '%' %}
                       {% for link in linklists[section.settings.main_linklist].links %}
                         <li style= "width:{{width_str}}">
-                          <a href="{{ link.url }}">{{ link.title }}</a>
+                          <a href="{{ link.url }}">{{link.title}}</a>
                         </li>
                       {% endfor %}
                     </ul>
@@ -176,6 +173,7 @@
 </header>
 
 <script> 
+  var current_cart_item = "{{cart.item_count}}";
   var current_page = "{{ page.title  | upcase }}" ; 
   var url_language = "{{canonical_url}}" ; 
 </script>
