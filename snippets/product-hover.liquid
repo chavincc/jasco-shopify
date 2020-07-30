@@ -22,7 +22,7 @@
                                 <div class="row">    
                                     {% for col in (1..col_product) %}
                                             {% if child_num == 0 %}
-                                                <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
+                                                <div class="pl-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
                                                 <ul class="list-inline" id="front-of-house-actions">
                                                     {% for grandchild_link in child_link.links limit: 4 %} 
                                                         <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title  }}</a></li>
@@ -30,7 +30,7 @@
                                                 </ul>
                                                 </div>
                                             {% elsif child_num == 1 %}
-                                                <div class="pr-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
+                                                <div class="pl-0 col-md-6 col-sm-6 col-xs-1 d-flex justify-content-start">
                                                     <ul class="list-inline" id="front-of-house-actions">
                                                         {% for grandchild_link in child_link.links offset: 4 %} 
                                                             <li><a href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
