@@ -206,7 +206,7 @@ const primaryShowcase = document.getElementById(
 );
 let primaryScroll = 0;
 let primaryTicking = false;
-if (BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size > 4) {
+if (allSlider.product.loopSize > 4) {
   primaryShowcase.addEventListener("scroll", function (e) {
     primaryScroll = primaryShowcaseJquery.scrollLeft();
     if (!primaryTicking) {
@@ -229,7 +229,7 @@ const secondaryShowcase = document.getElementById(
 );
 let secondaryScroll = 0;
 let secondaryTicking = false;
-if (BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size > 4) {
+if (allSlider.secondaryProduct.loopSize > 4) {
   secondaryShowcase.addEventListener("scroll", function (e) {
     secondaryScroll = secondaryShowcaseJquery.scrollLeft();
     if (!secondaryTicking) {
