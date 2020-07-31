@@ -96,6 +96,10 @@
   }
 }
 
+.page-width#Collection {
+  max-width: none;
+}
+
 .collection-product-wrapper {
   @media only screen and (max-width: "576px") {
     max-width: 300px !important;
