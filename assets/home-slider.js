@@ -38,6 +38,9 @@ const allSlider = {
   },
 };
 
+let usingArrowNavigation = false;
+let arrowNavigationCleanup;
+
 const PRIMARY_TAB_BUTTON_ID = "#home-primary-collection-tab-btn";
 const SECONDARY_TAB_BUTTON_ID = "#home-secondary-collection-tab-btn";
 const BEST_SELLERS_HEADER_ID = "#best-sellers-header";
@@ -81,6 +84,11 @@ $(document).ready(function () {
 // SLIDE ARROW NAVIGATION -----------------------------------------
 Object.keys(allSlider).forEach((slider) => {
   $(allSlider[slider].prevButtonId).click(() => {
+    usingArrowNavigation = true;
+    clearTimeout(arrowNavigationCleanup);
+    arrowNavigationCleanup = setTimeout(() => {
+      usingArrowNavigation = false;
+    }, 1000);
     const current = $(allSlider[slider].showcaseId).scrollLeft();
     $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(
@@ -89,6 +97,11 @@ Object.keys(allSlider).forEach((slider) => {
     $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
   $(allSlider[slider].nextButtonId).click(() => {
+    usingArrowNavigation = true;
+    clearTimeout(arrowNavigationCleanup);
+    arrowNavigationCleanup = setTimeout(() => {
+      usingArrowNavigation = false;
+    }, 1000);
     const current = $(allSlider[slider].showcaseId).scrollLeft();
     $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(
@@ -140,7 +153,18 @@ let last_known_scroll_position = 0;
 let ticking = false;
 
 function doSomething(scroll_pos) {
-  console.log(scroll_pos);
+  console.log(usingArrowNavigation);
+  if (!usingArrowNavigation) {
+    const { loop } = allSlider.product;
+    const current = j_test.scrollLeft();
+    if (scroll_pos > loop * 4) {
+      j_test.scrollLeft(current - loop);
+      console.log("!magic");
+    } else if (scroll_pos < loop) {
+      j_test.scrollLeft(current + loop);
+      console.log("!magic");
+    }
+  }
 }
 
 test.addEventListener("scroll", function (e) {
