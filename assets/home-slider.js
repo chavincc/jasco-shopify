@@ -17,6 +17,8 @@ const allSlider = {
     wrapperId: "#product-switch-wrapper",
     fallbackId: "#product-switch-wrapper-fallback",
     slot: PRODUCT_SLOT,
+    loop: PRODUCT_SLOT * BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size,
+    loopSize: BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size,
   },
   secondaryProduct: {
     prevButtonId: "#secondary-product-switch-prev",
@@ -25,6 +27,8 @@ const allSlider = {
     wrapperId: "#secondary-product-switch-wrapper",
     fallbackId: "#secondary-product-switch-wrapper-fallback",
     slot: PRODUCT_SLOT,
+    loop: PRODUCT_SLOT * BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size,
+    loopSize: BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size,
   },
   slider: {
     prevButtonId: "#article-switch-prev",
@@ -36,24 +40,56 @@ const allSlider = {
   },
 };
 
+let usingArrowNavigation = false;
+let arrowNavigationCleanup;
+
 const PRIMARY_TAB_BUTTON_ID = "#home-primary-collection-tab-btn";
 const SECONDARY_TAB_BUTTON_ID = "#home-secondary-collection-tab-btn";
 const BEST_SELLERS_HEADER_ID = "#best-sellers-header";
 const BEST_SELLERS_SUBHEADER_ID = "#best-sellers-subheader";
 
-const modulateSlotForward = (current = 0, screenWidth = 0, oneSlot = 0) => {
+const modulateSlotForward = (
+  current = 0,
+  screenWidth = 0,
+  oneSlot = 0,
+  loop = 0,
+  showcaseId = "#",
+  loopSize = 0
+) => {
   const previousSlot = Math.floor(current / oneSlot) * oneSlot;
   const excessSpace = current - previousSlot;
   const totalPixel =
     oneSlot * (Math.floor(screenWidth / oneSlot) - 1) - excessSpace;
-  return current + (totalPixel > 0 ? totalPixel : oneSlot - excessSpace);
+  let newCurrent =
+    current + (totalPixel > 0 ? totalPixel : oneSlot - excessSpace);
+  if (loopSize > 4 && newCurrent > loop * 4) {
+    $(showcaseId).scrollLeft(current - loop);
+    newCurrent -= loop;
+  }
+  return newCurrent;
 };
 
-const modulateSlotBackward = (current = 0, screenWidth = 0, oneSlot = 0) => {
+const modulateSlotBackward = (
+  current = 0,
+  screenWidth = 0,
+  oneSlot = 0,
+  loop = 0,
+  showcaseId = "#",
+  loopSize = 0
+) => {
   const previousSlot = Math.floor(current / oneSlot) * oneSlot;
   const totalSlotMovement = (Math.floor(screenWidth / oneSlot) - 1) * oneSlot;
-  if (previousSlot !== current) return previousSlot;
-  else return current - (totalSlotMovement <= 0 ? oneSlot : totalSlotMovement);
+  let newCurrent;
+  if (previousSlot !== current) newCurrent = previousSlot;
+  else
+    newCurrent =
+      current - (totalSlotMovement <= 0 ? oneSlot : totalSlotMovement);
+
+  if (loopSize > 4 && newCurrent < loop) {
+    $(showcaseId).scrollLeft(current + loop);
+    newCurrent += loop;
+  }
+  return newCurrent;
 };
 
 // ON DOCUMENT READY
@@ -62,7 +98,7 @@ $(document).ready(function () {
   const breakSmall = 576;
   if (window.innerWidth > breakSmall)
     $(allSlider.product.showcaseId).scrollLeft(
-      modulateSlotForward(0, window.innerWidth, PRODUCT_SLOT)
+      modulateSlotForward(0, window.innerWidth, allSlider.product.loop * 2)
     );
 
   // INITIALIZE TAB
@@ -72,16 +108,42 @@ $(document).ready(function () {
 // SLIDE ARROW NAVIGATION -----------------------------------------
 Object.keys(allSlider).forEach((slider) => {
   $(allSlider[slider].prevButtonId).click(() => {
+    usingArrowNavigation = true;
+    clearTimeout(arrowNavigationCleanup);
+    arrowNavigationCleanup = setTimeout(() => {
+      usingArrowNavigation = false;
+    }, 1000);
     const current = $(allSlider[slider].showcaseId).scrollLeft();
-    $(allSlider[slider].showcaseId).scrollLeft(
-      modulateSlotBackward(current, window.innerWidth, allSlider[slider].slot)
+    const newCurrent = modulateSlotBackward(
+      current,
+      window.innerWidth,
+      allSlider[slider].slot,
+      allSlider[slider].loop,
+      allSlider[slider].showcaseId,
+      allSlider[slider].loopSize
     );
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
+    $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
   $(allSlider[slider].nextButtonId).click(() => {
+    usingArrowNavigation = true;
+    clearTimeout(arrowNavigationCleanup);
+    arrowNavigationCleanup = setTimeout(() => {
+      usingArrowNavigation = false;
+    }, 1000);
     const current = $(allSlider[slider].showcaseId).scrollLeft();
-    $(allSlider[slider].showcaseId).scrollLeft(
-      modulateSlotForward(current, window.innerWidth, allSlider[slider].slot)
+    const newCurrent = modulateSlotForward(
+      current,
+      window.innerWidth,
+      allSlider[slider].slot,
+      allSlider[slider].loop,
+      allSlider[slider].showcaseId,
+      allSlider[slider].loopSize
     );
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
+    $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
 });
 
@@ -93,8 +155,14 @@ const hideSlider = (sliderObject) => {
 const showSlider = (sliderObject) => {
   $(sliderObject.showcaseId).css("display", "flex");
   $(sliderObject.wrapperId).css("display", "block");
+  $(sliderObject.showcaseId).scrollLeft(
+    modulateSlotForward(
+      0,
+      window.innerWidth,
+      allSlider.secondaryProduct.loop * 2
+    )
+  );
 };
-
 $(SECONDARY_TAB_BUTTON_ID).click(() => {
   hideSlider(allSlider.product);
   showSlider(allSlider.secondaryProduct);
@@ -107,7 +175,6 @@ $(SECONDARY_TAB_BUTTON_ID).click(() => {
     BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.description
   );
 });
-
 $(PRIMARY_TAB_BUTTON_ID).click(() => {
   hideSlider(allSlider.secondaryProduct);
   showSlider(allSlider.product);
@@ -120,3 +187,61 @@ $(PRIMARY_TAB_BUTTON_ID).click(() => {
     BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.description
   );
 });
+
+// TOUCH DEVICE INFINITE SCROLL (BY RELOCATION)
+function touchDeviceInfiniteRelocation(scroll_pos, showcase, loop) {
+  if (!usingArrowNavigation) {
+    const current = showcase.scrollLeft();
+    if (scroll_pos > loop * 4) {
+      showcase.scrollLeft(current - loop);
+    } else if (scroll_pos < loop) {
+      showcase.scrollLeft(current + loop);
+    }
+  }
+}
+
+const primaryShowcaseJquery = $("#best-sellers-product-showcase");
+const primaryShowcase = document.getElementById(
+  "best-sellers-product-showcase"
+);
+let primaryScroll = 0;
+let primaryTicking = false;
+if (allSlider.product.loopSize > 4) {
+  primaryShowcase.addEventListener("scroll", function (e) {
+    primaryScroll = primaryShowcaseJquery.scrollLeft();
+    if (!primaryTicking) {
+      window.requestAnimationFrame(function () {
+        touchDeviceInfiniteRelocation(
+          primaryScroll,
+          primaryShowcaseJquery,
+          allSlider.product.loop
+        );
+        primaryTicking = false;
+      });
+      primaryTicking = true;
+    }
+  });
+}
+
+const secondaryShowcaseJquery = $("#new-arrival-product-showcase");
+const secondaryShowcase = document.getElementById(
+  "new-arrival-product-showcase"
+);
+let secondaryScroll = 0;
+let secondaryTicking = false;
+if (allSlider.secondaryProduct.loopSize > 4) {
+  secondaryShowcase.addEventListener("scroll", function (e) {
+    secondaryScroll = secondaryShowcaseJquery.scrollLeft();
+    if (!secondaryTicking) {
+      window.requestAnimationFrame(function () {
+        touchDeviceInfiniteRelocation(
+          secondaryScroll,
+          secondaryShowcaseJquery,
+          allSlider.secondaryProduct.loop
+        );
+        secondaryTicking = false;
+      });
+      secondaryTicking = true;
+    }
+  });
+}
