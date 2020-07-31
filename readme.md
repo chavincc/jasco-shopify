@@ -16,4 +16,3 @@
 
 #### WORKING CONVENTION
 * not strictly forced to use https://www.conventionalcommits.org/en/v1.0.0/ but recommended when able to do so
-* https://docs.google.com/document/d/1P_DI2YZEcvvGJXCru014JI371H2aPSRryhjdqgZMjWk/edit
