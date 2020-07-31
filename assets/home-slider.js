@@ -17,6 +17,7 @@ const allSlider = {
     wrapperId: "#product-switch-wrapper",
     fallbackId: "#product-switch-wrapper-fallback",
     slot: PRODUCT_SLOT,
+    loop: PRODUCT_SLOT * BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size,
   },
   secondaryProduct: {
     prevButtonId: "#secondary-product-switch-prev",
@@ -25,6 +26,7 @@ const allSlider = {
     wrapperId: "#secondary-product-switch-wrapper",
     fallbackId: "#secondary-product-switch-wrapper-fallback",
     slot: PRODUCT_SLOT,
+    loop: PRODUCT_SLOT * BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size,
   },
   slider: {
     prevButtonId: "#article-switch-prev",
@@ -62,8 +64,15 @@ $(document).ready(function () {
   const breakSmall = 576;
   if (window.innerWidth > breakSmall)
     $(allSlider.product.showcaseId).scrollLeft(
-      modulateSlotForward(0, window.innerWidth, PRODUCT_SLOT)
+      modulateSlotForward(0, window.innerWidth, allSlider.product.loop * 2)
     );
+  $(allSlider.secondaryProduct.showcaseId).scrollLeft(
+    modulateSlotForward(
+      0,
+      window.innerWidth,
+      allSlider.secondaryProduct.loop * 2
+    )
+  );
 
   // INITIALIZE TAB
   hideSlider(allSlider.secondaryProduct);
@@ -73,15 +82,19 @@ $(document).ready(function () {
 Object.keys(allSlider).forEach((slider) => {
   $(allSlider[slider].prevButtonId).click(() => {
     const current = $(allSlider[slider].showcaseId).scrollLeft();
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(
       modulateSlotBackward(current, window.innerWidth, allSlider[slider].slot)
     );
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
   $(allSlider[slider].nextButtonId).click(() => {
     const current = $(allSlider[slider].showcaseId).scrollLeft();
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(
       modulateSlotForward(current, window.innerWidth, allSlider[slider].slot)
     );
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
 });
 
@@ -119,4 +132,26 @@ $(PRIMARY_TAB_BUTTON_ID).click(() => {
   $(BEST_SELLERS_SUBHEADER_ID).text(
     BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.description
   );
+});
+
+const j_test = $("#best-sellers-product-showcase");
+const test = document.getElementById("best-sellers-product-showcase");
+let last_known_scroll_position = 0;
+let ticking = false;
+
+function doSomething(scroll_pos) {
+  console.log(scroll_pos);
+}
+
+test.addEventListener("scroll", function (e) {
+  last_known_scroll_position = j_test.scrollLeft();
+
+  if (!ticking) {
+    window.requestAnimationFrame(function () {
+      doSomething(last_known_scroll_position);
+      ticking = false;
+    });
+
+    ticking = true;
+  }
 });

@@ -35,47 +35,49 @@
   <div class="row full-width no-scroll-bar pb-4" id="best-sellers-carousel">
     <div class="carousel" id="best-sellers-product-showcase">
       <div class="product-filler"></div>
-      {% for item in primary_collection.products %} {% assign
-      current_variant = item.selected_or_first_available_variant %}
-      <div class="product p-2 pt-5">
-        <div class="product-img mb-3">
-          {% if item.variants.size > 1 %} <img src={{
-            current_variant | img_url: "master"
-          }}/> {% else %} <img src={{ item | img_url: "master" }}/> {% endif %}
-          <div class="product-add-to-cart-popup">
-            <a href="{{ item.url }}">
-              <div class="product-add-to-cart-popup-text text-uppercase">
-                quick look
+      {% for i in (0..4) %}
+        {% for item in primary_collection.products %} {% assign
+        current_variant = item.selected_or_first_available_variant %}
+        <div class="product p-2 pt-5">
+          <div class="product-img mb-3">
+            {% if item.variants.size > 1 %} <img src={{
+              current_variant | img_url: "master"
+            }}/> {% else %} <img src={{ item | img_url: "master" }}/> {% endif %}
+            <div class="product-add-to-cart-popup">
+              <a href="{{ item.url }}">
+                <div class="product-add-to-cart-popup-text text-uppercase">
+                  quick look
+                </div>
+              </a>
+              <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
+                <input type="hidden" name="id" value="{{ current_variant.id }}" />
+                <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+                <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
+              </form>
+            </div>
+          </div>
+          <div class="product-text-wrapper mx-1">
+            <div class="row pb-3 product-name-wrapper">
+              <div class="col-12 product-name text-capitalize">
+                {{ item.title }}
               </div>
-            </a>
-            <form class="product-add-to-cart-popup-icon" method="post" action="/cart/add">
-              <input type="hidden" name="id" value="{{ current_variant.id }}" />
-              <input type="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
-              <button type="submit"><img src={{ "home-best-sellers-img-icon-shopping-bag.svg" | asset_url }}/></button>
-            </form>
-          </div>
-        </div>
-        <div class="product-text-wrapper mx-1">
-          <div class="row pb-3 product-name-wrapper">
-            <div class="col-12 product-name text-capitalize">
-              {{ item.title }}
             </div>
-          </div>
-          <div class="row product-meta mb-4 d-flex align-items-center">
-            <div class="product-id col-4">
-              {{ current_variant.sku }}
-            </div>
-            <div class="product-price col-5 text-right">
-              {{ item.price | money_without_trailing_zeros }}
-            </div>
-            <div class="wishlist-container col-3 d-flex justify-content-end">
-              <img src={{
-                "home-best-sellers-img-icon-heart.svg" | asset_url
-              }}/>
+            <div class="row product-meta mb-4 d-flex align-items-center">
+              <div class="product-id col-4">
+                {{ current_variant.sku }}
+              </div>
+              <div class="product-price col-5 text-right">
+                {{ item.price | money_without_trailing_zeros }}
+              </div>
+              <div class="wishlist-container col-3 d-flex justify-content-end">
+                <img src={{
+                  "home-best-sellers-img-icon-heart.svg" | asset_url
+                }}/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        {% endfor %}
       {% endfor %}
     </div>
     <div
@@ -192,11 +194,13 @@
   var BEST_SELLERS_LIQUID_VARIABLE = {
     primaryCollection: {
       title: "{{ primary_collection.title }}",
-      description: "{{ primary_collection.description }}"
+      description: "{{ primary_collection.description }}",
+      size: "{{ primary_collection.products_count }}"
     },
     secondaryCollection: {
       title: "{{ secondary_collection.title }}",
-      description: "{{ secondary_collection.description }}"
+      description: "{{ secondary_collection.description }}",
+      size: "{{ secondary_collection.products_count }}"
     }
   }
 </script>
