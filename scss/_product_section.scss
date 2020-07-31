@@ -37,7 +37,7 @@
       text-align: center;
       color: white;
       position: absolute;
-      bottom: 11%;
+      bottom: 7%;
       left: 50%;
       transform: translate(-48%, -50%);
     }
@@ -144,6 +144,10 @@
   text-transform: uppercase;
   transform: translate(-50%, -50%);
   p {
+    padding-top: 30px;
+    @media only screen and (max-width: 900px) and (min-width: $break-medium) {
+      padding-top: 0;
+    }
     font-family:"Plantin MT Pro" !important;
     line-height: 58px;
     color: white;
