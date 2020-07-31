@@ -18,6 +18,7 @@ const allSlider = {
     fallbackId: "#product-switch-wrapper-fallback",
     slot: PRODUCT_SLOT,
     loop: PRODUCT_SLOT * BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size,
+    loopSize: BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size,
   },
   secondaryProduct: {
     prevButtonId: "#secondary-product-switch-prev",
@@ -27,6 +28,7 @@ const allSlider = {
     fallbackId: "#secondary-product-switch-wrapper-fallback",
     slot: PRODUCT_SLOT,
     loop: PRODUCT_SLOT * BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size,
+    loopSize: BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size,
   },
   slider: {
     prevButtonId: "#article-switch-prev",
@@ -51,7 +53,8 @@ const modulateSlotForward = (
   screenWidth = 0,
   oneSlot = 0,
   loop = 0,
-  showcaseId = "#"
+  showcaseId = "#",
+  loopSize = 0
 ) => {
   const previousSlot = Math.floor(current / oneSlot) * oneSlot;
   const excessSpace = current - previousSlot;
@@ -59,7 +62,7 @@ const modulateSlotForward = (
     oneSlot * (Math.floor(screenWidth / oneSlot) - 1) - excessSpace;
   let newCurrent =
     current + (totalPixel > 0 ? totalPixel : oneSlot - excessSpace);
-  if (newCurrent > loop * 4) {
+  if (loopSize > 4 && newCurrent > loop * 4) {
     $(showcaseId).scrollLeft(current - loop);
     newCurrent -= loop;
   }
@@ -71,7 +74,8 @@ const modulateSlotBackward = (
   screenWidth = 0,
   oneSlot = 0,
   loop = 0,
-  showcaseId = "#"
+  showcaseId = "#",
+  loopSize = 0
 ) => {
   const previousSlot = Math.floor(current / oneSlot) * oneSlot;
   const totalSlotMovement = (Math.floor(screenWidth / oneSlot) - 1) * oneSlot;
@@ -81,7 +85,7 @@ const modulateSlotBackward = (
     newCurrent =
       current - (totalSlotMovement <= 0 ? oneSlot : totalSlotMovement);
 
-  if (newCurrent < loop) {
+  if (loopSize > 4 && newCurrent < loop) {
     $(showcaseId).scrollLeft(current + loop);
     newCurrent += loop;
   }
@@ -115,7 +119,8 @@ Object.keys(allSlider).forEach((slider) => {
       window.innerWidth,
       allSlider[slider].slot,
       allSlider[slider].loop,
-      allSlider[slider].showcaseId
+      allSlider[slider].showcaseId,
+      allSlider[slider].loopSize
     );
     $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
@@ -133,7 +138,8 @@ Object.keys(allSlider).forEach((slider) => {
       window.innerWidth,
       allSlider[slider].slot,
       allSlider[slider].loop,
-      allSlider[slider].showcaseId
+      allSlider[slider].showcaseId,
+      allSlider[slider].loopSize
     );
     $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
@@ -200,20 +206,22 @@ const primaryShowcase = document.getElementById(
 );
 let primaryScroll = 0;
 let primaryTicking = false;
-primaryShowcase.addEventListener("scroll", function (e) {
-  primaryScroll = primaryShowcaseJquery.scrollLeft();
-  if (!primaryTicking) {
-    window.requestAnimationFrame(function () {
-      touchDeviceInfiniteRelocation(
-        primaryScroll,
-        primaryShowcaseJquery,
-        allSlider.product.loop
-      );
-      primaryTicking = false;
-    });
-    primaryTicking = true;
-  }
-});
+if (BEST_SELLERS_LIQUID_VARIABLE.primaryCollection.size > 4) {
+  primaryShowcase.addEventListener("scroll", function (e) {
+    primaryScroll = primaryShowcaseJquery.scrollLeft();
+    if (!primaryTicking) {
+      window.requestAnimationFrame(function () {
+        touchDeviceInfiniteRelocation(
+          primaryScroll,
+          primaryShowcaseJquery,
+          allSlider.product.loop
+        );
+        primaryTicking = false;
+      });
+      primaryTicking = true;
+    }
+  });
+}
 
 const secondaryShowcaseJquery = $("#new-arrival-product-showcase");
 const secondaryShowcase = document.getElementById(
@@ -221,17 +229,19 @@ const secondaryShowcase = document.getElementById(
 );
 let secondaryScroll = 0;
 let secondaryTicking = false;
-secondaryShowcase.addEventListener("scroll", function (e) {
-  secondaryScroll = secondaryShowcaseJquery.scrollLeft();
-  if (!secondaryTicking) {
-    window.requestAnimationFrame(function () {
-      touchDeviceInfiniteRelocation(
-        secondaryScroll,
-        secondaryShowcaseJquery,
-        allSlider.secondaryProduct.loop
-      );
-      secondaryTicking = false;
-    });
-    secondaryTicking = true;
-  }
-});
+if (BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.size > 4) {
+  secondaryShowcase.addEventListener("scroll", function (e) {
+    secondaryScroll = secondaryShowcaseJquery.scrollLeft();
+    if (!secondaryTicking) {
+      window.requestAnimationFrame(function () {
+        touchDeviceInfiniteRelocation(
+          secondaryScroll,
+          secondaryShowcaseJquery,
+          allSlider.secondaryProduct.loop
+        );
+        secondaryTicking = false;
+      });
+      secondaryTicking = true;
+    }
+  });
+}

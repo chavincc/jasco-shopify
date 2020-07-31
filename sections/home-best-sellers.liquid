@@ -35,7 +35,12 @@
   <div class="row full-width no-scroll-bar pb-4" id="best-sellers-carousel">
     <div class="carousel" id="best-sellers-product-showcase">
       <div class="product-filler"></div>
-      {% for i in (0..4) %}
+      {% if primary_collection.products_count > 4 %}
+        {% assign primary_loop_count = 4 %}
+      {% else %}
+        {% assign primary_loop_count = 0 %}
+      {% endif %}
+      {% for i in (0..primary_loop_count) %}
         {% for item in primary_collection.products %} {% assign
         current_variant = item.selected_or_first_available_variant %}
         <div class="product p-2 pt-5">
@@ -86,7 +91,12 @@
       style="display: none !important;"
     >
       <div class="product-filler"></div>
-      {% for i in (0..4) %}        
+      {% if secondary_collection.products_count > 4 %}
+        {% assign secondary_loop_count = 4 %}
+      {% else %}
+        {% assign secondary_loop_count = 0 %}
+      {% endif %}
+      {% for i in (0..secondary_loop_count) %}  
         {% for item in secondary_collection.products %} {% assign
         current_variant = item.selected_or_first_available_variant %}
         <div class="product p-2 pt-5">
