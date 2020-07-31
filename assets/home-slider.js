@@ -51,7 +51,14 @@ const modulateSlotForward = (current = 0, screenWidth = 0, oneSlot = 0) => {
   const excessSpace = current - previousSlot;
   const totalPixel =
     oneSlot * (Math.floor(screenWidth / oneSlot) - 1) - excessSpace;
-  return current + (totalPixel > 0 ? totalPixel : oneSlot - excessSpace);
+  let newCurrent =
+    current + (totalPixel > 0 ? totalPixel : oneSlot - excessSpace);
+  const { loop } = allSlider.product;
+  if (newCurrent > loop * 4) {
+    $(allSlider.product.showcaseId).scrollLeft(current - loop);
+    newCurrent -= loop;
+  }
+  return newCurrent;
 };
 
 const modulateSlotBackward = (current = 0, screenWidth = 0, oneSlot = 0) => {
@@ -90,10 +97,13 @@ Object.keys(allSlider).forEach((slider) => {
       usingArrowNavigation = false;
     }, 1000);
     const current = $(allSlider[slider].showcaseId).scrollLeft();
-    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
-    $(allSlider[slider].showcaseId).scrollLeft(
-      modulateSlotBackward(current, window.innerWidth, allSlider[slider].slot)
+    const newCurrent = modulateSlotBackward(
+      current,
+      window.innerWidth,
+      allSlider[slider].slot
     );
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
+    $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
     $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
   $(allSlider[slider].nextButtonId).click(() => {
@@ -103,10 +113,13 @@ Object.keys(allSlider).forEach((slider) => {
       usingArrowNavigation = false;
     }, 1000);
     const current = $(allSlider[slider].showcaseId).scrollLeft();
-    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
-    $(allSlider[slider].showcaseId).scrollLeft(
-      modulateSlotForward(current, window.innerWidth, allSlider[slider].slot)
+    const newCurrent = modulateSlotForward(
+      current,
+      window.innerWidth,
+      allSlider[slider].slot
     );
+    $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
+    $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
     $(allSlider[slider].showcaseId).css("scroll-behavior", "auto");
   });
 });
@@ -153,16 +166,13 @@ let last_known_scroll_position = 0;
 let ticking = false;
 
 function doSomething(scroll_pos) {
-  console.log(usingArrowNavigation);
   if (!usingArrowNavigation) {
     const { loop } = allSlider.product;
     const current = j_test.scrollLeft();
     if (scroll_pos > loop * 4) {
       j_test.scrollLeft(current - loop);
-      console.log("!magic");
     } else if (scroll_pos < loop) {
       j_test.scrollLeft(current + loop);
-      console.log("!magic");
     }
   }
 }
