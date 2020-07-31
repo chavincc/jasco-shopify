@@ -46,16 +46,21 @@ const SECONDARY_TAB_BUTTON_ID = "#home-secondary-collection-tab-btn";
 const BEST_SELLERS_HEADER_ID = "#best-sellers-header";
 const BEST_SELLERS_SUBHEADER_ID = "#best-sellers-subheader";
 
-const modulateSlotForward = (current = 0, screenWidth = 0, oneSlot = 0) => {
+const modulateSlotForward = (
+  current = 0,
+  screenWidth = 0,
+  oneSlot = 0,
+  loop = 0,
+  showcaseId = "#"
+) => {
   const previousSlot = Math.floor(current / oneSlot) * oneSlot;
   const excessSpace = current - previousSlot;
   const totalPixel =
     oneSlot * (Math.floor(screenWidth / oneSlot) - 1) - excessSpace;
   let newCurrent =
     current + (totalPixel > 0 ? totalPixel : oneSlot - excessSpace);
-  const { loop } = allSlider.product;
   if (newCurrent > loop * 4) {
-    $(allSlider.product.showcaseId).scrollLeft(current - loop);
+    $(showcaseId).scrollLeft(current - loop);
     newCurrent -= loop;
   }
   return newCurrent;
@@ -93,7 +98,9 @@ Object.keys(allSlider).forEach((slider) => {
     const newCurrent = modulateSlotBackward(
       current,
       window.innerWidth,
-      allSlider[slider].slot
+      allSlider[slider].slot,
+      allSlider[slider].loop,
+      allSlider[slider].showcaseId
     );
     $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
@@ -109,7 +116,9 @@ Object.keys(allSlider).forEach((slider) => {
     const newCurrent = modulateSlotForward(
       current,
       window.innerWidth,
-      allSlider[slider].slot
+      allSlider[slider].slot,
+      allSlider[slider].loop,
+      allSlider[slider].showcaseId
     );
     $(allSlider[slider].showcaseId).css("scroll-behavior", "smooth");
     $(allSlider[slider].showcaseId).scrollLeft(newCurrent);
@@ -133,7 +142,6 @@ const showSlider = (sliderObject) => {
     )
   );
 };
-
 $(SECONDARY_TAB_BUTTON_ID).click(() => {
   hideSlider(allSlider.product);
   showSlider(allSlider.secondaryProduct);
@@ -146,7 +154,6 @@ $(SECONDARY_TAB_BUTTON_ID).click(() => {
     BEST_SELLERS_LIQUID_VARIABLE.secondaryCollection.description
   );
 });
-
 $(PRIMARY_TAB_BUTTON_ID).click(() => {
   hideSlider(allSlider.secondaryProduct);
   showSlider(allSlider.product);
@@ -160,7 +167,7 @@ $(PRIMARY_TAB_BUTTON_ID).click(() => {
   );
 });
 
-// touch device infinite sliding
+// TOUCH DEVICE INFINITE SCROLL (BY RELOCATION)
 function touchDeviceInfiniteRelocation(scroll_pos, showcase, loop) {
   if (!usingArrowNavigation) {
     const current = showcase.scrollLeft();
