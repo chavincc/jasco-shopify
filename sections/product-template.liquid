@@ -36,11 +36,13 @@
   <div class="row" id="product-detail-main">
     {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
     {%- comment -%} div.col-md-6 col-12 d-flex justify-content-center {%- endcomment -%}
-      {%- for media in product.media -%}
+      {% comment %} {%- for media in product.media -%}
         {% include 'media', media: media, featured_media: featured_media, height: height, enable_image_zoom: enable_image_zoom, image_zoom_size: product_image_zoom_size, image_scale: product_image_scale %}
-      {%- endfor -%}
+      {%- endfor -%} {% endcomment %}
+      {% for media in product.media %}
+        {% include 'media' , media: media, featured_media: featured_media, height: height, enable_image_zoom: enable_image_zoom, image_zoom_size: product_image_zoom_size, image_scale: product_image_scale  %}
+      {% endfor %}
     {%- comment -%} /div {%- endcomment -%}
-
     <div class="col-md-6 col-12" id="product-detail-brief">
       <div class="row mb-5 with-divider">
           <div class="col-12" id="product-detail-brief-collection">{{ product.metafields.global["main collection"] }}</div>

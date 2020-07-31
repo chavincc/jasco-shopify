@@ -228,6 +228,9 @@ header {
 }
 
 .circle {
+  &.hide{
+    display:none;
+  }
   &.filler {
     opacity: 0;
   }

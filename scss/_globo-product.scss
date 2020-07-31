@@ -72,10 +72,6 @@
   }
 }
 
-.page-width#Collection {
-  max-width: none;
-}
-
 .spf-product__swatch {
   border-radius: 50%;
 
@@ -98,6 +94,10 @@
   &-color[style="background-color: #fff"] {
     border: 1px solid black;
   }
+}
+
+.page-width#Collection {
+  max-width: none;
 }
 
 .collection-product-wrapper {
