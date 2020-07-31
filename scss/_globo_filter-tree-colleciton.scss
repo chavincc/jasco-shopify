@@ -43,13 +43,13 @@
   }
   ul{
     li{ 
-      a.checked{
+      #icon-checked-box.checked{
         color : #004B83;
       }
-      a.checked:before{        
+      #icon-checked-box.checked:before{        
         background-color: #004B83 !important;
       }
-      a.checked:after{
+      #icon-checked-box.checked:after{
         content: "\2611" !important;
         width: 8px;
         height: 8px;
