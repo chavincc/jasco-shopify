@@ -66,11 +66,26 @@ const modulateSlotForward = (
   return newCurrent;
 };
 
-const modulateSlotBackward = (current = 0, screenWidth = 0, oneSlot = 0) => {
+const modulateSlotBackward = (
+  current = 0,
+  screenWidth = 0,
+  oneSlot = 0,
+  loop = 0,
+  showcaseId = "#"
+) => {
   const previousSlot = Math.floor(current / oneSlot) * oneSlot;
   const totalSlotMovement = (Math.floor(screenWidth / oneSlot) - 1) * oneSlot;
-  if (previousSlot !== current) return previousSlot;
-  else return current - (totalSlotMovement <= 0 ? oneSlot : totalSlotMovement);
+  let newCurrent;
+  if (previousSlot !== current) newCurrent = previousSlot;
+  else
+    newCurrent =
+      current - (totalSlotMovement <= 0 ? oneSlot : totalSlotMovement);
+
+  if (newCurrent < loop) {
+    $(showcaseId).scrollLeft(current + loop);
+    newCurrent += loop;
+  }
+  return newCurrent;
 };
 
 // ON DOCUMENT READY
