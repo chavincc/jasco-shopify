@@ -76,13 +76,6 @@ $(document).ready(function () {
     $(allSlider.product.showcaseId).scrollLeft(
       modulateSlotForward(0, window.innerWidth, allSlider.product.loop * 2)
     );
-  $(allSlider.secondaryProduct.showcaseId).scrollLeft(
-    modulateSlotForward(
-      0,
-      window.innerWidth,
-      allSlider.secondaryProduct.loop * 2
-    )
-  );
 
   // INITIALIZE TAB
   hideSlider(allSlider.secondaryProduct);
@@ -132,6 +125,13 @@ const hideSlider = (sliderObject) => {
 const showSlider = (sliderObject) => {
   $(sliderObject.showcaseId).css("display", "flex");
   $(sliderObject.wrapperId).css("display", "block");
+  $(sliderObject.showcaseId).scrollLeft(
+    modulateSlotForward(
+      0,
+      window.innerWidth,
+      allSlider.secondaryProduct.loop * 2
+    )
+  );
 };
 
 $(SECONDARY_TAB_BUTTON_ID).click(() => {
@@ -160,32 +160,56 @@ $(PRIMARY_TAB_BUTTON_ID).click(() => {
   );
 });
 
-const j_test = $("#best-sellers-product-showcase");
-const test = document.getElementById("best-sellers-product-showcase");
-let last_known_scroll_position = 0;
-let ticking = false;
-
-function doSomething(scroll_pos) {
+// touch device infinite sliding
+function touchDeviceInfiniteRelocation(scroll_pos, showcase, loop) {
   if (!usingArrowNavigation) {
-    const { loop } = allSlider.product;
-    const current = j_test.scrollLeft();
+    const current = showcase.scrollLeft();
     if (scroll_pos > loop * 4) {
-      j_test.scrollLeft(current - loop);
+      showcase.scrollLeft(current - loop);
     } else if (scroll_pos < loop) {
-      j_test.scrollLeft(current + loop);
+      showcase.scrollLeft(current + loop);
     }
   }
 }
 
-test.addEventListener("scroll", function (e) {
-  last_known_scroll_position = j_test.scrollLeft();
-
-  if (!ticking) {
+const primaryShowcaseJquery = $("#best-sellers-product-showcase");
+const primaryShowcase = document.getElementById(
+  "best-sellers-product-showcase"
+);
+let primaryScroll = 0;
+let primaryTicking = false;
+primaryShowcase.addEventListener("scroll", function (e) {
+  primaryScroll = primaryShowcaseJquery.scrollLeft();
+  if (!primaryTicking) {
     window.requestAnimationFrame(function () {
-      doSomething(last_known_scroll_position);
-      ticking = false;
+      touchDeviceInfiniteRelocation(
+        primaryScroll,
+        primaryShowcaseJquery,
+        allSlider.product.loop
+      );
+      primaryTicking = false;
     });
+    primaryTicking = true;
+  }
+});
 
-    ticking = true;
+const secondaryShowcaseJquery = $("#new-arrival-product-showcase");
+const secondaryShowcase = document.getElementById(
+  "new-arrival-product-showcase"
+);
+let secondaryScroll = 0;
+let secondaryTicking = false;
+secondaryShowcase.addEventListener("scroll", function (e) {
+  secondaryScroll = secondaryShowcaseJquery.scrollLeft();
+  if (!secondaryTicking) {
+    window.requestAnimationFrame(function () {
+      touchDeviceInfiniteRelocation(
+        secondaryScroll,
+        secondaryShowcaseJquery,
+        allSlider.secondaryProduct.loop
+      );
+      secondaryTicking = false;
+    });
+    secondaryTicking = true;
   }
 });
