@@ -15,7 +15,12 @@
               {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
               {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
               collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
-              {% if landing_button_text == "" %} <button>EXPLORE</button> {% else %} <button class="text-uppercase">{{landing_button_text}}</button> {% endif %}
+              
+              {% if landing_button_text == "" %}  
+                <a href={{block.settings.button_landing_url}}> <button>EXPLORE</button> </a>
+              {% else %} 
+                <a href={{block.settings.button_landing_url}}> <button class="text-uppercase">{{landing_button_text}}</button> </a>
+              {% endif %}
               
             </div>
           </div>
@@ -52,11 +57,31 @@
               {% assign main_description = block.settings.main_description %}
               {% assign sub_description = block.settings.sub_description %}
               {% assign landing_button_text = block.settings.landing_button_text %}
-              {% if brand_name == "" %} <p>Jasco</p> {% else %} <p> {{brand_name}} </p> {% endif %}
-              {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
-              {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
-              collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
-              {% if landing_button_text == "" %} <button>EXPLORE</button> {% else %} <button class="text-uppercase">{{landing_button_text}}</button> {% endif %}
+              
+              {% if brand_name == "" %} 
+                <p>Jasco</p> 
+              {% else %} 
+                <p> {{brand_name}} </p> 
+              {% endif %}
+
+              {% if main_description == "" %} 
+                <h1>Unique, stylish, functional</h1> 
+              {% else %} 
+                <h1> {{main_description}} </h1> 
+              {% endif %}
+
+              {% if sub_description == "" %} 
+                <p> Bringing style to table with our quintessent dinnerware collections</p> 
+              {% else %} 
+                <p> {{sub_description}} </p> 
+              {% endif %}
+
+              {% if landing_button_text == "" %}  
+                <a href={{block.settings.button_landing_url}}> <button>EXPLORE</button> </a>
+              {% else %} 
+                <a href={{block.settings.button_landing_url}}> <button class="text-uppercase">{{landing_button_text}}</button> </a>
+              {% endif %}
+
             </div>
           </div>
         {% endfor %}
@@ -142,6 +167,11 @@
           "type": "text",
           "id": "landing_button_text",
           "label":"Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_landing_url",
+          "label":"Button url"
         }
       ]
     }
