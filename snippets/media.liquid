@@ -28,7 +28,7 @@
   Load different poster image sizes depending on the product layout
 {%- endcomment -%}
 <div id="{{ media_wrapper_id }}"
-    class="responsive-img-wrapper col-md-6 col-12 d-flex justify-content-center js{% unless featured_media == media %} hide{% endunless %}"
+    class="responsive-img-wrapper col-lg-12 col-md-6 d-flex justify-content-center js{% unless featured_media == media %} hide{% endunless %}"
     data-product-single-media-wrapper
     data-media-id="{{ section.id }}-{{ media.id }}"
     tabindex="-1">
@@ -44,12 +44,13 @@
         {{ media | video_tag: controls: true }}
       </div>
     {% when 'model' %}
-      <div class="product-single__media" style="padding-top: 100%" data-media-id="{{ media.id }}">
+      <div class="product-single__media" style="padding-top: 80%" data-media-id="{{ media.id }}">
         {{ media | model_viewer_tag }}
       </div>
     {% else %}
-      <div class="product-single__media" style="padding-top: 100%;" data-media-id="{{ media.id }}">
+      <div class="product-single__media" style="padding-top: 80%;" data-media-id="{{ media.id }}">
         {{ media | media_tag }}
       </div>
   {% endcase %}
 </div>
+
