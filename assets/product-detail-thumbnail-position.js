@@ -5,13 +5,13 @@
 const productThumbnailWrap = $(`#${product_thumbnail_wrap_id}`);
 
 const setPositionToModel = (productThumbnailWrap) => {
-  productThumbnailWrap.css("top", "none");
+  productThumbnailWrap.css("top", "");
   productThumbnailWrap.css("bottom", "20px");
 };
 
 const setPositionToRegularMedia = (productThumbnailWrap) => {
   productThumbnailWrap.css("top", "calc((100vw - 200px) * 3 / 8)");
-  productThumbnailWrap.css("bottom", "none");
+  productThumbnailWrap.css("bottom", "");
 };
 
 if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
@@ -19,3 +19,11 @@ if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
 } else {
   setPositionToRegularMedia(productThumbnailWrap);
 }
+
+$(`.${product_thumbnail_wrap_id}-model`).click(() => {
+  setPositionToModel(productThumbnailWrap);
+});
+
+$(`.${product_thumbnail_wrap_id}-regular-media`).click(() => {
+  setPositionToRegularMedia(productThumbnailWrap);
+});
