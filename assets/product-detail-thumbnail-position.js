@@ -1,8 +1,6 @@
 // passed down variable
 // String :: PRODUCT_FIRST_MEDIA_TYPE
 // String :: product_thumbnail_wrap_id
-console.log(PRODUCT_FIRST_MEDIA_TYPE);
-console.log(product_thumbnail_wrap_id);
 
 const productThumbnailWrap = $(`#${product_thumbnail_wrap_id}`);
 if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
