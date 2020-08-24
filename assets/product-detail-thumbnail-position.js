@@ -3,10 +3,19 @@
 // String :: product_thumbnail_wrap_id
 
 const productThumbnailWrap = $(`#${product_thumbnail_wrap_id}`);
-if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
+
+const setPositionToModel = (productThumbnailWrap) => {
   productThumbnailWrap.css("top", "none");
   productThumbnailWrap.css("bottom", "20px");
-} else {
+};
+
+const setPositionToRegularMedia = (productThumbnailWrap) => {
   productThumbnailWrap.css("top", "calc((100vw - 200px) * 3 / 8)");
   productThumbnailWrap.css("bottom", "none");
+};
+
+if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
+  setPositionToModel(productThumbnailWrap);
+} else {
+  setPositionToRegularMedia(productThumbnailWrap);
 }
