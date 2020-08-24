@@ -399,10 +399,11 @@
   -webkit-box-shadow: 0px 10px 13px #878a9d;
   -moz-box-shadow: 0px 10px 13px #878a9d;
 }
-.show-image-variants{
-  position:absolute; 
-  bottom:-20px;
+.show-image-variants {
+  position: absolute;
+  top: calc((100vw - 200px) * 3 / 8);
+  // bottom: -20px;
 }
-.group-product-images{
+.group-product-images {
   position: relative;
 }
