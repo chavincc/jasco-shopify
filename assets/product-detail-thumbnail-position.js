@@ -44,11 +44,13 @@ const setPositionToRegularMedia = (productThumbnailWrap) => {
   }
 };
 
-if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
-  setPositionToModel(productThumbnailWrap);
-} else {
-  setPositionToRegularMedia(productThumbnailWrap);
-}
+const setPosition = () => {
+  if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
+    setPositionToModel(productThumbnailWrap);
+  } else {
+    setPositionToRegularMedia(productThumbnailWrap);
+  }
+};
 
 $(`.${product_thumbnail_wrap_id}-model`).click(() => {
   setPositionToModel(productThumbnailWrap);
@@ -58,15 +60,12 @@ $(`.${product_thumbnail_wrap_id}-regular-media`).click(() => {
   setPositionToRegularMedia(productThumbnailWrap);
 });
 
+setPosition();
 let resizeTicking = false;
 $(window).resize(() => {
   if (!resizeTicking) {
     resizeTicking = true;
-    if (PRODUCT_FIRST_MEDIA_TYPE === "model") {
-      setPositionToModel(productThumbnailWrap);
-    } else {
-      setPositionToRegularMedia(productThumbnailWrap);
-    }
+    setPosition();
     resizeTicking = false;
   }
 });
