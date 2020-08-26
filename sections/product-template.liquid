@@ -1,3 +1,10 @@
+{% assign product_thumbnail_wrap_id = "product-detail-thumbnail-wrap" %}
+{% assign group_product_image_ref = "group-product-image-ref" %}
+<script>
+  var product_thumbnail_wrap_id = "{{ product_thumbnail_wrap_id }}"
+  var group_product_image_id = "{{ group_product_image_ref }}"
+</script>
+
 <div
   class="product-detail py-lg-5 pb-0 mt-5"
     id="product-detail"
@@ -36,62 +43,70 @@
   <div class="row" id="product-detail-main">
     {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
 
-      <div class="group-product-images col-md-6 col-12 d-flex justify-content-center">
+      <div class="group-product-images col-md-6 col-12 d-flex justify-content-center" id={{ group_product_image_ref }}>
           {% for media in product.media %}
             {% include 'media' , media: media, featured_media: featured_media, height: height, enable_image_zoom: enable_image_zoom, image_zoom_size: product_image_zoom_size, image_scale: product_image_scale  %}
           {% endfor %}
-          <div class="show-image-variants">
+          <div class="show-image-variants" id={{ product_thumbnail_wrap_id }}>
             {% if product.media.size > 1 %}
               {% if product.media.size > 4 %}
                 {%- assign enable_thumbnail_slides = true -%}
               {% endif %}
-              <div class="thumbnails-wrapper{% if enable_thumbnail_slides == true %} thumbnails-slider--active{% endif %}">
-                {% if enable_thumbnail_slides == true %}
-                  <button type="button" class="btn btn--link medium-up--hide thumbnails-slider__btn thumbnails-slider__prev thumbnails-slider__prev--{{ section.id }}">
-                    {% include 'icon-chevron-left' %}
-                    <span class="icon__fallback-text">{{ 'sections.slideshow.previous_slide' | t }}</span>
-                  </button>
-                {% endif %}
-                <ul class="product-single__thumbnails product-single__thumbnails-{{ section.id }}">
-                  {% for media in product.media %}
-                    <li class="product-single__thumbnails-item product-single__thumbnails-item--{{ section.settings.media_size }} js">
-                      <a href="{{ media.preview_image | img_url: product_image_zoom_size, scale: product_image_scale }}"
-                        class="text-link product-single__thumbnail product-single__thumbnail--{{ section.id }}"
-                        data-thumbnail-id="{{ section.id }}-{{ media.id }}"
-                        {% if enable_image_zoom %}data-zoom="{{ media.preview_image | img_url: product_image_zoom_size, scale: product_image_scale }}"{% endif %}>
+              {% if enable_thumbnail_slides == true %}
+                <button type="button" class="btn btn--link medium-up--hide thumbnails-slider__btn thumbnails-slider__prev thumbnails-slider__prev--{{ section.id }}">
+                  {% include 'icon-chevron-left' %}
+                  <span class="icon__fallback-text">{{ 'sections.slideshow.previous_slide' | t }}</span>
+                </button>
+              {% endif %}
+              <ul class="product-single__thumbnails product-single__thumbnails-{{ section.id }}">
+                {% for media in product.media %}
+                  {% if forloop.index0 == 0 %}
+                    <script>
+                      var PRODUCT_FIRST_MEDIA_TYPE = "{{ media.media_type }}";
+                    </script>
+                  {% endif %}
+                  {% if media.media_type == "model" %}
+                    {% assign media_event_type = "model" %}
+                  {% else %}
+                    {% assign media_event_type = "regular-media" %}
+                  {% endif %}
+                  <li class="product-single__thumbnails-item product-single__thumbnails-item--{{ section.settings.media_size }} js">
+                    <a href="{{ media.preview_image | img_url: product_image_zoom_size, scale: product_image_scale }}"
+                      class="text-link product-single__thumbnail product-single__thumbnail--{{ section.id }}"
+                      data-thumbnail-id="{{ section.id }}-{{ media.id }}"
+                      {% if enable_image_zoom %}data-zoom="{{ media.preview_image | img_url: product_image_zoom_size, scale: product_image_scale }}"{% endif %}>
 
-                          {%- capture thumbnailAlt -%}
-                            {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
-                              {{ 'sections.featured_product.video_thumbnail_alt' | t: imageAlt: media.alt | escape }}
-                            {%- elsif media.media_type == 'model' -%}
-                              {{ 'sections.featured_product.model_thumbnail_alt' | t: imageAlt: media.alt | escape }}
-                            {%- else -%}
-                              {{ 'sections.featured_product.gallery_thumbnail_alt' | t: imageAlt: media.alt | escape }}
-                            {%- endif -%}
-                          {%- endcapture -%}
+                        {%- capture thumbnailAlt -%}
+                          {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                            {{ 'sections.featured_product.video_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                          {%- elsif media.media_type == 'model' -%}
+                            {{ 'sections.featured_product.model_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                          {%- else -%}
+                            {{ 'sections.featured_product.gallery_thumbnail_alt' | t: imageAlt: media.alt | escape }}
+                          {%- endif -%}
+                        {%- endcapture -%}
 
-                          <img class="product-single__thumbnail-image" src="{{ media.preview_image | img_url: '110x110', scale: 2 }}" alt="{{ thumbnailAlt }}">
-                          {%- if media.media_type == 'video' or media.media_type =='external_video' -%}
-                            <div class="product-single__thumbnail-badge">
-                              {% include 'icon-video-badge-full-color' %}
-                            </div>
-                          {%- endif -%}
-                          {%- if media.media_type == 'model' -%}
-                            <div class="product-single__thumbnail-badge">
-                              {% include 'icon-3d-badge-full-color' %}
-                            </div>
-                          {%- endif -%}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-                {% if enable_thumbnail_slides == true %}
-                  <button type="button" class="btn btn--link medium-up--hide thumbnails-slider__btn thumbnails-slider__next thumbnails-slider__next--{{ section.id }}">
-                    {% include 'icon-chevron-right' %}
-                    <span class="icon__fallback-text">{{ 'sections.slideshow.next_slide' | t }}</span>
-                  </button>
-                {% endif %}
-              </div>
+                        <img class="product-single__thumbnail-image {{ product_thumbnail_wrap_id }}-{{ media_event_type }}" src="{{ media.preview_image | img_url: '110x110', scale: 2 }}" alt="{{ thumbnailAlt }}">
+                        {%- if media.media_type == 'video' or media.media_type =='external_video' -%}
+                          <div class="product-single__thumbnail-badge">
+                            {% include 'icon-video-badge-full-color' %}
+                          </div>
+                        {%- endif -%}
+                        {%- if media.media_type == 'model' -%}
+                          <div class="product-single__thumbnail-badge">
+                            {% include 'icon-3d-badge-full-color' %}
+                          </div>
+                        {%- endif -%}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+              {% if enable_thumbnail_slides == true %}
+                <button type="button" class="btn btn--link medium-up--hide thumbnails-slider__btn thumbnails-slider__next thumbnails-slider__next--{{ section.id }}">
+                  {% include 'icon-chevron-right' %}
+                  <span class="icon__fallback-text">{{ 'sections.slideshow.next_slide' | t }}</span>
+                </button>
+              {% endif %}
             {% endif %}
           </div>
       </div>
@@ -618,3 +633,4 @@
 
 {{ 'product-detail-tab.js' | asset_url | script_tag }}
 {{ 'product-detail-quantity.js' | asset_url | script_tag }}
+{{ 'product-detail-thumbnail-position.js' | asset_url | script_tag }}

@@ -1,7 +1,7 @@
 {% raw %}
 {% if paginate.last_page > 1 %}
   <div class="pagination" id="pagination">
-    <span class="wide-screen-pagination-arrow {% if paginate.current_page == 1 %} disabled{% endif %}"><a class="px-0" id="pagination-arrow-wrapper-left" {% if paginate.current_page != 1 %} onclick="setPage({{paginate.current_page | minus: 1}})"{% endif %} href="javascript:;" rel="prev"><img src={{ "pagination-arrow-right.svg" | asset_url }}></a></span>
+    <span class="{% if paginate.current_page == 1 %} disabled{% endif %}"><a id="pagination-arrow-wrapper-left" {% if paginate.current_page != 1 %} onclick="setPage({{paginate.current_page | minus: 1}})"{% endif %} href="javascript:;" rel="prev"><img src={{ "pagination-arrow-right.svg" | asset_url }}></a></span>
 
     {% if paginate.current_page > 1 %}
       <span class="page"><a onclick="setPage(1)" href="javascript:">1</a></span>
@@ -40,13 +40,7 @@
       <span class="page"><a onclick="setPage({{paginate.last_page}})" href="javascript:;">{{paginate.last_page}}</a></span>
     {% endif %}
 
-    <span class="wide-screen-pagination-arrow {% if paginate.current_page == paginate.last_page %} disabled{% endif %}"><a class="px-0" id="pagination-arrow-wrapper-right" {% if paginate.current_page != paginate.last_page %} onclick="setPage({{paginate.current_page | plus: 1}})"{% endif %} href="javascript:;" rel="next"><img src={{ "pagination-arrow-right.svg" | asset_url }}></a></span>
-  </div>
-  <div class="d-flex justify-content-end w-100 pt-2">
-    <div class="small-screen-pagination-arrow-wrapper">
-        <span class="small-screen-pagination-arrow {% if paginate.current_page == 1 %} disabled{% endif %}"><a class="px-0" id="pagination-arrow-wrapper-left-small-screen" {% if paginate.current_page != 1 %} onclick="setPage({{paginate.current_page | minus: 1}})"{% endif %} href="javascript:;" rel="prev"><img src={{ "pagination-arrow-right.svg" | asset_url }}></a></span>
-        <span class="small-screen-pagination-arrow {% if paginate.current_page == paginate.last_page %} disabled{% endif %}"><a class="px-0" id="pagination-arrow-wrapper-right-small-screen" {% if paginate.current_page != paginate.last_page %} onclick="setPage({{paginate.current_page | plus: 1}})"{% endif %} href="javascript:;" rel="next"><img src={{ "pagination-arrow-right.svg" | asset_url }}></a></span>
-    </div>
+    <span class="{% if paginate.current_page == paginate.last_page %} disabled{% endif %}"><a id="pagination-arrow-wrapper-right" {% if paginate.current_page != paginate.last_page %} onclick="setPage({{paginate.current_page | plus: 1}})"{% endif %} href="javascript:;" rel="next"><img src={{ "pagination-arrow-right.svg" | asset_url }}></a></span>
   </div>
 {% endif %}
 {% endraw %}
