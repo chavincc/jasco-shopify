@@ -1,109 +1,30 @@
-<div class="d-none d-lg-block shipping-bar-detail">
-  <div class="row" id="row-shipping-bar" >
-      <div class="col-xl-2 col-lg-2 col-md-2 d-flex justify-content-center">
-        <div class="text-uppercase delivery">
+<div class="shipping-bar-detail px-3">
+  <div class="row px-5" id="row-shipping-bar" >
+      <div class="col-md-3 col-sm-6 col-12 d-flex justify-content-center border-right border-secondary">
+        <div class="text-uppercase d-flex align-items-center">
          <img src= "{{ section.settings.icon_delivery | img_url: 'medium' }}" >
           <p>{{section.settings.text_delivery}}</p>
         </div>
       </div>
-      <div class="d-none d-sm-block">
-        <img src={{ "landing-img-line.svg" | asset_url }}/>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-2 d-flex justify-content-center">
-        <div class="text-uppercase returns">
+      <div class="col-md-3 col-sm-6 col-12 d-flex justify-content-center border-right border-secondary">
+        <div class="text-uppercase d-flex align-items-center">
           <img src= "{{ section.settings.icon_returns | img_url: 'medium' }}" >
           <p >{{section.settings.text_returns}}</p>
         </div>
       </div>
-      <div class="d-none d-sm-block">
-        <img src={{ "landing-img-line.svg" | asset_url }}/>
-      </div>
-      <div class="col-xl-2 col-lg-2 col-md-1 d-flex justify-content-center">
-        <div class="text-uppercase faq">
+      <div class="col-md-3 col-sm-6 col-12 d-flex justify-content-center border-right border-secondary">
+        <div class="text-uppercase d-flex align-items-center">
           <img src= "{{ section.settings.icon_faq | img_url: 'medium' }}" >
           <p>{{section.settings.text_faq}}</p>
         </div>
       </div>
-      <div class="d-none d-sm-block">
-        <img src={{ "landing-img-line.svg" | asset_url }}/>
-      </div>
-      <div class="col-xl-3 col-lg-4 col-md-3 d-flex justify-content-center">
-        <div class="text-uppercase best-online">
+      <div class="col-md-3 col-sm-6 col-12 d-flex justify-content-center">
+        <div class="text-uppercase d-flex align-items-center">
           <img src= "{{ section.settings.icon_online | img_url: 'medium' }}" >
           <p >{{section.settings.text_online}}</p>
         </div>
       </div>
   </div>
-</div>
-
-<div class="d-none d-md-block d-lg-none shipping-bar-detail">
-  <div class="row d-flex justify-content-center" id="row-md-shipping">
-    <div class="col-md-2"></div>
-    <div class="col-lg-3 col-md-3">
-      <div class="text-uppercase delivery">
-         <img src= "{{ section.settings.icon_delivery | img_url: 'medium' }}" >
-        <p>{{section.settings.text_delivery}}</p>
-      </div>
-    </div>
-    <div class="col-lg-1 col-md-1 d-none d-md-block">
-      <img src={{ "landing-img-line.svg" | asset_url }}/>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-3">
-      <div class="text-uppercase returns">
-        <img src= "{{ section.settings.icon_returns | img_url: 'medium' }}" >
-        <p id="returns">{{section.settings.text_returns}}</p>
-      </div>
-    </div>
-  </div>
-  <div class="row d-flex justify-content-center" id="row-md-shipping">
-    <div class="col-md-2"></div>
-    <div class="col-lg-3 col-md-3 col-sm-3">
-      <div class="text-uppercase faq">
-        <img src= "{{ section.settings.icon_faq | img_url: 'medium' }}" >
-        <p id=faq>{{section.settings.text_faq}}</p>
-      </div>
-    </div>
-    <div class="col-lg-1 col-md-1 d-none d-sm-block">
-      <img src={{ "landing-img-line.svg" | asset_url }}/>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-3">
-      <div class="text-uppercase best-online">
-        <img src= "{{ section.settings.icon_online | img_url: 'medium' }}" >
-        <p>{{section.settings.text_online}}</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="d-md-none xs-shipping-bar">
-    <div class="row d-flex justify-content-center" id="row-xs-shipping">
-      <div class="col-xs-6">
-        <div class="text-uppercase xs-delivery">
-           <img src= "{{ section.settings.icon_delivery | img_url: 'medium' }}" >
-          <p id="delivery">{{section.settings.text_delivery}}</p>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="text-uppercase xs-returns">
-         <img src= "{{ section.settings.icon_returns | img_url: 'medium' }}" >
-          <p>{{section.settings.text_returns}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center" id= "second-rows-shipping">
-      <div class="col-xs-6">
-        <div class="text-uppercase xs-faq">
-          <img src= "{{ section.settings.icon_faq | img_url: 'medium' }}" >
-          <p id="faq">{{section.settings.text_faq}}</p>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="text-uppercase xs-best-online" >
-        <img src= "{{ section.settings.icon_online | img_url: 'medium' }}" >
-          <p >{{section.settings.text_online}}</p>
-        </div>
-      </div>
-    </div>
 </div>
 
 {% schema %}
