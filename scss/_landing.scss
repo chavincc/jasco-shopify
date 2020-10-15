@@ -258,3 +258,17 @@
     margin-left: 10px;
   }
 }
+
+#delivery-tag-1,
+#delivery-tag-3 {
+  border-right: 1px solid #878a9d;
+  @media only screen and (max-width: 576px) {
+    border: none;
+  }
+}
+#delivery-tag-2 {
+  border-right: 1px solid #878a9d;
+  @media only screen and (max-width: 768px) {
+    border: none;
+  }
+}
