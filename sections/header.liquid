@@ -8,13 +8,13 @@
           </div>
         </div>
         <div class="col-lg-9 col-md-block first-right d-flex justify-content-end align-items-center">
-          <div class="head-actions">
+          <div class="head-actions mb-4">
             <ul class="list-inline d-flex justify-content-end align-items-center">
               {% assign top_menus = "STORE,CART,WISHLIST,LOGIN" | split: ','%}
              
               {% for head_menu in top_menus %}
                 {% assign iconTitle = head_menu | prepend: "navbar-img-" | append: ".svg" %} 
-                <li {% if head_menu == 'LOGIN' %} id="remove-padding"{%endif%}>   
+                <li class="pr-5" {% if head_menu == 'LOGIN' %} id="remove-padding"{%endif%}>   
                   
                   {% if head_menu == 'LOGIN' %}
                     <img id= "icon" src= {{ iconTitle | asset_url }}/> 
@@ -39,7 +39,7 @@
               {% endfor %}
             </ul>
           </div>
-          <div class= "header-languages" >
+          <div class="header-languages mb-4">
             <div class="ht-tms--float ht-tms--float-left ht-tms--float-top" style="left:15px; top:15px;">
               {% render 'hextom_tms_dropdown' %}
             </div> 
@@ -51,7 +51,7 @@
       <div class="row align-items-center">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3"></div>
         <div class="col-xl-8 col-lg-8 col-md-4 col-sm-3 head-catalogue d-flex justify-content-end align-items-center">
-          <button class="catalogueBtn">
+          <button class="catalogueBtn mr-5">
           {% assign default_link = "https://cdn.shopify.com/s/files/1/0420/9711/5292/files/test_file_pdf.pdf?v=1593749203" %}
           {%if section.settings.button_catalogue_text == "" %} 
             {% if section.settings.catalogue_link == none %}
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="header-third-row collection-menu-row  d-flex justify-content-center align-items-center">
+    <div class="header-third-row py-3 collection-menu-row  d-flex justify-content-center align-items-center">
       <div class="container">
         <div class="collection-menu text-uppercase">
                 <nav>
