@@ -32,6 +32,10 @@
   margin-right: 30px;
   cursor: pointer;
 
+  &-text-wrapper {
+    max-width: 280px;
+  }
+
   &-img {
     position: relative;
     overflow: hidden;
