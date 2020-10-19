@@ -265,26 +265,28 @@
       </div>
     </div>
     <div
-      class="footer-logo-wrapper col-md-3 col-6 d-flex justify-content-around mt-4 mt-md-0"
+      class="footer-logo-wrapper col-md-3 col-6 d-flex justify-content-start mt-4 mt-md-0"
     >
-      {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
-      {%- if social_icons -%}
-        {%- for social in socials -%}
-          {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
-          {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
-          {%- if settings[social_link] != blank -%}
-              <a class="footer-social-icons" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
-                {%- include icon_link -%}
-                <span class="icon__fallback-text">{{ social }}</span>
-              </a>
-          {%- endif -%}
-        {%- endfor -%}
-      {%- else -%}
-        <div class="small--hide site-footer-item-align-right {% if show_selectors or show_payment_icons %}site-footer-item-center-vertically{% endif %}">
-          <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-          <small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ powered_by_link }}</small>
-        </div>
-      {%- endif -%}
+      <div class="footer-logo-wrapper-width-limiter d-flex justify-content-around">
+        {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+        {%- if social_icons -%}
+          {%- for social in socials -%}
+            {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+            {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+            {%- if settings[social_link] != blank -%}
+                <a class="footer-social-icons" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                  {%- include icon_link -%}
+                  <span class="icon__fallback-text">{{ social }}</span>
+                </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          <div class="small--hide site-footer-item-align-right {% if show_selectors or show_payment_icons %}site-footer-item-center-vertically{% endif %}">
+            <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
+            <small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ powered_by_link }}</small>
+          </div>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </footer>

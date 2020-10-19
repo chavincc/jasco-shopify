@@ -130,9 +130,15 @@ footer {
     letter-spacing: 0.84px;
   }
 
-  &-logo-wrapper img {
-    margin-left: 30px;
-    color: red;
+  &-logo-wrapper {
+    &-width-limiter {
+      width: 100%;
+      max-width: 300px;
+    }
+    img {
+      margin-left: 30px;
+      color: red;
+    }
   }
 
   &-law-text,
