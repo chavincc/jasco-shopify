@@ -19,14 +19,11 @@ header {
 }
 
 .xs-head-logo {
-  padding-top: 20px;
+  padding: 10px 0;
+  border-bottom: 0.5px solid gainsboro;
+  display: flex;
+  justify-content: space-between;
   @include responsive-x-padding();
-  p {
-    padding-top: 15px;
-    font-size: 14px;
-    font-weight: bold;
-    padding-bottom: 20px;
-  }
 }
 
 .catalogueBtn {
@@ -180,13 +177,18 @@ header {
 }
 
 .xs-head-bars {
-  position: fixed;
   background-color: transparent;
   border: transparent;
   border-style: "none";
-  right: 50px;
-  top: 40px;
   z-index: 30;
+}
+#xs-head-bars-second {
+  background-color: transparent;
+  border: transparent;
+  border-style: "none";
+  position: absolute;
+  top: 16px;
+  right: 30px;
 }
 
 .xs-head-bars:focus {
@@ -195,7 +197,6 @@ header {
 .sticky {
   position: fixed;
   background: white;
-  padding-top: 10px;
   width: 100%;
   top: 0;
   z-index: 10;
@@ -228,8 +229,8 @@ header {
 }
 
 .circle {
-  &.hide{
-    display:none;
+  &.hide {
+    display: none;
   }
   &.filler {
     opacity: 0;
@@ -319,7 +320,7 @@ header {
 }
 
 .xs-icon-links {
-  padding-top: 100px;
+  padding-top: 60px;
   .head-actions {
     padding-left: 40px;
   }
@@ -417,7 +418,6 @@ header {
   }
 }
 #xs-navbar-filler {
-  margin-top: 20px;
   opacity: 0;
 }
 

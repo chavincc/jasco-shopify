@@ -102,19 +102,21 @@
   <div class="xs-head-row d-lg-none">
     <div class="xs-navbar" id="xs-navbar-filler">
         <div class="xs-head-logo">
-          {% include 'jasco-slogan' %}
+          {% include 'jasco-slogan-small' %}
         </div>
     </div>
     <div class="sticky xs-navbar">
-        <div class="xs-head-logo pb-2">
-           {% include 'jasco-slogan' %}
+        <div class="xs-head-logo">
+            {% include 'jasco-slogan-small' %}
+            <button class="xs-head-bars" id="xs-head-bars" onclick="toggleHamburgerMenu()">
+              <img id="menu" src={{'navbar-img-hamburger-menu.png' | asset_url }}/>
+            </button>
         </div>
     </div>
-    <button class="xs-head-bars" id="xs-head-bars" onclick="showHamburgerMenu()">
-        <img id="menu" src={{'navbar-img-hamburger-menu.png' | asset_url }}/>
-    </button>
-    <div id="overlay-rec" onclick="hideMenuToggle()"></div>
     <div  class="xs-menu-toggle" id="xs-menu-toggle">
+      <button class="xs-head-bars" id="xs-head-bars-second" onclick="toggleHamburgerMenu()">
+          <img id="menu" src={{'navbar-img-hamburger-menu.png' | asset_url }}/>
+      </button>
       <div class="xs-icon-links text-uppercase">
         <div class="d-flex justify-content-start" id="menu-title">
           <h5>Menu</h5>

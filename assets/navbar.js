@@ -3,23 +3,13 @@ let head_bar = document.getElementById("xs-head-bars");
 let icon_menu = document.getElementById("menu");
 let overlay_rec = document.getElementById("overlay-rec");
 
-showHamburgerMenu = () => {
+toggleHamburgerMenu = () => {
   if (menu_toggle.style.transform === "translateX(100%)") {
     menu_toggle.style.transform = "translateX(0)";
-    overlay_rec.style.display = "block";
-    head_bar.style.position = "fixed";
   } else {
     menu_toggle.style.transform = "translateX(100%)";
-    head_bar.style.position = "fixed";
-    overlay_rec.style.display = "none";
   }
-};
-
-hideMenuToggle = () => {
-  menu_toggle.style.transform = "translateX(100%)";
-  head_bar.style.position = "fixed";
-  overlay_rec.style.display = "none";
-};
+}
 
 const PAGE = $("#page-header li a");
 const NAVBAR = $("#navbar-header");
