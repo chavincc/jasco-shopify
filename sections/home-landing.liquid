@@ -11,17 +11,27 @@
               {% assign sub_description = block.settings.sub_description %}
               {% assign landing_button_text = block.settings.landing_button_text %}
 
-              {% if brand_name == "" %} <p>Jasco</p> {% else %} <p> {{brand_name}} </p> {% endif %}
-              {% if main_description == "" %} <h1>Unique, stylish, functional</h1> {% else %} <h1> {{main_description}} </h1> {% endif %}
-              {% if sub_description == "" %} <p> Bringing style to table with our quintessent dinnerware
-              collections</p> {% else %} <p> {{sub_description}} </p> {% endif %}
-              
-              {% if landing_button_text == "" %}  
-                <a href={{block.settings.button_landing_url}}> <button>EXPLORE</button> </a>
-              {% else %} 
-                <a href={{block.settings.button_landing_url}}> <button class="text-uppercase">{{landing_button_text}}</button> </a>
+              {% if brand_name == "" %}
+                <p>Jasco</p>
+              {% else %}
+                <p> {{brand_name}} </p>
+              {% endif %}
+              {% if main_description == "" %}
+                <h1 class="mb-0">Unique, stylish, functional</h1>
+              {% else %}
+                <h1 class="mb-0"> {{main_description}} </h1>
+              {% endif %}
+              {% if sub_description == "" %}
+                <p class="mb-0"> Bringing style to table with our quintessent dinnerware collections</p>
+              {% else %}
+                <p class="mb-0"> {{sub_description}} </p>
               {% endif %}
               
+              {% if landing_button_text == "" %}  
+                <a class="text-uppercase" href={{block.settings.button_landing_url}}> EXPLORE</a>
+              {% else %} 
+                <a class="text-uppercase" href={{block.settings.button_landing_url}}>{{landing_button_text}}</a>
+              {% endif %}
             </div>
           </div>
         {% endfor %}
@@ -40,7 +50,7 @@
         </div>
         <div class="d-none d-md-block" id="multi-dot">
           {% for i in (1..block_size) %}
-             <span class="dot" onclick="currentSlide({{i}})"></span>
+            <span class="dot mr-4" onclick="currentSlide({{i}})"></span>
           {% endfor %}
         </div>
       </div>
@@ -65,21 +75,21 @@
               {% endif %}
 
               {% if main_description == "" %} 
-                <h1>Unique, stylish, functional</h1> 
+                <h1 class="mb-0">Unique, stylish, functional</h1> 
               {% else %} 
-                <h1> {{main_description}} </h1> 
+                <h1 class="mb-0"> {{main_description}} </h1> 
               {% endif %}
 
               {% if sub_description == "" %} 
-                <p> Bringing style to table with our quintessent dinnerware collections</p> 
+                <p class="mb-0"> Bringing style to table with our quintessent dinnerware collections</p> 
               {% else %} 
-                <p> {{sub_description}} </p> 
+                <p class="mb-0"> {{sub_description}} </p> 
               {% endif %}
 
               {% if landing_button_text == "" %}  
-                <a href={{block.settings.button_landing_url}}> <button>EXPLORE</button> </a>
+                <a class="text-uppercase" href={{block.settings.button_landing_url}}>EXPLORE </a>
               {% else %} 
-                <a href={{block.settings.button_landing_url}}> <button class="text-uppercase">{{landing_button_text}}</button> </a>
+                <a class="text-uppercase" href={{block.settings.button_landing_url}}>{{landing_button_text}} </a>
               {% endif %}
 
             </div>
