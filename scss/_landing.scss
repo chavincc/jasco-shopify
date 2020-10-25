@@ -75,78 +75,64 @@
   }
 }
 
-.prev,
-.next {
+.landing-prev,
+.landing-next {
   z-index: 2;
   cursor: pointer;
   position: absolute;
-  top: 38%;
+  top: 50%;
+}
+.landing-prev {
+  left: 5%;
+  @media only screen and (max-width: 960px) {
+    left: 4%;
+  }
+  transform: translate(-50%, -50%);
+}
+.landing-next {
+  right: 5%;
+  @media only screen and (max-width: 960px) {
+    right: 4%;
+  }
+  transform: translate(50%, -50%);
 }
 
-.circle-prev {
+.landing-circle {
   z-index: -1;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  @media only screen and (max-width: 960px) {
+    width: 40px;
+    height: 40px;
+  }
+  @media only screen and (min-width: 1800px) {
+    width: 80px;
+    height: 80px;
+  }
   background-color: transparent;
   border-radius: 50%;
-  position: absolute;
-  overflow: hidden;
-  top: -13px;
-  left: -12px;
   transition: 0.5s ease;
-  color: white;
-}
-.circle-next {
-  z-index: -1;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 50%;
-  position: absolute;
-  overflow: hidden;
-  top: -13px;
-  right: -12px;
-  transition: 0.5s ease;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.prev-text,
-.next-text {
-  font-size: 12px;
-
-  position: absolute;
-  color: transparent;
-  top: 0%;
-}
-.next-text {
-  right: -48px;
-}
-.prev-text {
-  left: -48px;
-}
-
-.prev {
-  left: 9%;
-}
-.next {
-  right: 9%;
-}
-
-.prev:hover {
-  .circle-prev {
-    overflow: visible;
-    background-color: rgba($color: white, $alpha: 0.5);
+  & > .dark-arrow {
+    display: none;
   }
-  .prev-text {
-    color: #ffffff;
+
+  & > .arrow-flip {
+    transform: matrix(-1, 0, 0, 1, 0, 0);
   }
 }
-.next:hover {
-  .circle-next {
-    overflow: visible;
-    background-color: rgba($color: white, $alpha: 0.5);
+.landing-circle:hover {
+  background-color: white;
+  opacity: 0.6;
+
+  & > .dark-arrow {
+    display: block;
   }
-  .next-text {
-    color: #ffffff;
+  & > .default-arrow {
+    display: none;
   }
 }
 
