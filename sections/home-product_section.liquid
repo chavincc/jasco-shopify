@@ -9,15 +9,15 @@
         {% assign collection = collections[block.settings.collection_section] %}
         <div class="col-md-6" id= "col-product">
             <div class="img-front">
-                <img src= "{{ collection.image | img_url: 'master' }}" >
+                <img src="{{ collection.image | img_url: 'master' }}" >
                 <div class="images-caption">
-                    <img src= "{{ block.settings.icon_product }}" style="width: auto;">
+                    <img src="{{ block.settings.icon_product | img_url: 'master' }}" style="width: auto;">
                     <p> {{collection.title}} </p>
                 </div>
                 <div class="overlay">
                     <div class="text-in-bar">
                         <p>{{collection.description}}</p>
-                        <a href= {{block.settings.button_url}} ><button class="text-uppercase view-product"> {{block.settings.text_button_product}} </button> </a>
+                        <a href={{block.settings.button_url}} ><button class="text-uppercase view-product"> {{block.settings.text_button_product}} </button> </a>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 {% assign collection = collections[block.settings.collection_section] %}
                 <div class="col-md-6" id="col-product">
                     <div class="img-front">
-                        <img src= "{{ collection.image | img_url: 'master' }}" >
+                        <img src="{{ collection.image | img_url: 'master' }}" >
                         <div class="images-caption">
                             <img src= "{{ block.settings.icon_product }}" style="width: auto;">
                             <p> {{collection.title}} </p>
@@ -72,7 +72,7 @@
                     "id": "collection_section",
                     "label": "Select collection"
                 }, {
-                    "type": "url",
+                    "type": "image_picker",
                     "id": "icon_product",
                     "label": "Collection icon"
                 },{
