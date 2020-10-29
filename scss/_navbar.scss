@@ -202,9 +202,17 @@ header {
   z-index: 10;
 }
 
+.header-third-row {
+  .container {
+    @include responsive-x-padding;
+    max-width: none;
+  }
+}
+
 .collection-menu-row {
   background-color: black;
   padding: 7px 0;
+
   .list-inline {
     justify-content: center;
     text-align: center;
