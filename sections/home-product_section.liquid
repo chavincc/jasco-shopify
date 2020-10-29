@@ -35,7 +35,7 @@
                     <div class="img-front">
                         <img src="{{ collection.image | img_url: 'master' }}" >
                         <div class="images-caption">
-                            <img src= "{{ block.settings.icon_product }}" style="width: auto;">
+                            <img src= "{{ block.settings.icon_product | img_url: 'master' }}" style="width: auto;">
                             <p> {{collection.title}} </p>
                         </div>
                         <div class="overlay">
