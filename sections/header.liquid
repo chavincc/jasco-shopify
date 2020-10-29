@@ -79,23 +79,20 @@
     <div class="header-third-row py-3 collection-menu-row  d-flex justify-content-center align-items-center">
       <div class="container">
         <div class="collection-menu text-uppercase">
-                <nav>
-                    <ul class="list-inline d-flex justify-content-center align-items-center" id="page-header" >
-                      {% assign number_menu = 0 %}
-                      {% for link in linklists[section.settings.main_linklist].links %}
-                         {% assign number_menu = number_menu | plus: 1 %} 
-                      {%endfor%}
-                      {% assign width_str = 100 | divided_by: number_menu  | append: '%' %}
-                      {% for link in linklists[section.settings.main_linklist].links %}
-                        <li style= "width:{{width_str}}">
-                          <a href="{{ link.url }}">{{link.title}}</a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                </nav> 
+          <nav>
+            <div class="list-inline d-flex justify-content-around align-items-center" id="page-header" >
+              {% assign number_menu = 0 %}
+              {% for link in linklists[section.settings.main_linklist].links %}
+                {% assign number_menu = number_menu | plus: 1 %} 
+              {%endfor%}
+              {% for link in linklists[section.settings.main_linklist].links %}
+                <a href="{{ link.url }}">{{link.title}}</a>
+              {% endfor %}
             </div>
+          </nav> 
         </div>
-      </div> 
+      </div>
+    </div> 
     {% include 'product-hover' %}
   </div>
 
