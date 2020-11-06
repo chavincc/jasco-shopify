@@ -170,3 +170,17 @@
   margin: 0px !important;
   padding: 0 25px;
 }
+
+.wishlist-container {
+  button.wk-button-collection {
+    opacity: 1 !important;
+    position: static;
+  }
+
+  &.wishlist-container-white {
+    button.wk-button-collection .wk-icon svg path {
+      fill: white;
+      stroke: white;
+    }
+  }
+}
